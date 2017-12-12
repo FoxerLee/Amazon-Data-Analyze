@@ -3,23 +3,34 @@ import re
 import os
 from lxml import html
 import csv
-from Utils import *
+import datetime
+import mysql.connector
+# from Utils import *
 
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
-
+config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'warehouse',
+              'charset': 'utf8'}
+sql = "INSERT INTO connect_id VALUES (%s,%s)"
+def file_name(file_dir):
+    L=[]
+    for root, dirs, files in os.walk(file_dir):
+        for file in files:
+            if os.path.splitext(file)[1] == '.html':
+                L.append(os.path.join(root, file))
+    return L
 
 def run():
     L = file_name('one')
 
-    fw = open('result.csv', 'w')
-    writer = csv.writer(fw)
-    file_header = ['id', 'filename']
-    writer.writerow(file_header)
+    # fw = open('result.csv', 'w')
+    # writer = csv.writer(fw)
+    # file_header = ['id', 'filename']
+    # writer.writerow(file_header)
     # 记录错误情况
     # fe = open('error.csv', 'w')
-    error_title = ['title']
+    # error_title = ['title']
 
     for l in L:
         f = open(name=l, mode='r')
@@ -27,24 +38,82 @@ def run():
         text = f.read()
         tree = html.fromstring(text)
 
-        result = []
-        result.append(l[4:])
-        # 读取title 电影名
+        result = set()
+        print l[4:-5]
+        # result.add(l[4:-5])
+        swatchs = tree.xpath('//*[@id="tmmSwatches"]/ul/li[@class="swatchElement unselected"]')
+
+        for swatch in swatchs:
+            try:
+                id = swatch.xpath('./span/span/span/a/@href')[0]
+                id = id.split('/')[3]
+                # print id
+                result.add(id)
+            except Exception, e:
+                print e
+                print "swatch error!"
+                continue
+
+        tops = tree.xpath('//*[@id="twister"]/div[@class="top-level unselected-row"]')
+        for top in tops:
+            try:
+
+                id = top.xpath('./span/table/tr/td[1]/a/@href')[0]
+                id = id.split('/')[3]
+                # print id
+                result.add(id)
+            except Exception, e:
+                print e
+                print "top error!"
+                continue
+
+        mores = tree.xpath('//*[@id="twister"]/div[9]/div[1]/div[@class="top-level unselected-row"]')
+        for more in mores:
+            try:
+                id = more.xpath('./span/table/tr/td[1]/a/@href')[0]
+                id = id.split('/')[3]
+                # print id
+                result.add(id)
+            except Exception, e:
+                print e
+                print "more error!"
+                continue
+
+        ids = []
+        if len(result) is 0:
+            result.add(l[4:-5])
+
+        for id in result:
+            ids.append((l[4:-5], id))
+        # print ids
         try:
-            title = str(tree.xpath('//*[@id="productTitle"]/text()')[0])
-            print title
-            title = delete_format(title)
-            result.append(title)
-        except:
-            error_title.append(l)
+            conn = mysql.connector.connect(**config)
+            cursor = conn.cursor()
+            cursor.executemany(sql, ids)
+            cursor.execute("Commit;")
+            print datetime.datetime.now()
+            print "succeed! " + l[4:-5]
+            cursor.close()
+            conn.close()
+        except Exception, e:
+            print e
+            print "write data error!"
+            cursor.close()
+            conn.close()
+            continue
+
+    print str(datetime.datetime.now()) + " finally!"
+
+        # except:
+        #     error_title.append(l)
 
         # 获取content 部分的内容
 
 
-        writer.writerow(result)
-        f.close()
+        # writer.writerow(result)
+        # f.close()
 
-    fw.close()
+    # fw.close()
     # fe_writer = csv.writer(fe)
 
 
@@ -52,7 +121,8 @@ def run():
     # fe.close()
 
 
-
+if __name__ == "__main__":
+    run()
 
 
 

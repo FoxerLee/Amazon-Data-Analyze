@@ -6,7 +6,7 @@ import mysql.connector
 
 reload(sys)  # reload 才能调用 setdefaultencoding 方法
 sys.setdefaultencoding('utf-8')  # 设置 'utf-8'
-ID_LIST = '1'
+ID_LIST = '4'
 
 def run(amount):
     config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'warehouse',
@@ -46,4 +46,4 @@ def run(amount):
 
 
 if __name__ == '__main__':
-    run(5000)
+    run(15000)

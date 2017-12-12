@@ -53,3 +53,9 @@ CREATE TABLE product(
   	PRIMARY KEY (id)
 );
 
+CREATE TABLE warehouse.connect_id(
+	id_1 VARCHAR(50) NOT NULL,
+	id_2 VARCHAR(50) NOT NULL,
+	PRIMARY KEY (id_1,id_2)
+);
+
