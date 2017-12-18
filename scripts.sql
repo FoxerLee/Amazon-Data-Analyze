@@ -59,3 +59,8 @@ CREATE TABLE warehouse.connect_id(
 	PRIMARY KEY (id_1,id_2)
 );
 
+CREATE TABLE warehouse.no_page(
+	product_id VARCHAR(50) NOT NULL,
+  	PRIMARY KEY (product_id)
+);
+

@@ -5,13 +5,14 @@ from lxml import html
 import csv
 import datetime
 import mysql.connector
-# from Utils import *
+from multiprocessing import Process
 
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'warehouse',
               'charset': 'utf8'}
+
 sql = "INSERT INTO connect_id VALUES (%s,%s)"
 def file_name(file_dir):
     L=[]
@@ -21,8 +22,8 @@ def file_name(file_dir):
                 L.append(os.path.join(root, file))
     return L
 
-def run():
-    L = file_name('one')
+def run(i):
+    L = file_name(i + '/one')
 
     # fw = open('result.csv', 'w')
     # writer = csv.writer(fw)
@@ -122,7 +123,12 @@ def run():
 
 
 if __name__ == "__main__":
-    run()
+    p1 = Process(target=run, args=('5',))
+    p2 = Process(target=run, args=('4',))
+    p3 = Process(target=run, args=('4',))
+    p1.start()
+    p2.start()
+    p3.start()
 
 
 
