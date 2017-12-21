@@ -26,7 +26,7 @@ def run(amount):
 
 
     for id in ids:
-        sql = "DELETE FROM "+ORIGIN+" WHERE product_id = \'" + id + "\';"
+        sql = "DELETE FROM " + ORIGIN + " WHERE product_id = \'" + id + "\';"
         try:
             cursor.execute(sql)
         except:

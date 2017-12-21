@@ -64,3 +64,15 @@ CREATE TABLE warehouse.no_page(
   	PRIMARY KEY (product_id)
 );
 
+CREATE TABLE warehouse.product_two(
+	id VARCHAR(50) NOT NULL,
+	IMDb DOUBLE NULL,
+	genres VARCHAR(100) NULL,
+	starring VARCHAR(100) NULL,
+	actors VARCHAR(500) NULL,
+	rating VARCHAR(20) NULL,
+	review_count INT NULL,
+	review DOUBLE NULL,
+	PRIMARY KEY (id)
+);
+
