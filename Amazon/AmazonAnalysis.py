@@ -35,7 +35,9 @@ def run(i):
 
     for l in L:
         f = open(name=l, mode='r')
-
+        index_1 = l.find('one', 1)
+        index_2 = l.find('.html', 1)
+        oid = l[index_1 + 4: index_2]
         text = f.read()
         tree = html.fromstring(text)
 
@@ -82,10 +84,10 @@ def run(i):
 
         ids = []
         if len(result) is 0:
-            result.add(l[4:-5])
+            result.add(oid)
 
         for id in result:
-            ids.append((l[4:-5], id))
+            ids.append((oid, id))
         # print ids
         try:
             conn = mysql.connector.connect(**config)
@@ -93,7 +95,7 @@ def run(i):
             cursor.executemany(sql, ids)
             cursor.execute("Commit;")
             print datetime.datetime.now()
-            print "succeed! " + l[4:-5]
+            print "succeed! " + oid
             cursor.close()
             conn.close()
         except Exception, e:

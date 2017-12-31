@@ -34,6 +34,12 @@ CREATE TABLE error(
   	PRIMARY KEY (product_id)
 );
 
+CREATE TABLE error_two(
+
+	product_id VARCHAR(50) NOT NULL,
+  	PRIMARY KEY (product_id)
+);
+
 CREATE TABLE product(
 	id VARCHAR(50) NOT NULL,
 	title VARCHAR(500) NULL,
