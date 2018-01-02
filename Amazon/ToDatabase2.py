@@ -29,20 +29,23 @@ def run(t):
 
     new_datas = []
     for i in range(len(ids)):
-        new_datas.append((ids[i], datas[i], 0))
+        new_datas.append([ids[i], datas[i], 0])
 
     for i in range(len(new_datas)):
         if new_datas[i][2] == 1:
             continue
-        id = ids[i]
-        data = datas[i]
+        id = new_datas[i][0]
+        data = new_datas[i][1]
+        new_datas[i][2] = 1
         for j in range(len(new_datas)):
             if new_datas[j][2] == 1:
                 continue
             else:
-                if new_datas[j][0] == 
-    # c = open("miaomiao/"+t+".csv", "ab")
-    # writer = csv.writer(c)
+                if new_datas[j][0] == id:
+                    data += new_datas[j][1] + ','
+                    new_datas[j][2] = 1
+    c = open("miaomiao/"+t+".csv", "ab")
+    writer = csv.writer(c)
     # for i in range(len(ids)):
     #     id = ids[i]
     #     data = datas[i]
@@ -56,17 +59,25 @@ def run(t):
     #             datas.pop(j)
     #             ids.pop(j)
     #
-    #     print data
-    #     print id
-    #     print datetime.datetime.now()
-        # writer.writerow(id, data)
+        data = data[:-1]
+        print data
+        print id
+        print datetime.datetime.now()
+        writer.writerow(id, data)
 
     print "Finish!"
 
 
 
 if __name__ == '__main__':
-    run("actor")
+    p1 = Process(target=run, args=('studio',))
+    p2 = Process(target=run, args=('binding',))
+    p3 = Process(target=run, args=(PATH + '3',))
+    p4 = Process(target=run, args=(PATH + '5',))
+    p1.start()
+    p2.start()
+    p3.start()
+    p4.start()
     # studio()
     # csvFile = open("connect_local1.csv", "rb")
     # reader = csv.reader(csvFile)
