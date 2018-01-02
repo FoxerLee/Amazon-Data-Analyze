@@ -11,149 +11,82 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-config = {'host': 'localhost', 'user': 'root', 'password': '123456', 'port': 3306, 'database': 'warehouse',
-              'charset': 'utf8'}
-config1 = {'host': 'localhost', 'user': 'root', 'password': '123456', 'port': 3306, 'database': 'dw',
-              'charset': 'utf8'}
+# config = {'host': 'localhost', 'user': 'root', 'password': '123456', 'port': 3306, 'database': 'warehouse',
+#               'charset': 'utf8'}
+# config1 = {'host': 'localhost', 'user': 'root', 'password': '123456', 'port': 3306, 'database': 'dw',
+#               'charset': 'utf8'}
 
 
-def actor():
-    sql1 = "SELECT * FROM actor LIMIT 1;"
-    conn = mysql.connector.connect(**config)
-    cursor = conn.cursor(buffered=True)
-    conn1 = mysql.connector.connect(**config1)
-    cursor1 = conn1.cursor(buffered=True)
+def run(t):
+    csvFile = open("miaomiao/warehouse_"+t+".csv", "rb")
+    reader = csv.reader(csvFile)
+    ids = [row[1] for row in reader]
 
-    while(True):
-        cursor.execute(sql1)
-
-        if cursor.rowcount == 0:
-            print "Finish! "
-            print datetime.datetime.now()
-
-        else:
-            res = ""
-            id = ""
-
-            for data in cursor:
-                sql2 = "SELECT * FROM actor WHERE movie_id = %s;"
-                id = str(data[1])
-                cursor.execute(sql2, (str(data[1]),))
-
-                if cursor.rowcount != 0:
-                    for n in cursor:
-                        if str(n[0]) != '':
-                            res += str(n[0]) + ","
-
-            res = res[:-1]
-            print res
-            sql3 = "UPDATE movie SET actors = %s WHERE id = %s;"
-            cursor1.execute(sql3, (res, id))
-            cursor1.execute("Commit;")
-            sql4 = "DELETE FROM actor WHERE movie_id = %s;"
-            cursor.execute(sql4, (id,))
-            cursor.execute("Commit;")
-            print id
-            print datetime.datetime.now()
-
-    cursor.close()
-    conn.close()
-    cursor1.close()
-    conn1.close()
+    csvFile = open("miaomiao/warehouse_"+t+".csv", "rb")
+    reader = csv.reader(csvFile)
+    datas = [row[0] for row in reader]
 
 
-def genre():
-    sql1 = "SELECT * FROM genre LIMIT 1;"
-    conn = mysql.connector.connect(**config)
-    cursor = conn.cursor(buffered=True)
-    conn1 = mysql.connector.connect(**config1)
-    cursor1 = conn1.cursor(buffered=True)
+    new_datas = []
+    for i in range(len(ids)):
+        new_datas.append([ids[i], datas[i], 0])
 
-    while(True):
-        cursor.execute(sql1)
+    for i in range(len(new_datas)):
+        if new_datas[i][2] == 1:
+            continue
+        id = new_datas[i][0]
+        data = new_datas[i][1]
+        new_datas[i][2] = 1
+        for j in range(len(new_datas)):
+            if new_datas[j][2] == 1:
+                continue
+            else:
+                if new_datas[j][0] == id:
+                    data += new_datas[j][1] + ','
+                    new_datas[j][2] = 1
+        c = open("miaomiao/"+t+".csv", "ab")
+        writer = csv.writer(c)
+    # for i in range(len(ids)):
+    #     id = ids[i]
+    #     data = datas[i]
+    #     ids.pop(i)
+    #     datas.pop(i)
+    #     print i
+    #     for (id, data) in range(i+1, len(ids)):
+    #         print j
+    #         if ids[j] == id:
+    #             data += datas[j] + ','
+    #             datas.pop(j)
+    #             ids.pop(j)
+    #
+        data = data[:-1]
+        print data
+        print id
+        print datetime.datetime.now()
+        writer.writerow((id, data))
 
-        if cursor.rowcount == 0:
-            print "Finish! "
-            print datetime.datetime.now()
-
-        else:
-            res = ""
-            id = ""
-
-            for data in cursor:
-                sql2 = "SELECT * FROM genre WHERE movie_id = %s;"
-                id = str(data[1])
-                cursor.execute(sql2, (str(data[1]),))
-
-                if cursor.rowcount != 0:
-                    for n in cursor:
-                        if str(n[0]) != '':
-                            res += str(n[0]) + ","
-
-            res = res[:-1]
-            print res
-            sql3 = "UPDATE movie SET genres = %s WHERE id = %s;"
-            cursor1.execute(sql3, (res, id))
-            cursor1.execute("Commit;")
-            sql4 = "DELETE FROM genre WHERE movie_id = %s;"
-            cursor.execute(sql4, (id,))
-            cursor.execute("Commit;")
-            print id
-            print datetime.datetime.now()
-
-    cursor.close()
-    conn.close()
-    cursor1.close()
-    conn1.close()
+    print "Finish!"
+    c.close()
 
 
-def starring():
-    sql1 = "SELECT * FROM starring LIMIT 1;"
-    conn = mysql.connector.connect(**config)
-    cursor = conn.cursor(buffered=True)
-    conn1 = mysql.connector.connect(**config1)
-    cursor1 = conn1.cursor(buffered=True)
-
-    while(True):
-        cursor.execute(sql1)
-
-        if cursor.rowcount == 0:
-            print "Finish! "
-            print datetime.datetime.now()
-
-        else:
-            res = ""
-            id = ""
-
-            for data in cursor:
-                sql2 = "SELECT * FROM starring WHERE movie_id = %s;"
-                id = str(data[1])
-                cursor.execute(sql2, (str(data[1]),))
-
-                if cursor.rowcount != 0:
-                    for n in cursor:
-                        if str(n[0]) != '':
-                            res += str(n[0]) + ","
-
-            res = res[:-1]
-            print res
-            sql3 = "UPDATE movie SET starrings = %s WHERE id = %s;"
-            cursor1.execute(sql3, (res, id))
-            cursor1.execute("Commit;")
-            sql4 = "DELETE FROM starring WHERE movie_id = %s;"
-            cursor.execute(sql4, (id,))
-            cursor.execute("Commit;")
-            print id
-            print datetime.datetime.now()
-
-    cursor.close()
-    conn.close()
-    cursor1.close()
-    conn1.close()
 
 if __name__ == '__main__':
+    p1 = Process(target=run, args=('studio',))
+    p2 = Process(target=run, args=('binding',))
+    p3 = Process(target=run, args=('language',))
+    p4 = Process(target=run, args=('director',))
+    # p5 = Process(target=run, args=('actor',))
+    # p6 = Process(target=run, args=('genre',))
+    # p7 = Process(target=run, args=('starring',))
+    p1.start()
+    p2.start()
+    p3.start()
+    p4.start()
+    # p5.start()
+    # p6.start()
+    # p7.start()
 
-    # studio()
+
     # csvFile = open("connect_local1.csv", "rb")
     # reader = csv.reader(csvFile)
     # runs = [row[0] for row in reader]
@@ -168,10 +101,4 @@ if __name__ == '__main__':
     #     cursor1.execute("Commit;")
     #
     # print "miaomiao"
-    p1 = Process(target=actor, )
-    p2 = Process(target=genre, )
-    p3 = Process(target=starring, )
 
-    p1.start()
-    p2.start()
-    p3.start()
