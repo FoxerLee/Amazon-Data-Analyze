@@ -1,0 +1,13 @@
+package edu.tongji.sse.DataWarehouse.DAL;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+@Mapper
+public interface StarringMapper {
+
+    @Select("select movies from starring where name = \'${name}\'")
+    String getMoviesByName(@Param(value = "name") String name);
+
+}
