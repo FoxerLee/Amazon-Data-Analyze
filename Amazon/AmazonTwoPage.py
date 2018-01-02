@@ -13,7 +13,7 @@ sys.setdefaultencoding('utf-8')
 config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'warehouse',
               'charset': 'utf8'}
 PATH = '/Volumes/未来科技公司/未来科技有限公司亚马逊电影分析部/'
-sql = "INSERT INTO product_two VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+sql = "INSERT INTO product_two VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
 def file_name(file_dir):
 
     L = []
@@ -117,7 +117,7 @@ def run(i):
             print "error review! " + id
 
         result = []
-        result.append((id, IMDb, genres, starrings, actors, rating, review_count, review))
+        result.append((id, IMDb, genres, starrings, actors, rating, review_count, review, None))
         try:
             conn = mysql.connector.connect(**config)
             cursor = conn.cursor()
@@ -131,9 +131,9 @@ def run(i):
         except Exception, e:
             print e
             print "write data error!" + id
-            sql1 = "INSERT INTO error_two VALUE ( \'" + id + "\');"
-            cursor.execute(sql1)
-            cursor.execute("Commit;")
+            # sql1 = "INSERT INTO error_two VALUE ( \'" + id + "\');"
+            # cursor.execute(sql1)
+            # cursor.execute("Commit;")
             cursor.close()
             conn.close()
             continue
@@ -143,11 +143,11 @@ def run(i):
 if __name__ == "__main__":
     #file_name(PATH + '2')
     # run(PATH + '2')
-    p1 = Process(target=run, args=('5',))
-    p2 = Process(target=run, args=('7',))
-    p3 = Process(target=run, args=('8',))
-    p4 = Process(target=run, args=('9',))
+    p1 = Process(target=run, args=(PATH+'1',))
+    p2 = Process(target=run, args=(PATH+'3',))
+    # p3 = Process(target=run, args=(PATH+'8',))
+    # p4 = Process(target=run, args=('9',))
     p1.start()
     p2.start()
-    p3.start()
-    p4.start()
+    # p3.start()
+    # p4.start()
