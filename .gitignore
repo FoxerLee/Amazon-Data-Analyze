@@ -1,6 +1,6 @@
 *.csv
 *.txt
-*.html
+
 *.pyc
 Amazon/.idea/
 .idea/
