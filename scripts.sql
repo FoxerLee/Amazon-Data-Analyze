@@ -34,6 +34,12 @@ CREATE TABLE error(
   	PRIMARY KEY (product_id)
 );
 
+CREATE TABLE error_two(
+
+	product_id VARCHAR(50) NOT NULL,
+  	PRIMARY KEY (product_id)
+);
+
 CREATE TABLE product(
 	id VARCHAR(50) NOT NULL,
 	title VARCHAR(500) NULL,
@@ -57,5 +63,22 @@ CREATE TABLE warehouse.connect_id(
 	id_1 VARCHAR(50) NOT NULL,
 	id_2 VARCHAR(50) NOT NULL,
 	PRIMARY KEY (id_1,id_2)
+);
+
+CREATE TABLE warehouse.no_page(
+	product_id VARCHAR(50) NOT NULL,
+  	PRIMARY KEY (product_id)
+);
+
+CREATE TABLE warehouse.product_two(
+	id VARCHAR(50) NOT NULL,
+	IMDb DOUBLE NULL,
+	genres VARCHAR(100) NULL,
+	starring VARCHAR(100) NULL,
+	actors VARCHAR(500) NULL,
+	rating VARCHAR(20) NULL,
+	review_count INT NULL,
+	review DOUBLE NULL,
+	PRIMARY KEY (id)
 );
 

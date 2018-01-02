@@ -64,7 +64,7 @@ def run():
             break
     cursor.execute("Commit;")
     # 一次性插入会出现奇怪的bug，找不到，气死了
-    # 找到了，要把list里面的数据转成tuple，日他哥
+    # 找到了，要把list里面的数据转成tuple，辣鸡
     # 但是为了分批次，还是一个一个插吧，md
     # sql = "INSERT INTO product_id VALUE (%s)"
     # cursor.executemany(sql, ids)
