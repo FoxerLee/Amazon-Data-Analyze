@@ -30,6 +30,17 @@ def run(t):
     new_datas = []
     for i in range(len(ids)):
         new_datas.append((ids[i], datas[i], 0))
+
+    for i in range(len(new_datas)):
+        if new_datas[i][2] == 1:
+            continue
+        id = ids[i]
+        data = datas[i]
+        for j in range(len(new_datas)):
+            if new_datas[j][2] == 1:
+                continue
+            else:
+                if new_datas[j][0] == 
     # c = open("miaomiao/"+t+".csv", "ab")
     # writer = csv.writer(c)
     # for i in range(len(ids)):
