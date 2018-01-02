@@ -196,7 +196,139 @@ def director():
     cursor1.close()
     conn1.close()
 
+def actor():
+    sql1 = "SELECT * FROM actor LIMIT 1;"
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor(buffered=True)
+    conn1 = mysql.connector.connect(**config1)
+    cursor1 = conn1.cursor(buffered=True)
 
+    while(True):
+        cursor.execute(sql1)
+
+        if cursor.rowcount == 0:
+            print "Finish! "
+            print datetime.datetime.now()
+
+        else:
+            res = ""
+            id = ""
+
+            for data in cursor:
+                sql2 = "SELECT * FROM actor WHERE movie_id = %s;"
+                id = str(data[1])
+                cursor.execute(sql2, (str(data[1]),))
+
+                if cursor.rowcount != 0:
+                    for n in cursor:
+                        if str(n[0]) != '':
+                            res += str(n[0]) + ","
+
+            res = res[:-1]
+            print res
+            sql3 = "UPDATE movie SET actors = %s WHERE id = %s;"
+            cursor1.execute(sql3, (res, id))
+            cursor1.execute("Commit;")
+            sql4 = "DELETE FROM actor WHERE movie_id = %s;"
+            cursor.execute(sql4, (id,))
+            cursor.execute("Commit;")
+            print id
+            print datetime.datetime.now()
+
+    cursor.close()
+    conn.close()
+    cursor1.close()
+    conn1.close()
+
+
+def genre():
+    sql1 = "SELECT * FROM genre LIMIT 1;"
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor(buffered=True)
+    conn1 = mysql.connector.connect(**config1)
+    cursor1 = conn1.cursor(buffered=True)
+
+    while(True):
+        cursor.execute(sql1)
+
+        if cursor.rowcount == 0:
+            print "Finish! "
+            print datetime.datetime.now()
+
+        else:
+            res = ""
+            id = ""
+
+            for data in cursor:
+                sql2 = "SELECT * FROM genre WHERE movie_id = %s;"
+                id = str(data[1])
+                cursor.execute(sql2, (str(data[1]),))
+
+                if cursor.rowcount != 0:
+                    for n in cursor:
+                        if str(n[0]) != '':
+                            res += str(n[0]) + ","
+
+            res = res[:-1]
+            print res
+            sql3 = "UPDATE movie SET genres = %s WHERE id = %s;"
+            cursor1.execute(sql3, (res, id))
+            cursor1.execute("Commit;")
+            sql4 = "DELETE FROM genre WHERE movie_id = %s;"
+            cursor.execute(sql4, (id,))
+            cursor.execute("Commit;")
+            print id
+            print datetime.datetime.now()
+
+    cursor.close()
+    conn.close()
+    cursor1.close()
+    conn1.close()
+
+
+def starring():
+    sql1 = "SELECT * FROM starring LIMIT 1;"
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor(buffered=True)
+    conn1 = mysql.connector.connect(**config1)
+    cursor1 = conn1.cursor(buffered=True)
+
+    while(True):
+        cursor.execute(sql1)
+
+        if cursor.rowcount == 0:
+            print "Finish! "
+            print datetime.datetime.now()
+
+        else:
+            res = ""
+            id = ""
+
+            for data in cursor:
+                sql2 = "SELECT * FROM starring WHERE movie_id = %s;"
+                id = str(data[1])
+                cursor.execute(sql2, (str(data[1]),))
+
+                if cursor.rowcount != 0:
+                    for n in cursor:
+                        if str(n[0]) != '':
+                            res += str(n[0]) + ","
+
+            res = res[:-1]
+            print res
+            sql3 = "UPDATE movie SET starrings = %s WHERE id = %s;"
+            cursor1.execute(sql3, (res, id))
+            cursor1.execute("Commit;")
+            sql4 = "DELETE FROM starring WHERE movie_id = %s;"
+            cursor.execute(sql4, (id,))
+            cursor.execute("Commit;")
+            print id
+            print datetime.datetime.now()
+
+    cursor.close()
+    conn.close()
+    cursor1.close()
+    conn1.close()
 
 
 
@@ -221,8 +353,15 @@ if __name__ == '__main__':
     p2 = Process(target=binding, )
     p3 = Process(target=language, )
     p4 = Process(target=director, )
+    p5 = Process(target=actor, )
+    p6 = Process(target=genre, )
+    p7 = Process(target=starring, )
+
     p1.start()
     p2.start()
     p3.start()
     p4.start()
+    p5.start()
+    p6.start()
+    p7.start()
 
