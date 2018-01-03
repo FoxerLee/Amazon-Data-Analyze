@@ -21,7 +21,7 @@ public class TimeServiceImpl implements TimeService {
     @Autowired
     private DateMapper dateMapper;
 
-    public List<Movie> getMoviesByTime(String year, String month, String week) {
+    public List<Movie> getMoviesByTime(String time) {
         final String DB_URL = "jdbc:mysql://10.60.42.201:13142/dw";
         final String USER = "root";
         final String PASS = "123456";
@@ -31,29 +31,66 @@ public class TimeServiceImpl implements TimeService {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
-            String judge = " WHERE ";
-            if (Integer.parseInt(year) > 0)
-                judge += " year = " + year + " and ";
-            String[] months = month.split(",");
-            for (int i = 0; i < months.length; i++) {
-                if (i == 0)
-                    judge += " AND ( ";
-                judge += " month = " + months[i];
-                if (i == months.length - 1)
-                    judge += " ) ";
-                else
-                    judge += " OR ";
+            String judge = "";
+            if(!time.equals(""))
+                judge += " WHERE ";
+            String year = time.substring(0, 4);
+            List<Integer> months = new ArrayList<>();
+            for(int i = 4; i < 16; i++){
+                if(time.substring(i, i+ 1).equals("1"))
+                    months.add(i - 3);
             }
-            String[] weeks = week.split(",");
-            for (int i = 0; i < weeks.length; i++) {
-                if (i == 0)
-                    judge += " AND ( ";
-                judge += " week = " + weeks[i];
-                if (i == weeks.length - 1)
-                    judge += " ) ";
-                else
-                    judge += " OR ";
+            List<Integer> weeks = new ArrayList<>();
+            for(int i = 16; i < 23; i++){
+                if(time.substring(i, i + 1).equals("1"))
+                    weeks.add(i - 15);
             }
+            judge += " year = " + year;
+            if(months.size() > 0){
+                for(int i = 0; i < months.size(); i++){
+                    if(i == 0)
+                        judge += " AND ( ";
+                    judge += " month = " + months.get(i);
+                    if(i == months.size() - 1)
+                        judge += " ) ";
+                    else
+                        judge += " OR ";
+                }
+            }
+            if(weeks.size() > 0){
+                for(int i = 0; i < weeks.size(); i++){
+                    if(i == 0)
+                        judge += " AND (";
+                    judge += " week = " + weeks.get(i);
+                    if(i == weeks.size() - 1)
+                        judge += " ) ";
+                    else
+                        judge += " OR ";
+                }
+            }
+            System.out.print(judge);
+//            if (Integer.parseInt(year) > 0)
+//                judge += " year = " + year + " and ";
+//            String[] months = month.split(",");
+//            for (int i = 0; i < months.length; i++) {
+//                if (i == 0)
+//                    judge += " AND ( ";
+//                judge += " month = " + months[i];
+//                if (i == months.length - 1)
+//                    judge += " ) ";
+//                else
+//                    judge += " OR ";
+//            }
+//            String[] weeks = week.split(",");
+//            for (int i = 0; i < weeks.length; i++) {
+//                if (i == 0)
+//                    judge += " AND ( ";
+//                judge += " week = " + weeks[i];
+//                if (i == weeks.length - 1)
+//                    judge += " ) ";
+//                else
+//                    judge += " OR ";
+//            }
             String sql = "SELECT movies FROM date " + judge;
             ResultSet rs = stmt.executeQuery(sql);
             List<Movie> movies = new ArrayList<>();

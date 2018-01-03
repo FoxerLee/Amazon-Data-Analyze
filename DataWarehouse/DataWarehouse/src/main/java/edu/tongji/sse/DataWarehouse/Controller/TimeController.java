@@ -15,9 +15,7 @@ public class TimeController {
     private TimeService timeService;
 
     @GetMapping("/index")
-    public Object getMoviesByTime(@RequestParam(value = "year", defaultValue = "-1")String year,
-                                  @RequestParam(value = "month", defaultValue = "")String month,
-                                  @RequestParam(value = "week", defaultValue = "")String week){
-        return timeService.getMoviesByTime(year, month, week);
+    public Object getMoviesByTime(@RequestParam(value = "time", defaultValue = "")String time){
+        return timeService.getMoviesByTime(time);
     }
 }
