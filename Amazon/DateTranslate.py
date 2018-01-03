@@ -22,15 +22,15 @@ def run():
     reader = csv.reader(csvFile)
     ids = [row[0] for row in reader]
 
-    # csvFile = open("warehouse_product.csv", "rb")
-    # reader = csv.reader(csvFile)
-    # p_dates = [row[12] for row in reader]
-
     csvFile = open("warehouse_product.csv", "rb")
     reader = csv.reader(csvFile)
-    r_dates = [row[13] for row in reader]
+    r_dates = [row[12] for row in reader]
 
-    c = open("r_date.csv", "ab")
+    # csvFile = open("warehouse_product.csv", "rb")
+    # reader = csv.reader(csvFile)
+    # r_dates = [row[13] for row in reader]
+
+    c = open("p_date.csv", "ab")
     writer = csv.writer(c)
     for i in range(len(ids)):
 
@@ -50,7 +50,7 @@ def run():
             date = datetime.datetime(date[0], date[1], date[2])
             day = date.weekday()
 
-            writer.writerow((ids[i], r_date[0], r_date[1], day))
+            writer.writerow((ids[i], r_date[0]+r_date[1]+str(day), r_date[0], r_date[1], day))
             print ids[i]
             print datetime.datetime.now()
 
