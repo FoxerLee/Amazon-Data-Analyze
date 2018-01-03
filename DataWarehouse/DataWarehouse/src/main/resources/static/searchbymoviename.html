@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>按电影名称查询 </title>
+
+    <!-- Bootstrap -->
+    <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../static/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>喵喵电影</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                  <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard </a>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i> 查询 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                    <li><a href="searchbymoviename.html">按电影名称查询</a></li>
+                      <li><a href="searchbyactor.html">按演员名称查询</a></li>
+                      <li><a href="searchbydirector.html">按导演名称查询</a></li>
+                      <li><a href="searchbystyle.html">按风格查询</a></li>
+                      <li><a href="searchbytime.html">按上映时间查询</a></li>
+                      <li><a href="searchbycomponent.html">组合查询</a></li>
+                      <li><a href="searchreview.html">查询电影评论</a></li>
+                      <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main" ng-app="myApp" ng-controller="siteCtrl">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>按电影名称查询</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <form method="get" id="search_form">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="mname" placeholder="电影名">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit" ng-click="form_query()">搜索</button>
+                    </span>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>电影信息 : Iron Man</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <table class="table table-striped">
+                      <tr>
+                        <th>电影ID</th>
+                        <td>123456</td>
+                      </tr>
+
+                      <tr>
+                        <th>电影名称</th>
+                        <td>Iron Man</td>
+                      </tr>
+                      <tr>
+                        <th>导演</th>
+                        <td>the Bird</td>
+                      </tr>
+                      <tr>
+                        <th>主演</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>演员</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>演员</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>发行商</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>风格</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>上映时间</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>版本</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>语言</th>
+                        <td>Thornton</td>
+                      </tr>
+                    </table>
+                    <div class="x_title">
+                      <h2>商品信息</h2>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                      <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                          <th>Asin</th>
+                          <th>版本</th>
+                          <th>价格</th>
+                          <th>播放时长</th>
+                          <th>语言</th>
+                          <th>发行商</th>
+                          <th>销售排名</th>
+                          <th>详情</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>DVD</td>
+                          <td>200RMB</td>
+                          <td>2h</td>
+                          <td>English</td>
+                          <td>marvel studio</td>
+                          <td>1</td>
+                          <td>
+                            <a href="www.baidu.com"><i class="fa fa-share"></i></a>
+                          </td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="row" ng-repeat="l1 in movieInfo">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>电影信息 : Iron Man</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <table class="table table-striped">
+                      <tr>
+                        <th>电影ID</th>
+                        <td>123456</td>
+                      </tr>
+
+                      <tr>
+                        <th>电影名称</th>
+                        <td>Iron Man</td>
+                      </tr>
+                      <tr>
+                        <th>导演</th>
+                        <td>the Bird</td>
+                      </tr>
+                      <tr>
+                        <th>主演</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>演员</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>演员</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>发行商</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>风格</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>上映时间</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>版本</th>
+                        <td>Thornton</td>
+                      </tr>
+                      <tr>
+                        <th>语言</th>
+                        <td>Thornton</td>
+                      </tr>
+                    </table>
+                    <div class="x_title">
+                      <h2>商品信息</h2>
+                      <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content" ng-repeat="l2 in l1.product">
+                      <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                          <th>Asin</th>
+                          <th>版本</th>
+                          <th>价格</th>
+                          <th>播放时长</th>
+                          <th>语言</th>
+                          <th>发行商</th>
+                          <th>销售排名</th>
+                          <th>详情</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                          <td>1</td>
+                          <td>DVD</td>
+                          <td>200RMB</td>
+                          <td>2h</td>
+                          <td>English</td>
+                          <td>marvel studio</td>
+                          <td>1</td>
+                          <td>
+                            <a href="www.baidu.com"><i class="fa fa-share"></i></a>
+                          </td>
+                        </tr>
+
+                        </tbody>
+                      </table>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            喵喵电影 - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="../vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="../vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="../vendors/nprogress/nprogress.js"></script>
+
+    <script src="../vendors/angular/angular-route.js"></script>
+    <script src="../vendors/angular/angular.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="../static/js/custom.min.js"></script>
+
+    <script>
+
+        var app = angular.module('myApp', []);
+        app.controller('siteCtrl', function($scope, $http) {
+            $scope.form_query = function () {
+                var name = document.getElementById("mname").value;
+                alert(name);
+                $http.get("http://localhost:8080/research/personal?name=" + name)
+                    .then(function (response) {
+                        var temp2 = angular.fromJson(response.data);
+                        //var temp3 = temp2[0].data[0].name;
+                        $scope.movieInfo = temp2;
+                    });
+            }
+
+        });
+    </script>
+
+
+  </body>
+</html>

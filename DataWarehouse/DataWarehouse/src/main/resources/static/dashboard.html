@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/graph.css" />
+
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="css/custom.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/static/js/modernizr.custom.04022.js"></script>
+    <style>.ie-note-1{display:block;} .main{display:none;}</style>
+    <![endif]-->
+    <!--[if IE 9]><style>.ie-note-2{display:block;}</style><![endif]-->
+  </head>
+
+  <body class="nav-md" ng-app="myApp" ng-controller="siteCtrl">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>喵喵电影</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                  <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard </a>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i> 查询 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="searchbymoviename.html">按电影名称查询</a></li>
+                      <li><a href="searchbyactor.html">按演员名称查询</a></li>
+                      <li><a href="searchbydirector.html">按导演名称查询</a></li>
+                      <li><a href="searchbystyle.html">按风格查询</a></li>
+                      <li><a href="searchbytime.html">按上映时间查询</a></li>
+                      <li><a href="searchbycomponent.html">组合查询</a></li>
+                      <li><a href="searchreview.html">查询电影评论</a></li>
+                      <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+             
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Amazon电影数据仓库数据总览</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>数据数据总览</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <section class="main">
+
+                      <span class="button-label">Size:</span>
+                      <input type="radio" name="resize-graph" id="graph-small" /><label for="graph-small">Small</label>
+                      <input type="radio" name="resize-graph" id="graph-normal" checked="checked" /><label for="graph-normal">Normal</label>
+                      <input type="radio" name="resize-graph" id="graph-large" /><label for="graph-large">Large</label>
+
+                      <span class="button-label">Color:</span>
+                      <input type="radio" name="paint-graph" id="graph-blue" /><label for="graph-blue">Blue</label>
+                      <input type="radio" name="paint-graph" id="graph-green" /><label for="graph-green">Green</label>
+                      <input type="radio" name="paint-graph" id="graph-red" /><label for="graph-red">Red</label>
+                      <input type="radio" name="paint-graph" id="graph-yellow" /><label for="graph-yellow">Yellow</label>
+                      <input type="radio" name="paint-graph" id="graph-rainbow" checked="checked" /><label for="graph-rainbow">Rainbow</label>
+
+                      <span class="button-label">State:</span>
+                      <input type="radio" name="fill-graph" id="f-none" checked="checked" /><label for="f-none">None</label>
+                      <input type="radio" name="fill-graph" id="f-product1" /><label for="f-product1">Show</label>
+                      <!--<input type="radio" name="fill-graph" id="f-product2" /><label for="f-product2">Product 2</label>-->
+                      <!--<input type="radio" name="fill-graph" id="f-product3" /><label for="f-product3">Product 3</label>-->
+
+                      <ul class="graph-container">
+                        <li>
+                          <span>电影数目</span>
+                          <div class="bar-wrapper" onclick="changeStyle2()">
+                            <div class="bar-container" id="1" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                              <div class="bar-background"></div>
+                              <div class="bar-inner" id="bar1">97</div>
+                              <div class="bar-foreground"></div>
+                              <div id="ccbox1" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                                <br />电影数目：{{movie}}
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <span>演员数目</span>
+                          <div class="bar-wrapper" >
+                            <div class="bar-container" id="2" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                              <div class="bar-background"></div>
+                              <div class="bar-inner" id="bar2">54</div>
+                              <div class="bar-foreground"></div>
+                              <div id="ccbox2" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                                <br />演员数目：{{actor}}
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <span>导演数目</span>
+                          <div class="bar-wrapper" >
+                            <div class="bar-container" id="3" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                              <div class="bar-background"></div>
+                              <div class="bar-inner" id="bar3">16</div>
+                              <div class="bar-foreground"></div>
+                              <div id="ccbox3" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                                <br />导演数目：{{director}}
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <span>出版商数目</span>
+                          <div class="bar-wrapper" >
+                            <div class="bar-container" id="4" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                              <div class="bar-background"></div>
+                              <div class="bar-inner" id="bar4">16</div>
+                              <div class="bar-foreground"></div>
+                              <div id="ccbox4" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                                <br />出版商数目：{{publish}}
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <span>版本数目</span>
+                          <div class="bar-wrapper" >
+                            <div class="bar-container" id="5" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                              <div class="bar-background"></div>
+                              <div class="bar-inner" id="bar5">16</div>
+                              <div class="bar-foreground"></div>
+                              <div id="ccbox5" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
+                                <br />版本数目：{{version}}
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <ul class="graph-marker-container">
+                            <li style="bottom:25%;"><span>65000</span></li>
+                            <li style="bottom:50%;"><span>130000</span></li>
+                            <li style="bottom:75%;"><span>195000</span></li>
+                            <li style="bottom:100%;"><span>260000</span></li>
+                          </ul>
+                        </li>
+                      </ul>
+
+                    </section>
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="x_panel">
+              <div class="x_content">
+                <div class="x_title">
+                  <h2>电影各类别电影数</h2>
+                  <div>
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+                          <th>序号</th>
+                          <th>电影类别</th>
+                          <th>电影数目</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="x in list">
+                          <th scope="row">{{x.id}}</th>
+                          <td>{{x.style}}</td>
+                          <td>{{x.number}}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendors/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="vendors/nprogress/nprogress.js"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script src="js/custom.min.js"></script>
+    <script src="vendors/angular/angular.js"></script>
+    <script src="vendors/angular/angular-route.js"></script>
+  </body>
+</html>
+<script type="text/javascript">
+    function showTag(id){
+        var thisId=id;
+        var check=document.getElementById("f-product1").checked;
+        if(check===true) {
+            var boxId="ccbox"+id;
+            document.getElementById(boxId).style.display = "block";
+        }
+    }
+    function hideTag(id){
+        var boxId="ccbox"+id;
+        document.getElementById(boxId).style.display="none";
+    }
+
+    function changeStyle2() {
+        var obj = document.getElementById("test");
+        obj.style.cssText = "height: 23%; bottom: 0";
+
+    }
+    var app = angular.module('myApp', []);
+    app.controller('siteCtrl', function($scope, $http) {
+        $http.get("......")
+            .then(function (response) {
+                $scope.list = response.data;
+            });
+        $http.get("......")
+            .then(function (response) {
+                var temp = angular.fromJson(response.data);
+                $scope.movie=temp[0].number;
+                $scope.actor=temp[1].number;
+                $scope.director=temp[2].number;
+                $scope.publish=temp[3].number;
+                $scope.version=temp[4].number;
+                for(var i=0;i<5;i++){
+                    var barId=i+1;
+                    barId="bar"+barId;
+                    var obj = document.getElementById(barId);
+                    var percent=parseFloat(String(temp[i].number))/260000;
+                    var str=String(percent)+'%';
+                    obj.style.cssText = "height: "+str+"; bottom: 0";
+                }
+            });
+    });
+
+</script>
