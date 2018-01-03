@@ -18,6 +18,6 @@ public class TimeController {
     public Object getMoviesByTime(@RequestParam(value = "year", defaultValue = "-1")String year,
                                   @RequestParam(value = "month", defaultValue = "")String month,
                                   @RequestParam(value = "week", defaultValue = "")String week){
-        return timeService.getMoviesByTime(Integer.parseInt(year), month, week);
+        return timeService.getMoviesByTime(year, month, week);
     }
 }

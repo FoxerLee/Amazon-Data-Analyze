@@ -22,4 +22,6 @@ public interface CheckService {
      List<Movie> checkMoviesByStarringName(String name);
 
      List<Movie> checkMoviesByStarringOrActor(String actorName, String starringName);
+
+     List<Movie> checkMoviesByMultipleOptions(String year, String director, String actor, String genre);
 }

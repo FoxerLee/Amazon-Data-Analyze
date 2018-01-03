@@ -4,6 +4,7 @@ import edu.tongji.sse.DataWarehouse.DAL.*;
 import edu.tongji.sse.DataWarehouse.Model.Movie;
 import edu.tongji.sse.DataWarehouse.Model.Product;
 import edu.tongji.sse.DataWarehouse.Service.CheckService;
+import edu.tongji.sse.DataWarehouse.Service.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,9 @@ public class CheckServiceImpl implements CheckService{
 
     @Autowired
     private StarringMapper starringMapper;
+
+    @Autowired
+    private TimeService timeService;
 
     @Override
     public List<Movie> checkMoviesByName(String name){
@@ -95,5 +99,35 @@ public class CheckServiceImpl implements CheckService{
         result.addAll(checkMoviesByStarringName(starringName));
         result.addAll(checkMoviesByActorName(actorName));
         return result;
+    }
+
+    @Override
+    public List<Movie> checkMoviesByMultipleOptions(String year, String director, String actor, String genre){
+        List<Movie> movies = new ArrayList<>();
+        if(!actor.equals("")){
+            if(movies.size() == 0)
+                movies = checkMoviesByActorName(actor);
+            else
+                movies.retainAll(checkMoviesByActorName(actor));
+        }
+        if(!director.equals("")){
+            if(movies.size() == 0)
+                movies = checkMoviesByDirector(director);
+            else
+                movies.retainAll(checkMoviesByDirector(director));
+        }
+        if(!year.equals("")){
+            if(movies.size() == 0)
+                movies = timeService.getMoviesByYear(year);
+            else
+                movies.retainAll(timeService.getMoviesByYear(year));
+        }
+        if(!genre.equals("")){
+            if(movies.size() == 0)
+                movies = checkMoviesByGenre(genre);
+            else
+                movies.retainAll(checkMoviesByGenre(genre));
+        }
+        return movies;
     }
 }
