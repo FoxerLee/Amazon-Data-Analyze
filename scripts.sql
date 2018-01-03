@@ -55,7 +55,7 @@ CREATE TABLE product(
 	running_time VARCHAR(500) NULL,
 	publication_date DATE NULL,
 	release_date DATE NULL,
-
+	url VARCHAR(1000),
   	PRIMARY KEY (id)
 );
 
@@ -79,6 +79,7 @@ CREATE TABLE warehouse.product_two(
 	rating VARCHAR(20) NULL,
 	review_count INT NULL,
 	review DOUBLE NULL,
+	url VARCHAR(1000),
 	PRIMARY KEY (id)
 );
 

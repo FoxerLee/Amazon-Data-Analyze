@@ -70,7 +70,7 @@ def find():
     reader = csv.reader(csvFile)
     ids = [row for row in reader]
 
-    start =  datetime.datetime.now()
+    start = datetime.datetime.now()
 
     c = open("date.csv", "ab")
     writer = csv.writer(c)
