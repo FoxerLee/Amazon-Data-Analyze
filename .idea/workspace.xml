@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7f3cb52-5856-484d-a1d6-f4bb2cd5e077" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/build/Dashboard.html" afterPath="$PROJECT_DIR$/resource/build/Dashboard.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/build/searchdirectorstyle.html" afterPath="$PROJECT_DIR$/resource/build/searchdirectorstyle.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resource/build/searchreview.html" afterPath="$PROJECT_DIR$/resource/build/searchreview.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,18 +20,28 @@
       <file leaf-file-name="searchreview.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resource/build/searchreview.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="37" column="40" lean-forward="true" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
+            <state relative-caret-position="-376">
+              <caret line="99" column="29" lean-forward="false" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dashboard.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="searchdirectorstyle.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resource/build/searchdirectorstyle.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="473">
+              <caret line="151" column="61" lean-forward="true" selection-start-line="151" selection-start-column="61" selection-end-line="151" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dashboard.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resource/build/Dashboard.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="225" column="23" lean-forward="true" selection-start-line="225" selection-start-column="23" selection-end-line="225" selection-end-column="23" />
+            <state relative-caret-position="597">
+              <caret line="308" column="15" lean-forward="true" selection-start-line="303" selection-start-column="4" selection-end-line="308" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -64,6 +75,8 @@
         <option value="$PROJECT_DIR$/resource/product/searchdirectorstyle.html" />
         <option value="$PROJECT_DIR$/resource/product/Dashboard.html" />
         <option value="$PROJECT_DIR$/resource/build/Dashboard.html" />
+        <option value="$PROJECT_DIR$/resource/build/searchreview.html" />
+        <option value="$PROJECT_DIR$/resource/build/searchdirectorstyle.html" />
       </list>
     </option>
   </component>
@@ -252,7 +265,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2385000" />
+    <option name="totallyTimeSpent" value="8941000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -318,14 +331,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resource/build/searchreview.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="37" column="40" lean-forward="true" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resource/build/searchbyactor.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2650">
@@ -336,8 +341,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/build/Dashboard.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="225" column="23" lean-forward="true" selection-start-line="225" selection-start-column="23" selection-end-line="225" selection-end-column="23" />
+        <state relative-caret-position="597">
+          <caret line="308" column="15" lean-forward="true" selection-start-line="303" selection-start-column="4" selection-end-line="308" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/build/searchreview.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-376">
+          <caret line="99" column="29" lean-forward="false" selection-start-line="99" selection-start-column="29" selection-end-line="99" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/build/searchdirectorstyle.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="151" column="61" lean-forward="true" selection-start-line="151" selection-start-column="61" selection-end-line="151" selection-end-column="61" />
           <folding />
         </state>
       </provider>

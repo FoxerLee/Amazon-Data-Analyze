@@ -20,7 +20,7 @@
     <link href="../build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md">
+  <body class="nav-md" ng-app="myApp" ng-controller="siteCtrl">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
@@ -37,7 +37,7 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a href="Dashboard.html"><i class="fa fa-home"></i> Dashboard <</a>
+                  <li><a href="Dashboard.html"><i class="fa fa-home"></i> Dashboard </a>
                   </li>
                   <li><a><i class="fa fa-edit"></i> 查询 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -82,9 +82,9 @@
               <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="电影名">
+                    <input id="searchBar" type="text" class="form-control" placeholder="电影名">
                     <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">搜索</button>
+                      <button class="btn btn-default" type="button" ng-click="search()">搜索</button>
                     </span>
                   </div>
                 </div>
@@ -97,7 +97,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Iron man 的评论</h2>
+                    <h2>电影名称：{{movie}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -107,14 +107,15 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                    <div ng-repeat="x in list">
                     <table class="table table-striped">
                       <tr>
                         <th>评论主题</th>
-                        <td>Thornton</td>
+                        <td>{{x.theme}}</td>
                       </tr>
                       <tr>
                         <th>评论内容</th>
-                        <td>Thornton</td>
+                        <td>{{x.content}}</td>
                       </tr>
                     </table>
                     <div class="x_content">
@@ -129,18 +130,19 @@
                         </thead>
                         <tbody>
                         <tr>
-                          <td>李源</td>
-                          <td>20200202</td>
-                          <td>5</td>
-                          <td>0</td>
+                          <td>{{x.author}}</td>
+                          <td>{{x.time}}</td>
+                          <td>{{x.score}}</td>
+                          <td>{{x.agree}}</td>
                         </tr>
 
                         </tbody>
                       </table>
+                    </div>
 
                     </div>
-                  </div>
 
+                  </div>
                 </div>
               </div>
             </div>
@@ -167,8 +169,27 @@
     <script src="../vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="../vendors/nprogress/nprogress.js"></script>
+
     
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+    <script src="../vendors/angular/angular.js"></script>
+    <script src="../vendors/angular/angular-route.js"></script>
   </body>
 </html>
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    var movieName;
+    app.controller('siteCtrl', function($scope, $http) {
+        $scope.search=function(){
+            movieName=String(document.getElementById("searchBar").value);
+            $scope.movie=movieName;
+            alert(movieName)
+            $http.get("......."+movieName)
+                .then(function (response) {
+                    $scope.list=response.data;
+                });
+        };
+
+    })
+</script>
