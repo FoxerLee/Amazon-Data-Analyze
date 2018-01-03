@@ -57,12 +57,62 @@ def run():
     c.close()
     print "Finish!"
 
+def find():
+    csvFile = open("p_date.csv", "rb")
+    reader = csv.reader(csvFile)
+    ps = [row for row in reader]
 
+    csvFile = open("r_date.csv", "rb")
+    reader = csv.reader(csvFile)
+    rs = [row for row in reader]
 
+    csvFile = open("connect_local1.csv", "rb")
+    reader = csv.reader(csvFile)
+    ids = [row for row in reader]
+
+    start =  datetime.datetime.now()
+
+    c = open("date.csv", "ab")
+    writer = csv.writer(c)
+    for i in ids:
+
+        id = i.pop(0)
+        date = 8888888
+        for j in range(len(i)):
+            for p in range(len(ps)):
+                if ps[p][0] == i[j]:
+                    print ps[p][1]
+                    if ps[p][1] == '':
+                        continue
+                    temp = int(ps[p][1])
+                    if temp < date:
+                        date = temp
+
+            for r in range(len(rs)):
+                if rs[r][0] == i[j]:
+                    print rs[r][1]
+                    if rs[r][1] == '':
+                        continue
+                    temp = int(rs[r][1])
+                    if temp < date:
+                        date = temp
+
+        print date
+        print id
+        print datetime.datetime.now()
+        date = str(date)
+        month = date[4:6]
+        if month[0] == '0':
+            month = month[1:]
+
+        writer.writerow((id, date, date[0:4], month, date[-1]))
+
+    print "Finish!"
+    print datetime.datetime.now() - start
 
 if __name__ == '__main__':
-    run()
-
+    # run()
+    find()
     # str = '2018-01-02'
     # date = time.strptime(str, "%Y-%m-%d")
     # date = datetime.datetime(date[0], date[1], date[2])
