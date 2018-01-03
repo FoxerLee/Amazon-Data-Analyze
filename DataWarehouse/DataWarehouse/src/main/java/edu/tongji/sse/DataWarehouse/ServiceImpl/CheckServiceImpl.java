@@ -7,6 +7,7 @@ import edu.tongji.sse.DataWarehouse.Service.CheckService;
 import edu.tongji.sse.DataWarehouse.Service.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.plugin.javascript.navig.LinkArray;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +59,11 @@ public class CheckServiceImpl implements CheckService{
 
     @Override
     public List<Product> checkProductsByMovieId(String id){
-        return productMapper.getProductsById(id);
+        List<Product> products = productMapper.getProductsById(id);
+        if(products == null)
+            return new ArrayList<>();
+        else
+            return productMapper.getProductsById(id);
     }
 
     @Override
@@ -67,6 +72,11 @@ public class CheckServiceImpl implements CheckService{
         for(int i = 0; i < movies.size(); i++){
             HashMap<String, Object> data  = new HashMap<>();
             data.put("movie", movies.get(i));
+//            System.out.println(movies.get(i).getId());
+            checkProductsByMovieId(movies.get(i).getId());
+//            if (products == null)
+//                data.put("product", new ArrayList<>());
+//            else
             data.put("product", checkProductsByMovieId(movies.get(i).getId()));
             result.add(data);
         }
@@ -75,21 +85,40 @@ public class CheckServiceImpl implements CheckService{
 
     @Override
     public List<Movie> checkMoviesByActorName(String name){
-        String[] ID = actorMapper.getMovies(name).split(",");
         List<Movie> movies = new ArrayList<>();
-        for(int i = 0; i < ID.length; i++){
-            movies.add(movieMapper.getMoviesById(ID[i]));
+        String t_movies = actorMapper.getMovies(name);
+        if(t_movies != null){
+            String[] ID = t_movies.split(",");
+            for(int i = 0; i < ID.length; i++){
+                Movie movie = movieMapper.getMoviesById(ID[i]);
+                System.out.println(movie.getActors());
+                if(movie == null)
+                    continue;
+                else{
+                    movies.add(movie);
+                }
+            }
         }
+        System.out.println("actor movies' number = " + movies.size());
         return movies;
     }
 
     @Override
     public List<Movie> checkMoviesByStarringName(String name){
-        String[] temp = starringMapper.getMoviesByName(name).split(",");
         List<Movie> movies = new ArrayList<>();
-        for(int i = 0; i < temp.length; i++){
-            movies.add(movieMapper.getMoviesById(temp[i]));
+        String t_movies = starringMapper.getMoviesByName(name);
+        if (t_movies != null){
+            String[] ID = t_movies.split(",");
+            for(int i = 0; i < ID.length; i++){
+                Movie movie = movieMapper.getMoviesById(ID[i]);
+                if(movie == null)
+                    continue;
+                else{
+                    movies.add(movie);
+                }
+            }
         }
+        System.out.println("starring movies' number = " + movies.size());
         return movies;
     }
 
