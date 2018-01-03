@@ -1,5 +1,7 @@
 *.csv
 *.txt
-*.html
+
 *.pyc
 Amazon/.idea/
+.idea/
+.idea/workspace.xml

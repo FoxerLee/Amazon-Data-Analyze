@@ -6,7 +6,9 @@ import mysql.connector
 
 reload(sys)  # reload 才能调用 setdefaultencoding 方法
 sys.setdefaultencoding('utf-8')  # 设置 'utf-8'
-ID_LIST = '4'
+ID_LIST = '2'
+# 之前忘记改下面，待跑的部分搞乱完了，还得去求个差集 辣鸡
+ORIGIN = 'error'
 
 def run(amount):
     config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'warehouse',
@@ -14,7 +16,7 @@ def run(amount):
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
 
-    sql = 'SELECT * FROM id LIMIT ' + str(amount)
+    sql = 'SELECT * FROM '+ORIGIN+' LIMIT ' + str(amount)
     cursor.execute(sql)
     count = 0
     ids = []
@@ -24,7 +26,7 @@ def run(amount):
 
 
     for id in ids:
-        sql = "DELETE FROM id WHERE product_id = \'" + id + "\';"
+        sql = "DELETE FROM " + ORIGIN + " WHERE product_id = \'" + id + "\';"
         try:
             cursor.execute(sql)
         except:
@@ -46,4 +48,4 @@ def run(amount):
 
 
 if __name__ == '__main__':
-    run(15000)
+    run(1603)

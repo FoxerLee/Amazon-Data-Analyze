@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from amazon.api import AmazonAPI, LookupException
-from Support import ACCESS_KEY, SECRET_KEY, USER_NAME
+from amazon.api import AmazonAPI, LookupException, AsinNotFound
+from Support import *
 import mysql.connector
 import datetime
 import csv
@@ -45,7 +45,7 @@ def getId(ID_LIST):
 
 
 
-def run(ID_LIST):
+def run(ID_LIST,ACCESS_KEY, SECRET_KEY, USER_NAME):
     def handler(signum, frame):
         raise AssertionError
 
@@ -75,7 +75,7 @@ def run(ID_LIST):
 
     for id in ids:
         cursor.execute("DELETE FROM id_" + ID_LIST + " WHERE product_id = \'" + id + "\'")
-        time.sleep(0.5)
+        time.sleep(1)
         #
         # if count == 100:
         #     writer.writerows(result)
@@ -104,6 +104,12 @@ def run(ID_LIST):
             print 'timeout!' + id
             print 'Error1 '
             cursor.execute("INSERT INTO error VALUE (\'" + id + "\');")
+            cursor.execute("Commit;")
+            continue
+        except AsinNotFound:
+            print 'No ASIN found! '
+            print 'Error2 ' + id
+            cursor.execute("INSERT INTO no_page VALUE (\'" + id + "\');")
             cursor.execute("Commit;")
             continue
         except Exception, e:
@@ -197,10 +203,15 @@ def run(ID_LIST):
 
 
 if __name__ == '__main__':
-    run('1')
-    # p1 = Process(target=run, args=('1',))
-    # p2 = Process(target=run, args=('4',))
-    # p1.start()
+    # run('1')
+    p1 = Process(target=run, args=('1', ACCESS_KEY, SECRET_KEY, USER_NAME))
+    # p2 = Process(target=run, args=('2', ACCESS_KEY_2, SECRET_KEY_2, USER_NAME_2))
+   #  p3 = Process(target=run, args=('3', ACCESS_KEY_1, SECRET_KEY_1, USER_NAME_1))
+    # p4 = Process(target=run, args=('4', ACCESS_KEY_3, SECRET_KEY_3, USER_NAME_3))
+    #p5 = Process(target=run, args=('5', ACCESS_KEY_2, SECRET_KEY_2, USER_NAME_2))
+    p1.start()
     # p2.start()
-    # getId('1')
+    # p3.start()
+    # p4.start()
+    #p5.start()
 
