@@ -69,22 +69,48 @@ def run(t):
     c.close()
 
 
+def normalize(t):
+    csvFile = open("miaomiao/" + t + ".csv", "rb")
+    reader = csv.reader(csvFile)
+    datas = [row for row in reader]
+
+    csvFile = open("connect_local1.csv", "rb")
+    reader = csv.reader(csvFile)
+    ids = [row[0] for row in reader]
+
+    c = open("miaomiao/td_" + t + ".csv", "ab")
+    writer = csv.writer(c)
+    for id in ids:
+        data = None
+        for j in range(len(datas)):
+            if id == datas[j][0]:
+                data = datas[j][1]
+                break
+
+
+        writer.writerow((id, data))
+        print datetime.datetime.now()
+        print id
+                # break
+    c.close()
+    print "Finish!"
+
 
 if __name__ == '__main__':
-    # p1 = Process(target=run, args=('studio',))
-    # p2 = Process(target=run, args=('binding',))
-    # p3 = Process(target=run, args=('language',))
-    # p4 = Process(target=run, args=('director',))
-    p5 = Process(target=run, args=('actor',))
-    p6 = Process(target=run, args=('genre',))
-    p7 = Process(target=run, args=('starring',))
-    # p1.start()
+    p1 = Process(target=normalize, args=('studio',))
+    # p2 = Process(target=normalize, args=('binding',))
+    # p3 = Process(target=normalize, args=('language',))
+    # p4 = Process(target=normalize, args=('director',))
+    # p5 = Process(target=normalize, args=('actor',))
+    # p6 = Process(target=normalize, args=('genre',))
+    # p7 = Process(target=normalize, args=('starring',))
+    p1.start()
     # p2.start()
     # p3.start()
     # p4.start()
-    p5.start()
-    p6.start()
-    p7.start()
+    # p5.start()
+    # p6.start()
+    # p7.start()
 
 
     # csvFile = open("connect_local1.csv", "rb")

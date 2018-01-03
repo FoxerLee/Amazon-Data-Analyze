@@ -335,33 +335,33 @@ def starring():
 
 if __name__ == '__main__':
     # studio()
-    # csvFile = open("connect_local1.csv", "rb")
-    # reader = csv.reader(csvFile)
-    # runs = [row[0] for row in reader]
-    #
-    # conn1 = mysql.connector.connect(**config1)
-    # cursor1 = conn1.cursor(buffered=True)
-    # sql = "INSERT INTO movie (id) VALUE (%s);"
-    # for run in runs:
-    #     cursor1.execute(sql, (run, ))
-    #     print datetime.datetime.now()
-    #     print run
-    #     cursor1.execute("Commit;")
-    #
-    # print "miaomiao"
-    p1 = Process(target=studio, )
-    p2 = Process(target=binding, )
-    p3 = Process(target=language, )
-    p4 = Process(target=director, )
-    p5 = Process(target=actor, )
-    p6 = Process(target=genre, )
-    p7 = Process(target=starring, )
+    csvFile = open("connect_local1.csv", "rb")
+    reader = csv.reader(csvFile)
+    runs = [row[0] for row in reader]
 
-    p1.start()
-    p2.start()
-    p3.start()
-    p4.start()
-    p5.start()
-    p6.start()
-    p7.start()
+    conn1 = mysql.connector.connect(**config1)
+    cursor1 = conn1.cursor(buffered=True)
+    sql = "INSERT INTO movie (id) VALUE (%s);"
+    for run in runs:
+        cursor1.execute(sql, (run, ))
+        print datetime.datetime.now()
+        print run
+        cursor1.execute("Commit;")
+
+    print "miaomiao"
+    # p1 = Process(target=studio, )
+    # p2 = Process(target=binding, )
+    # p3 = Process(target=language, )
+    # p4 = Process(target=director, )
+    # p5 = Process(target=actor, )
+    # p6 = Process(target=genre, )
+    # p7 = Process(target=starring, )
+    #
+    # p1.start()
+    # p2.start()
+    # p3.start()
+    # p4.start()
+    # p5.start()
+    # p6.start()
+    # p7.start()
 
