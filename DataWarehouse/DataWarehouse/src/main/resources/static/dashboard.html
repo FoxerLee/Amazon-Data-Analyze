@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Gentelella Alela! | </title>
-    <link rel="stylesheet" type="text/css" href="build/css/demo.css" />
-    <link rel="stylesheet" type="text/css" href="build/css/graph.css" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/graph.css" />
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,17 +19,11 @@
     <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="css/custom.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
     <!--[if lt IE 9]>
-    <script type="text/javascript" src="build/js/modernizr.custom.04022.js"></script>
-    <style>.ie-note-1 {
-      display: block;
-    }
-
-    .main {
-      display: none;
-    }</style>
+    <script type="text/javascript" src="/static/js/modernizr.custom.04022.js"></script>
+    <style>.ie-note-1{display:block;} .main{display:none;}</style>
     <![endif]-->
     <!--[if IE 9]><style>.ie-note-2{display:block;}</style><![endif]-->
   </head>
@@ -274,7 +268,7 @@
     </div>
 
     <!-- jQuery -->
-    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/jquery/jquery.min.js"></script>
     <!-- Bootstrap -->
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- FastClick -->
@@ -283,7 +277,7 @@
     <script src="vendors/nprogress/nprogress.js"></script>
     
     <!-- Custom Theme Scripts -->
-    <script src="build/js/custom.min.js"></script>
+    <script src="js/custom.min.js"></script>
     <script src="vendors/angular/angular.js"></script>
     <script src="vendors/angular/angular-route.js"></script>
   </body>
@@ -309,7 +303,7 @@
     }
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://localhost:8080/dashboard/summary")
+        $http.get("......")
             .then(function (response) {
                 $scope.list = response.data;
             });
