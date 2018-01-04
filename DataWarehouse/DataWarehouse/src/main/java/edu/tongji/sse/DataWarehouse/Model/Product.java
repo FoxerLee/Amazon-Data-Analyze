@@ -4,6 +4,8 @@ public class Product {
 
     private String id;
 
+    private String asin;
+
     private String movie_id;
 
     private String title;
@@ -152,5 +154,13 @@ public class Product {
 
     public void setRelease_date(String release_date) {
         this.release_date = release_date;
+    }
+
+    public String getAsin() {
+        return asin;
+    }
+
+    public void setAsin(String asin) {
+        this.asin = asin;
     }
 }

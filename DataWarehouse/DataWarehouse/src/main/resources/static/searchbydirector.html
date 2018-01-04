@@ -95,11 +95,11 @@
 
             <div class="clearfix"></div>
 
-            <div class="row">
+            <div class="row" ng-repeat="l1 in movieInfo">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>电影信息 : Iron Man</h2>
+                    <h2>电影信息 : {{l1.movie.title}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -112,48 +112,44 @@
                     <table class="table table-striped">
                       <tr>
                         <th>电影ID</th>
-                        <td>123456</td>
+                        <td>{{l1.movie.id}}</td>
                       </tr>
 
                       <tr>
                         <th>电影名称</th>
-                        <td>Iron Man</td>
+                        <td>{{l1.movie.title}}</td>
                       </tr>
                       <tr>
                         <th>导演</th>
-                        <td>the Bird</td>
+                        <td>{{l1.movie.directors}}</td>
                       </tr>
                       <tr>
                         <th>主演</th>
-                        <td>Thornton</td>
+                        <td>{{l1.movie.starrings}}</td>
                       </tr>
                       <tr>
                         <th>演员</th>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th>演员</th>
-                        <td>Thornton</td>
+                        <td>{{l1.movie.actors}}</td>
                       </tr>
                       <tr>
                         <th>发行商</th>
-                        <td>Thornton</td>
+                        <td>{{l1.movie.studios}}</td>
                       </tr>
                       <tr>
                         <th>风格</th>
-                        <td>Thornton</td>
+                        <td>{{l1.movie.genres}}</td>
                       </tr>
                       <tr>
                         <th>上映时间</th>
-                        <td>Thornton</td>
+                        <td>{{l1.movie.date}}</td>
                       </tr>
                       <tr>
                         <th>版本</th>
-                        <td>Thornton</td>
+                        <td>{{l1.movie.products}}</td>
                       </tr>
                       <tr>
                         <th>语言</th>
-                        <td>Thornton</td>
+                        <td>{{l1.movie.languages}}</td>
                       </tr>
                     </table>
                     <div class="x_title">
@@ -174,123 +170,19 @@
                           <th>详情</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody ng-repeat="l2 in l1.product">
                         <tr>
-                          <td>1</td>
-                          <td>DVD</td>
-                          <td>200RMB</td>
-                          <td>2h</td>
-                          <td>English</td>
-                          <td>marvel studio</td>
-                          <td>1</td>
+                          <td>{{l2.id}}</td>
+                          <td>{{l2.binding}}</td>
+                          <td>{{l2.price}}</td>
+                          <td>{{l2.running_time}}</td>
+                          <td>{{l2.languages}}</td>
+                          <td>{{l2.studios}}</td>
+                          <td>{{l2.sales_rank}}</td>
                           <td>
-                            <a href="www.baidu.com"><i class="fa fa-share"></i></a>
+                            <a href="http://www.amazon.com/dp/{{l2.id}}"><i class="fa fa-share"></i></a>
                           </td>
                         </tr>
-
-                        </tbody>
-                      </table>
-
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-
-            <div class="row" ng-repeat="l1 in movieInfo">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>电影信息 : Iron Man</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content" ng-repeat="l2 in l1.product">
-                    <table class="table table-striped">
-                      <tr>
-                        <th>电影ID</th>
-                        <td>123456</td>
-                      </tr>
-
-                      <tr>
-                        <th>电影名称</th>
-                        <td>Iron Man</td>
-                      </tr>
-                      <tr>
-                        <th>导演</th>
-                        <td>the Bird</td>
-                      </tr>
-                      <tr>
-                        <th>主演</th>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th>演员</th>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th>演员</th>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th>发行商</th>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th>风格</th>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th>上映时间</th>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th>版本</th>
-                        <td>Thornton</td>
-                      </tr>
-                      <tr>
-                        <th>语言</th>
-                        <td>Thornton</td>
-                      </tr>
-                    </table>
-                    <div class="x_title">
-                      <h2>商品信息</h2>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                          <th>Asin</th>
-                          <th>版本</th>
-                          <th>价格</th>
-                          <th>播放时长</th>
-                          <th>语言</th>
-                          <th>发行商</th>
-                          <th>销售排名</th>
-                          <th>详情</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>DVD</td>
-                          <td>200RMB</td>
-                          <td>2h</td>
-                          <td>English</td>
-                          <td>marvel studio</td>
-                          <td>1</td>
-                          <td>
-                            <a href="www.baidu.com"><i class="fa fa-share"></i></a>
-                          </td>
-                        </tr>
-
                         </tbody>
                       </table>
 
@@ -336,12 +228,9 @@
         app.controller('siteCtrl', function($scope, $http) {
             $scope.form_query = function () {
                 var name = document.getElementById("dname").value;
-                alert(name);
-                $http.get("http://localhost:8080/research/personal?name=" + name)
+                $http.get("http://localhost:8080/director/index?name=" + name)
                     .then(function (response) {
-                        var temp2 = angular.fromJson(response.data);
-                        //var temp3 = temp2[0].data[0].name;
-                        $scope.movieInfo = temp2;
+                        $scope.movieInfo = response.data;
                     });
             }
         });

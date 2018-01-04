@@ -43,18 +43,19 @@ public class ProductImpl implements ProductService {
             List<Product> result = new ArrayList<>();
             while (rs.next()){
                 Product product = new Product();
-                product.setTitle(rs.getString("title"));
-                product.setActors(rs.getString("actors"));
-                product.setDirectors(rs.getString("directors"));
+                product.setId(rs.getString("id"));
+                //product.setTitle(rs.getString("title"));
+                //product.setActors(rs.getString("actors"));
+                //product.setDirectors(rs.getString("directors"));
                 product.setSales_rank(rs.getInt("sales_rank"));
                 product.setPrice(rs.getDouble("price"));
-                product.setGenres(rs.getString("genres"));
+                //product.setGenres(rs.getString("genres"));
                 product.setLanguages(rs.getString("languages"));
                 product.setBinding(rs.getString("binding"));
                 product.setStudios(rs.getString("studios"));
                 product.setRunning_time(rs.getInt("running_time"));
-                product.setPublication_date(rs.getString("publication_date"));
-                product.setRelease_date(rs.getString("release_date"));
+//                product.setPublication_date(rs.getString("publication_date"));
+//                product.setRelease_date(rs.getString("release_date"));
                 result.add(product);
             }
             rs.close();

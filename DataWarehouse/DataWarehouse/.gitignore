@@ -13,8 +13,8 @@ target/
 .idea
 *.iws
 *.iml
+nbproject/private/
 *.ipr
 
 ### NetBeans ###
-nbproject/private/
 .nb-gradle/

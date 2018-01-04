@@ -13,6 +13,7 @@ import sun.plugin.javascript.navig.LinkArray;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CheckServiceImpl implements CheckService{
@@ -82,6 +83,14 @@ public class CheckServiceImpl implements CheckService{
 //                data.put("product", new ArrayList<>());
 //            else
             data.put("product", productService.getProductByMovieId(movies.get(i).getId()));
+//            Map<String, Object> temp_data = new HashMap<>();
+//            List<Product> products = productService.getProductByMovieId(movies.get(i).getId());
+//            if(products != null){
+//                for(Integer j = 0; j < products.size(); j++){
+//                    temp_data.put(j.toString(), products.get(i));
+//                }
+//            }
+//            data.put("product", temp_data);
             result.add(data);
         }
         return result;

@@ -43,7 +43,7 @@ public class TimeServiceImpl implements TimeService {
             List<Integer> weeks = new ArrayList<>();
             for(int i = 16; i < 23; i++){
                 if(time.substring(i, i + 1).equals("1"))
-                    weeks.add(i - 15);
+                    weeks.add(i - 16);
             }
             judge += " year = " + year;
             if(months.size() > 0){
