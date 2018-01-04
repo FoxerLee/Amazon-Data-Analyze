@@ -95,11 +95,11 @@
 
             <div class="clearfix"></div>
 
-            <div class="row">
+            <div class="row" >
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>电影信息 : Iron Man</h2>
+                    <h2>电影信息 : {{movieInfo[0].movie.title}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -202,7 +202,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>电影信息 : Iron Man</h2>
+                    <h2>电影信息 : {{l1.movie.title}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -220,7 +220,7 @@
 
                       <tr>
                         <th>电影名称</th>
-                        <td>Iron Man</td>
+                        <td>{{l1.movie.title}}</td>
                       </tr>
                       <tr>
                         <th>导演</th>
@@ -323,27 +323,24 @@
     <script src="vendors/fastclick/lib/fastclick.js"></script>
     <!-- NProgress -->
     <script src="vendors/nprogress/nprogress.js"></script>
-
     <script src="vendors/angular/angular-route.js"></script>
     <script src="vendors/angular/angular.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
 
     <script>
-
         var app = angular.module('myApp', []);
         app.controller('siteCtrl', function($scope, $http) {
             $scope.form_query = function () {
                 var name = document.getElementById("mname").value;
-                alert(name);
-                $http.get("http://localhost:8080/research/personal?name=" + name)
+                $http.get("http://localhost:8080/name/index?name=" + name)
                     .then(function (response) {
+                        alert(response.data[0].product.title);
                         var temp2 = angular.fromJson(response.data);
                         //var temp3 = temp2[0].data[0].name;
                         $scope.movieInfo = temp2;
                     });
             }
-
         });
     </script>
 

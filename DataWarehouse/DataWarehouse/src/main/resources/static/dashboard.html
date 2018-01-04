@@ -235,8 +235,8 @@
                         <tbody>
                         <tr ng-repeat="x in list">
                           <th scope="row">{{x.id}}</th>
-                          <td>{{x.style}}</td>
-                          <td>{{x.number}}</td>
+                          <td>{{x.genre}}</td>
+                          <td>{{x.count}}</td>
                         </tr>
                         </tbody>
                       </table>
@@ -306,7 +306,7 @@
         $http.get("http://localhost:8080/dashboard/summary")
             .then(function (response) {
                 var summary = response.data.summary;
-                $scope.list = response.data.summary;
+                $scope.list = response.data.genres;
                 $scope.movieNum = summary[0];
                 $scope.actorNum = summary[1];
                 $scope.directorNum = summary[2];
