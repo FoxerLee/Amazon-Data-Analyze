@@ -13,7 +13,7 @@ public interface CheckService {
 
      List<Movie> checkMoviesByGenre(String genre);
 
-     List<Product> checkProductsByMovieId(String id);
+     //List<Product> checkProductsByMovieId(String id);
 
      Object generateMovieAndProductsList(List<Movie> movies);
 

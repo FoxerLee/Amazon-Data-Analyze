@@ -21,4 +21,7 @@ public interface MovieMapper {
 
     @Select("select * from movie where genres = \'${genre}\'")
     List<Movie> getMoviesByGenre(@Param(value = "genre")String genre);
+
+    @Select("select products from movie where id = \'${id}\'")
+    String getMoviesStringById(@Param(value = "id")String movie_id);
 }

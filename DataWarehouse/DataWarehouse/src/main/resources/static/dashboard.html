@@ -146,7 +146,7 @@
                               <div class="bar-inner" id="bar1">97</div>
                               <div class="bar-foreground"></div>
                               <div id="ccbox1" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
-                                <br />电影数目：{{movie}}
+                                <br />电影数目：{{movieNum}}
                               </div>
                             </div>
                           </div>
@@ -159,7 +159,7 @@
                               <div class="bar-inner" id="bar2">54</div>
                               <div class="bar-foreground"></div>
                               <div id="ccbox2" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
-                                <br />演员数目：{{actor}}
+                                <br />演员数目：{{actorNum}}
                               </div>
                             </div>
                           </div>
@@ -172,7 +172,7 @@
                               <div class="bar-inner" id="bar3">16</div>
                               <div class="bar-foreground"></div>
                               <div id="ccbox3" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
-                                <br />导演数目：{{director}}
+                                <br />导演数目：{{directorNum}}
                               </div>
                             </div>
                           </div>
@@ -185,7 +185,7 @@
                               <div class="bar-inner" id="bar4">16</div>
                               <div class="bar-foreground"></div>
                               <div id="ccbox4" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
-                                <br />出版商数目：{{publish}}
+                                <br />出版商数目：{{studioNum}}
                               </div>
                             </div>
                           </div>
@@ -303,26 +303,31 @@
     }
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
-        $http.get("......")
+        $http.get("http://localhost:8080/dashboard/summary")
             .then(function (response) {
-                $scope.list = response.data;
+                var summary = response.data.summary;
+                $scope.list = response.data.summary;
+                $scope.movieNum = summary[0];
+                $scope.actorNum = summary[1];
+                $scope.directorNum = summary[2];
+                $scope.studioNum = summary[3];
             });
-        $http.get("......")
-            .then(function (response) {
-                var temp = angular.fromJson(response.data);
-                $scope.movie=temp[0].number;
-                $scope.actor=temp[1].number;
-                $scope.director=temp[2].number;
-                $scope.publish=temp[3].number;
-                $scope.version=temp[4].number;
-                for(var i=0;i<5;i++){
-                    var barId=i+1;
-                    barId="bar"+barId;
-                    var obj = document.getElementById(barId);
-                    var percent=parseFloat(String(temp[i].number))/260000;
-                    var str=String(percent)+'%';
-                    obj.style.cssText = "height: "+str+"; bottom: 0";
-                }
-            });
+        // $http.get("......")
+        //     .then(function (response) {
+        //         var temp = angular.fromJson(response.data);
+        //         $scope.movie=temp[0].number;
+        //         $scope.actor=temp[1].number;
+        //         $scope.director=temp[2].number;
+        //         $scope.publish=temp[3].number;
+        //         $scope.version=temp[4].number;
+        //         for(var i=0;i<5;i++){
+        //             var barId=i+1;
+        //             barId="bar"+barId;
+        //             var obj = document.getElementById(barId);
+        //             var percent=parseFloat(String(temp[i].number))/260000;
+        //             var str=String(percent)+'%';
+        //             obj.style.cssText = "height: "+str+"; bottom: 0";
+        //         }
+        //     });
     });
 </script>

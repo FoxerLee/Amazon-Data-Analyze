@@ -4,6 +4,7 @@ import edu.tongji.sse.DataWarehouse.DAL.*;
 import edu.tongji.sse.DataWarehouse.Model.Movie;
 import edu.tongji.sse.DataWarehouse.Model.Product;
 import edu.tongji.sse.DataWarehouse.Service.CheckService;
+import edu.tongji.sse.DataWarehouse.Service.ProductService;
 import edu.tongji.sse.DataWarehouse.Service.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,9 @@ public class CheckServiceImpl implements CheckService{
     @Autowired
     private TimeService timeService;
 
+    @Autowired
+    private ProductService productService;
+
     @Override
     public List<Movie> checkMoviesByName(String name){
         return movieMapper.getMoviesByName(name);
@@ -57,14 +61,14 @@ public class CheckServiceImpl implements CheckService{
         return movieMapper.getMoviesByGenre(genre);
     }
 
-    @Override
-    public List<Product> checkProductsByMovieId(String id){
-        List<Product> products = productMapper.getProductsById(id);
-        if(products == null)
-            return new ArrayList<>();
-        else
-            return productMapper.getProductsById(id);
-    }
+//    @Override
+//    public List<Product> checkProductsByMovieId(String id){
+//        List<Product> products = productMapper.getProductsById(id);
+//        if(products == null)
+//            return new ArrayList<>();
+//        else
+//            return productMapper.getProductsById(id);
+//    }
 
     @Override
     public Object generateMovieAndProductsList(List<Movie> movies){
@@ -73,11 +77,11 @@ public class CheckServiceImpl implements CheckService{
             HashMap<String, Object> data  = new HashMap<>();
             data.put("movie", movies.get(i));
 //            System.out.println(movies.get(i).getId());
-            checkProductsByMovieId(movies.get(i).getId());
+//            checkProductsByMovieId(movies.get(i).getId());
 //            if (products == null)
 //                data.put("product", new ArrayList<>());
 //            else
-            data.put("product", checkProductsByMovieId(movies.get(i).getId()));
+            data.put("product", productService.getProductByMovieId(movies.get(i).getId()));
             result.add(data);
         }
         return result;
