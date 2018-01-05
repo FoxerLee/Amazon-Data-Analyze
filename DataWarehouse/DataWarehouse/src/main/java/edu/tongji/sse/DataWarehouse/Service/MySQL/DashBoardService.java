@@ -1,4 +1,4 @@
-package edu.tongji.sse.DataWarehouse.Service;
+package edu.tongji.sse.DataWarehouse.Service.MySQL;
 
 import java.util.List;
 

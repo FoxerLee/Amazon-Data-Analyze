@@ -1,4 +1,4 @@
-package edu.tongji.sse.DataWarehouse.DAL;
+package edu.tongji.sse.DataWarehouse.DAL.MySQL;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

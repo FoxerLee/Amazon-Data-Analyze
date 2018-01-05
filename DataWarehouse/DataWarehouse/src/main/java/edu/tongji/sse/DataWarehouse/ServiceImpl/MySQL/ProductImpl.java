@@ -1,8 +1,8 @@
-package edu.tongji.sse.DataWarehouse.ServiceImpl;
+package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
 
-import edu.tongji.sse.DataWarehouse.DAL.MovieMapper;
+import edu.tongji.sse.DataWarehouse.DAL.MySQL.MovieMapper;
 import edu.tongji.sse.DataWarehouse.Model.Product;
-import edu.tongji.sse.DataWarehouse.Service.ProductService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

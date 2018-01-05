@@ -254,9 +254,8 @@
         var app = angular.module('myApp', []);
         app.controller('siteCtrl', function($scope, $http) {
             $scope.form_query = function () {
-                $http.get("http://localhost:8080/multiple/index?year=" + year + "&director=" + director +"&actor=" + actor + "genre" + style)
+                $http.get("http://localhost:8080/multiple/index?year=" + year + "&director=" + director +"&actor=" + actor + "&genre" + style)
                     .then(function (response) {
-                        alert("yes!");
                         $scope.movieInfo = response.data;
                     });
 

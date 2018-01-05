@@ -1,7 +1,7 @@
 package edu.tongji.sse.DataWarehouse.Controller;
 
-import edu.tongji.sse.DataWarehouse.Service.DashBoardService;
-import edu.tongji.sse.DataWarehouse.Service.GenreService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.DashBoardService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

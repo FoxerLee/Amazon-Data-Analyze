@@ -1,19 +1,16 @@
-package edu.tongji.sse.DataWarehouse.ServiceImpl;
+package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
 
-import edu.tongji.sse.DataWarehouse.DAL.*;
+import edu.tongji.sse.DataWarehouse.DAL.MySQL.*;
 import edu.tongji.sse.DataWarehouse.Model.Movie;
-import edu.tongji.sse.DataWarehouse.Model.Product;
-import edu.tongji.sse.DataWarehouse.Service.CheckService;
-import edu.tongji.sse.DataWarehouse.Service.ProductService;
-import edu.tongji.sse.DataWarehouse.Service.TimeService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.CheckService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.ProductService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sun.plugin.javascript.navig.LinkArray;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class CheckServiceImpl implements CheckService{

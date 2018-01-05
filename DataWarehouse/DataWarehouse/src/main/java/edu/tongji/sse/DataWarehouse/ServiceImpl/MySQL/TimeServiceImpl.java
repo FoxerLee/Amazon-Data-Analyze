@@ -1,9 +1,9 @@
-package edu.tongji.sse.DataWarehouse.ServiceImpl;
+package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
 
-import edu.tongji.sse.DataWarehouse.DAL.DateMapper;
-import edu.tongji.sse.DataWarehouse.DAL.MovieMapper;
+import edu.tongji.sse.DataWarehouse.DAL.MySQL.DateMapper;
+import edu.tongji.sse.DataWarehouse.DAL.MySQL.MovieMapper;
 import edu.tongji.sse.DataWarehouse.Model.Movie;
-import edu.tongji.sse.DataWarehouse.Service.TimeService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.TimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -121,10 +121,42 @@ public class TimeServiceImpl implements TimeService {
     }
 
     public List<Movie> getMoviesByYear(String year){
-        String[] temp = dateMapper.getMoviesByYear(year).split(",");
-        List<Movie> movies = new ArrayList<>();
-        for(int i = 0; i < temp.length; i++)
-            movies.add(movieMapper.getMoviesById(temp[i]));
-        return movies;
+        final String DB_URL = "jdbc:mysql://10.60.42.201:13142/dw";
+        final String USER = "root";
+        final String PASS = "123456";
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
+            stmt = conn.createStatement();
+
+            String sql = "SELECT * FROM movie WHERE year = " + year;
+            ResultSet rs = stmt.executeQuery(sql);
+            List<Movie> movies = new ArrayList<>();
+            while (rs.next()) {
+                Movie movie = new Movie();
+                movie.setId(rs.getString("id"));
+                movie.setTitle(rs.getString("title"));
+                movie.setDirectors(rs.getString("directors"));
+                movie.setStarrings(rs.getString("starrings"));
+                movie.setActors(rs.getString("actors"));
+                movie.setStudios(rs.getString("studios"));
+                movie.setDate(rs.getString("date"));
+                movie.setProducts(rs.getString("products"));
+                movie.setLanguages(rs.getString("languages"));
+                movies.add(movie);
+            }
+            rs.close();
+            stmt.close();
+            conn.close();
+            return movies;
+        } catch (SQLException se) {
+            se.printStackTrace();
+            return new ArrayList<>();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 }

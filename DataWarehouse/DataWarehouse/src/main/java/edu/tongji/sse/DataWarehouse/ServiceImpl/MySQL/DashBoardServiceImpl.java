@@ -1,7 +1,7 @@
-package edu.tongji.sse.DataWarehouse.ServiceImpl;
+package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
 
-import edu.tongji.sse.DataWarehouse.DAL.*;
-import edu.tongji.sse.DataWarehouse.Service.DashBoardService;
+import edu.tongji.sse.DataWarehouse.DAL.MySQL.*;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.DashBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +23,9 @@ public class DashBoardServiceImpl implements DashBoardService {
     @Autowired
     private StudioMapper studioMapper;
 
+    @Autowired
+    private BindingMapper bindingMapper;
+
     @Override
     public List<Integer> getSummaryNum(){
         List<Integer> result = new ArrayList<>();
@@ -30,6 +33,7 @@ public class DashBoardServiceImpl implements DashBoardService {
         result.add(actorMapper.getActorNum());
         result.add(directorMapper.getDirectorNum());
         result.add(studioMapper.getStudioNumber());
+        result.add(bindingMapper.getBindingNum());
         return result;
     }
 }
