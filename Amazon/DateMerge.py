@@ -51,6 +51,43 @@ def run():
     print "Finish!"
     c.close()
 
+def divide():
+    csvFile = open("miaomiao/re_date.csv", "rb")
+    reader = csv.reader(csvFile)
+    dates = [row[0] for row in reader]
+
+    csvFile = open("miaomiao/re_date.csv", "rb")
+    reader = csv.reader(csvFile)
+    counts = [row[1] for row in reader]
+
+    csvFile = open("miaomiao/re_date.csv", "rb")
+    reader = csv.reader(csvFile)
+    movies = [row[2] for row in reader]
+
+
+    c = open("miaomiao/real_re_date.csv", "ab")
+    w = csv.writer(c)
+    w.writerow(("id", "year", "month", "week", "count", "movies"))
+    id = 0
+    for i in range(len(dates)):
+        date = dates[i]
+        year = date[0:4]
+        month = date[4:6]
+        week = date[len(date)-1:]
+
+        print date
+        print year
+        print month
+        print week
+
+        if month[0] == '0':
+            month = month[1:]
+
+        w.writerow((id, year, month, week, counts[i], movies[i]))
+        id += 1
+    c.close()
+
 
 if __name__ == '__main__':
-    run()
+    # run()
+    divide()
