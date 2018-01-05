@@ -6,6 +6,8 @@ public class Genre {
 
     private int count;
 
+    private String movies;
+
     public String getGenre() {
         return genre;
     }
@@ -20,5 +22,13 @@ public class Genre {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getMovies() {
+        return movies;
+    }
+
+    public void setMovies(String movies) {
+        this.movies = movies;
     }
 }

@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 
 
 @Mapper
-public interface ActorMapper {
+public interface MySQLActorMapper {
 
     @Select("select count(name) from actor")
     Integer getActorNum();

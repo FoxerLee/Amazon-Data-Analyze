@@ -4,11 +4,10 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import java.util.ArrayList;
-
 @Mapper
-public interface DateMapper {
+public interface MySQLStarringMapper {
 
-    @Select("select movies from date where year = ${year}")
-    ArrayList<String> getMoviesByYear(@Param(value = "year")String year);
+    @Select("select movies from starring where name = \'${name}\'")
+    String getMoviesByName(@Param(value = "name") String name);
+
 }

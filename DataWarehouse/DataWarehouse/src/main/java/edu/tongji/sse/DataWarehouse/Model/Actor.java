@@ -10,6 +10,10 @@ public class Actor {
 
     private String style;
 
+    private String director;
+
+    private String corporation;
+
     public String getName() {
         return name;
     }
@@ -40,5 +44,25 @@ public class Actor {
 
     public void setStyle(String style) {
         this.style = style;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director;
+    }
+
+    public String getCorporation() {
+        return corporation;
+    }
+
+    public void setCorporation(String corporation) {
+        this.corporation = corporation;
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 
 @Mapper
-public interface DirectorMapper {
+public interface MySQLDirectorMapper {
 
     @Select("select count(name) from director")
     Integer getDirectorNum();

@@ -4,7 +4,7 @@ import edu.tongji.sse.DataWarehouse.Model.Movie;
 
 import java.util.List;
 
-public interface TimeService {
+public interface MySQLTimeService {
 
     List<Movie> getMoviesByTime(String time);
 

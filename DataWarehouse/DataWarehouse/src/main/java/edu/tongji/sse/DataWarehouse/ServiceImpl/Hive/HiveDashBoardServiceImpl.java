@@ -1,6 +1,6 @@
-package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
+package edu.tongji.sse.DataWarehouse.ServiceImpl.Hive;
 
-import edu.tongji.sse.DataWarehouse.DAL.MySQL.*;
+import edu.tongji.sse.DataWarehouse.DAL.Hive.*;
 import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLDashBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,22 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class MySQLDashBoardServiceImpl implements MySQLDashBoardService {
+public class HiveDashBoardServiceImpl implements MySQLDashBoardService {
 
     @Autowired
-    private MySQLActorMapper mySQLActorMapper;
+    private HiveActorMapper mySQLActorMapper;
 
     @Autowired
-    private MySQLDirectorMapper mySQLDirectorMapper;
+    private HiveDirectorMapper mySQLDirectorMapper;
 
     @Autowired
-    private MySQLMovieMapper mySQLMovieMapper;
+    private HiveMovieMapper mySQLMovieMapper;
 
     @Autowired
-    private MySQLStudioMapper mySQLStudioMapper;
+    private HiveStudioMapper mySQLStudioMapper;
 
     @Autowired
-    private MySQLBindingMapper mySQLBindingMapper;
+    private HiveBindingMapper mySQLBindingMapper;
 
     @Override
     public List<Integer> getSummaryNum(){

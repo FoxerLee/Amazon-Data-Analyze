@@ -1,9 +1,9 @@
 package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
 
-import edu.tongji.sse.DataWarehouse.DAL.MySQL.DateMapper;
-import edu.tongji.sse.DataWarehouse.DAL.MySQL.MovieMapper;
+import edu.tongji.sse.DataWarehouse.DAL.MySQL.MySQLDateMapper;
+import edu.tongji.sse.DataWarehouse.DAL.MySQL.MySQLMovieMapper;
 import edu.tongji.sse.DataWarehouse.Model.Movie;
-import edu.tongji.sse.DataWarehouse.Service.MySQL.TimeService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,13 +13,13 @@ import java.util.List;
 
 
 @Component
-public class TimeServiceImpl implements TimeService {
+public class MySQLTimeServiceImpl implements MySQLTimeService {
 
     @Autowired
-    private MovieMapper movieMapper;
+    private MySQLMovieMapper mySQLMovieMapper;
 
     @Autowired
-    private DateMapper dateMapper;
+    private MySQLDateMapper mySQLDateMapper;
 
     public List<Movie> getMoviesByTime(String time) {
         final String DB_URL = "jdbc:mysql://10.60.42.201:13142/dw";
@@ -97,7 +97,7 @@ public class TimeServiceImpl implements TimeService {
             while (rs.next()) {
                 String[] temp = rs.getString("movies").split(",");
                 for (int i = 0; i < temp.length; i++) {
-                    movies.add(movieMapper.getMoviesById(temp[i]));
+                    movies.add(mySQLMovieMapper.getMoviesById(temp[i]));
                 }
 //                int id  = rs.getInt("id");
 //                String name = rs.getString("name");

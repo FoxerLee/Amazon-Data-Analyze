@@ -1,8 +1,8 @@
 package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
 
-import edu.tongji.sse.DataWarehouse.DAL.MySQL.MovieMapper;
+import edu.tongji.sse.DataWarehouse.DAL.MySQL.MySQLMovieMapper;
 import edu.tongji.sse.DataWarehouse.Model.Product;
-import edu.tongji.sse.DataWarehouse.Service.MySQL.ProductService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,14 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class ProductImpl implements ProductService {
+public class MySQLProductImpl implements MySQLProductService {
 
     @Autowired
-    private MovieMapper movieMapper;
+    private MySQLMovieMapper mySQLMovieMapper;
 
     @Override
     public List<Product> getProductByMovieId(String movie_id){
-        String temp = movieMapper.getMoviesStringById(movie_id);
+        String temp = mySQLMovieMapper.getMoviesStringById(movie_id);
         if(temp == null)
             return null;
         String[] product_id = temp.split(",");

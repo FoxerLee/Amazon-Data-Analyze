@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface StudioMapper {
+public interface MySQLStudioMapper {
 
     @Select("select count(*) from studio")
     Integer getStudioNumber();

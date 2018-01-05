@@ -1,11 +1,14 @@
-package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
+package edu.tongji.sse.DataWarehouse.ServiceImpl.Hive;
 
-import edu.tongji.sse.DataWarehouse.DAL.MySQL.*;
+import edu.tongji.sse.DataWarehouse.DAL.Hive.HiveActorMapper;
+import edu.tongji.sse.DataWarehouse.DAL.Hive.HiveDirectorMapper;
+import edu.tongji.sse.DataWarehouse.DAL.Hive.HiveMovieMapper;
+import edu.tongji.sse.DataWarehouse.DAL.Hive.HiveStarringMapper;
 import edu.tongji.sse.DataWarehouse.Model.Director;
 import edu.tongji.sse.DataWarehouse.Model.Movie;
+import edu.tongji.sse.DataWarehouse.Service.Hive.HiveProductService;
+import edu.tongji.sse.DataWarehouse.Service.Hive.HiveTimeService;
 import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLCheckService;
-import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLProductService;
-import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,25 +18,25 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class MySQLCheckServiceImpl implements MySQLCheckService {
+public class HiveCheckServiceImpl implements MySQLCheckService {
 
     @Autowired
-    private MySQLMovieMapper mySQLMovieMapper;
+    private HiveMovieMapper mySQLMovieMapper;
 
     @Autowired
-    private MySQLDirectorMapper mySQLDirectorMapper;
+    private HiveDirectorMapper mySQLDirectorMapper;
 
     @Autowired
-    private MySQLActorMapper mySQLActorMapper;
+    private HiveActorMapper mySQLActorMapper;
 
     @Autowired
-    private MySQLStarringMapper mySQLStarringMapper;
+    private HiveStarringMapper mySQLStarringMapper;
 
     @Autowired
-    private MySQLTimeService mySQLTimeService;
+    private HiveTimeService mySQLTimeService;
 
     @Autowired
-    private MySQLProductService mySQLProductService;
+    private HiveProductService mySQLProductService;
 
     @Override
     public List<Movie> checkMoviesByName(String name){
