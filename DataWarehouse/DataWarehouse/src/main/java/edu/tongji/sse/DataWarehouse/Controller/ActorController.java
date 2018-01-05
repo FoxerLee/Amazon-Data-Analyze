@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/actor")
 public class ActorController {
@@ -17,7 +19,14 @@ public class ActorController {
     @GetMapping("/index")
     public Object CheckMoviesByActorOrStarring(@RequestParam(value = "actor", defaultValue = "")String actorName,
                                                @RequestParam(value = "starring", defaultValue = "")String starringName){
-        return checkService.generateMovieAndProductsList(
+        if (!actorName.equals("") && starringName.equals(""))
+            return checkService.generateMovieAndProductsList(checkService.checkMoviesByActorName(actorName));
+        else if (!starringName.equals("") && actorName.equals(""))
+            return checkService.generateMovieAndProductsList(checkService.checkMoviesByStarringName(starringName));
+        else if(starringName.equals("") && actorName.equals(""))
+            return new ArrayList<>();
+        else
+            return checkService.generateMovieAndProductsList(
                 checkService.checkMoviesByStarringOrActor(actorName, starringName));
     }
 }

@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface TimeService {
 
-    List<Movie> getMoviesByTime(int year, String month, String week);
+    List<Movie> getMoviesByTime(String time);
+
+    List<Movie> getMoviesByYear(String year);
 }

@@ -13,7 +13,7 @@ public interface CheckService {
 
      List<Movie> checkMoviesByGenre(String genre);
 
-     List<Product> checkProductsByMovieId(String id);
+     //List<Product> checkProductsByMovieId(String id);
 
      Object generateMovieAndProductsList(List<Movie> movies);
 
@@ -22,4 +22,6 @@ public interface CheckService {
      List<Movie> checkMoviesByStarringName(String name);
 
      List<Movie> checkMoviesByStarringOrActor(String actorName, String starringName);
+
+     List<Movie> checkMoviesByMultipleOptions(String year, String director, String actor, String genre);
 }

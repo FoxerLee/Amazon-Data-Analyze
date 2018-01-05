@@ -23,6 +23,7 @@ public class DashBoardController {
     public Object getSummary(){
         try{
             HashMap<String, Object> result = new HashMap<>();
+            //电影，演员，导演数量,发行版本数
             result.put("summary", dashBoard.getSummaryNum());
             result.put("genres", genreService.getAllGenres());
             return result;

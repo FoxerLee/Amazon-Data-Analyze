@@ -53,6 +53,23 @@ def run():
     print "Succeed!"
 
 
+def genre():
+    csvFile = open("miaomiao/genre.csv", "rb")
+    reader = csv.reader(csvFile)
+    datas = [row for row in reader]
+
+    c = open("miaomiao/new_genre.csv", "ab")
+    writer = csv.writer(c)
+    for i in range((len(datas))):
+        datas[i][1] = datas[i][1].replace(',None', '')
+        datas[i][1] = datas[i][1].replace('None', '')
+
+        writer.writerow((datas[i][0],datas[i][1]))
+        print datetime.datetime.now()
+        print datas[i][0]
+
+    print "Finish!"
 
 if __name__ == "__main__":
-    run()
+    # run()
+    genre()

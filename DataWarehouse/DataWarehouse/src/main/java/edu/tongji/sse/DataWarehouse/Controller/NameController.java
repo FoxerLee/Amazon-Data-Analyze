@@ -23,6 +23,8 @@ public class NameController {
     public Object checkByName(@RequestParam(value = "name")String name){
         try{
             List<Movie> movies = checkService.checkMoviesByName(name);
+            if(movies == null)
+                return null;
             return checkService.generateMovieAndProductsList(movies);
         }catch (Exception e){
             return "400";
