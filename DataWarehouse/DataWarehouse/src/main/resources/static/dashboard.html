@@ -143,7 +143,7 @@
                           <div class="bar-wrapper" onclick="changeStyle2()">
                             <div class="bar-container" id="1" onmouseover="showTag(id)" onmouseout="hideTag(id)">
                               <div class="bar-background"></div>
-                              <div class="bar-inner" id="bar1">97</div>
+                              <div class="bar-inner" id="bar1"></div>
                               <div class="bar-foreground"></div>
                               <div id="ccbox1" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
                                 <br />电影数目：{{movieNum}}
@@ -156,7 +156,7 @@
                           <div class="bar-wrapper" >
                             <div class="bar-container" id="2" onmouseover="showTag(id)" onmouseout="hideTag(id)">
                               <div class="bar-background"></div>
-                              <div class="bar-inner" id="bar2">54</div>
+                              <div class="bar-inner" id="bar2"></div>
                               <div class="bar-foreground"></div>
                               <div id="ccbox2" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
                                 <br />演员数目：{{actorNum}}
@@ -169,7 +169,7 @@
                           <div class="bar-wrapper" >
                             <div class="bar-container" id="3" onmouseover="showTag(id)" onmouseout="hideTag(id)">
                               <div class="bar-background"></div>
-                              <div class="bar-inner" id="bar3">16</div>
+                              <div class="bar-inner" id="bar3"></div>
                               <div class="bar-foreground"></div>
                               <div id="ccbox3" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
                                 <br />导演数目：{{directorNum}}
@@ -182,7 +182,7 @@
                           <div class="bar-wrapper" >
                             <div class="bar-container" id="4" onmouseover="showTag(id)" onmouseout="hideTag(id)">
                               <div class="bar-background"></div>
-                              <div class="bar-inner" id="bar4">16</div>
+                              <div class="bar-inner" id="bar4"></div>
                               <div class="bar-foreground"></div>
                               <div id="ccbox4" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
                                 <br />出版商数目：{{studioNum}}
@@ -198,17 +198,17 @@
                               <div class="bar-inner" id="bar5">16</div>
                               <div class="bar-foreground"></div>
                               <div id="ccbox5" class="ccbox" onmouseover="showTag(id)" onmouseout="hideTag(id)">
-                                <br />版本数目：{{version}}
+                                <br />版本数目：{{versionNum}}
                               </div>
                             </div>
                           </div>
                         </li>
                         <li>
                           <ul class="graph-marker-container">
-                            <li style="bottom:25%;"><span>65000</span></li>
-                            <li style="bottom:50%;"><span>130000</span></li>
-                            <li style="bottom:75%;"><span>195000</span></li>
-                            <li style="bottom:100%;"><span>260000</span></li>
+                            <li style="bottom:25%;"><span>50000</span></li>
+                            <li style="bottom:50%;"><span>100000</span></li>
+                            <li style="bottom:75%;"><span>150000</span></li>
+                            <li style="bottom:100%;"><span>200000</span></li>
                           </ul>
                         </li>
                       </ul>
@@ -235,8 +235,8 @@
                         <tbody>
                         <tr ng-repeat="x in list">
                           <th scope="row">{{x.id}}</th>
-                          <td>{{x.style}}</td>
-                          <td>{{x.number}}</td>
+                          <td>{{x.genre}}</td>
+                          <td>{{x.count}}</td>
                         </tr>
                         </tbody>
                       </table>
@@ -306,11 +306,32 @@
         $http.get("http://localhost:8080/dashboard/summary")
             .then(function (response) {
                 var summary = response.data.summary;
-                $scope.list = response.data.summary;
+                $scope.list = response.data.genres;
                 $scope.movieNum = summary[0];
                 $scope.actorNum = summary[1];
                 $scope.directorNum = summary[2];
                 $scope.studioNum = summary[3];
+                $scope.versionNum = summary[4];
+                var obj1 = document.getElementById("bar1");
+                var percent1 = parseFloat(String($scope.movieNum))/2000;
+                var str1 = String(percent1)+"%";
+                obj1.style.cssText = "height: " + str1 + "; bottom： 0";
+                var obj2 = document.getElementById("bar2");
+                var percent2 = parseFloat(String($scope.actorNum))/2000;
+                var str2 = String(percent2)+"%";
+                obj2.style.cssText = "height: " + str2 + "; bottom： 0";
+                var obj3 = document.getElementById("bar3");
+                var percent3 = parseFloat(String($scope.directorNum))/2000;
+                var str3 = String(percent3)+"%";
+                obj3.style.cssText = "height: " + str3 + "; bottom： 0";
+                var obj4 = document.getElementById("bar4");
+                var percent4 = parseFloat(String($scope.studioNum))/2000;
+                var str4 = String(percent4)+"%";
+                obj4.style.cssText = "height: " + str4 + "; bottom： 0";
+                var obj5 = document.getElementById("bar5");
+                var percent5 = parseFloat(String($scope.versionNum))/2000;
+                var str5 = String(percent5)+"%";
+                obj5.style.cssText = "height: " + str5 + "; bottom： 0";
             });
         // $http.get("......")
         //     .then(function (response) {
