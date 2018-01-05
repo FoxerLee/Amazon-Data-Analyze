@@ -246,15 +246,19 @@
     <script src="vendors/angular/angular.js"></script>
 
     <script>
-        var year = document.getElementById("year").value;
-        var director = document.getElementById("director").value;
-        var actor = document.getElementById("actor").value;
-        var style = document.getElementById("style").value;
 
         var app = angular.module('myApp', []);
         app.controller('siteCtrl', function($scope, $http) {
             $scope.form_query = function () {
-                $http.get("http://localhost:8080/multiple/index?year=" + year + "&director=" + director +"&actor=" + actor + "&genre" + style)
+                var year = document.getElementById("year").value;
+                var director = document.getElementById("director").value;
+                var actor = document.getElementById("actor").value;
+                var style = document.getElementById("style").value;
+                // alert("year:" + year);
+                // alert("director:" + director);
+                // alert("actor:" + actor);
+                // alert("style:" + style);
+                $http.get("http://localhost:8080/multiple/index?year=" + year + "&director=" + director +"&actor=" + actor + "&genre=" + style)
                     .then(function (response) {
                         $scope.movieInfo = response.data;
                     });

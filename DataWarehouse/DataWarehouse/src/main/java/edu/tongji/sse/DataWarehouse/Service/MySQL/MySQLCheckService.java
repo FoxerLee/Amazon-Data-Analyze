@@ -5,7 +5,7 @@ import edu.tongji.sse.DataWarehouse.Model.Product;
 
 import java.util.List;
 
-public interface CheckService {
+public interface MySQLCheckService {
 
      List<Movie> checkMoviesByName(String name);
 
@@ -24,4 +24,6 @@ public interface CheckService {
      List<Movie> checkMoviesByStarringOrActor(String actorName, String starringName);
 
      List<Movie> checkMoviesByMultipleOptions(String year, String director, String actor, String genre);
+
+     Object checkDirectorStyleByDirectorName(String name);
 }

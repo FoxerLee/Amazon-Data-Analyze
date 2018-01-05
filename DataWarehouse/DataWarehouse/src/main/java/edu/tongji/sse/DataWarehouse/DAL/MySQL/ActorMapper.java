@@ -13,4 +13,5 @@ public interface ActorMapper {
 
     @Select("select movies from actor where name = \'${name}\'")
     String getMovies(@Param(value = "name")String name);
+
 }

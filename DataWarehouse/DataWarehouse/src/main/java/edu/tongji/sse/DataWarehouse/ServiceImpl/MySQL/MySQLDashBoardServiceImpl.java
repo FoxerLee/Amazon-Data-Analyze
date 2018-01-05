@@ -1,7 +1,7 @@
 package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
 
 import edu.tongji.sse.DataWarehouse.DAL.MySQL.*;
-import edu.tongji.sse.DataWarehouse.Service.MySQL.DashBoardService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLDashBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DashBoardServiceImpl implements DashBoardService {
+public class MySQLDashBoardServiceImpl implements MySQLDashBoardService {
 
     @Autowired
     private ActorMapper actorMapper;

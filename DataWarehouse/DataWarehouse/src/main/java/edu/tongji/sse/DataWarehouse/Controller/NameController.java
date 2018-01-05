@@ -1,7 +1,7 @@
 package edu.tongji.sse.DataWarehouse.Controller;
 
 import edu.tongji.sse.DataWarehouse.Model.Movie;
-import edu.tongji.sse.DataWarehouse.Service.MySQL.CheckService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +15,15 @@ import java.util.List;
 public class NameController {
 
     @Autowired
-    CheckService checkService;
+    MySQLCheckService mySQLCheckService;
 
     @GetMapping("/index")
     public Object checkByName(@RequestParam(value = "name")String name){
         try{
-            List<Movie> movies = checkService.checkMoviesByName(name);
+            List<Movie> movies = mySQLCheckService.checkMoviesByName(name);
             if(movies == null)
                 return null;
-            return checkService.generateMovieAndProductsList(movies);
+            return mySQLCheckService.generateMovieAndProductsList(movies);
         }catch (Exception e){
             return "400";
         }

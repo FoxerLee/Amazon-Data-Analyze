@@ -4,7 +4,7 @@ import edu.tongji.sse.DataWarehouse.Model.Genre;
 
 import java.util.List;
 
-public interface GenreService {
+public interface MySQLGenreService {
 
     List<Genre> getAllGenres();
 }

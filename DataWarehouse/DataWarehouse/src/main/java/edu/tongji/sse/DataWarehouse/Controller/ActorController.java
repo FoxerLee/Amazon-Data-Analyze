@@ -1,6 +1,6 @@
 package edu.tongji.sse.DataWarehouse.Controller;
 
-import edu.tongji.sse.DataWarehouse.Service.MySQL.CheckService;
+import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,19 +14,19 @@ import java.util.ArrayList;
 public class ActorController {
 
     @Autowired
-    private CheckService checkService;
+    private MySQLCheckService mySQLCheckService;
 
     @GetMapping("/index")
     public Object CheckMoviesByActorOrStarring(@RequestParam(value = "actor", defaultValue = "")String actorName,
                                                @RequestParam(value = "starring", defaultValue = "")String starringName){
         if (!actorName.equals("") && starringName.equals(""))
-            return checkService.generateMovieAndProductsList(checkService.checkMoviesByActorName(actorName));
+            return mySQLCheckService.generateMovieAndProductsList(mySQLCheckService.checkMoviesByActorName(actorName));
         else if (!starringName.equals("") && actorName.equals(""))
-            return checkService.generateMovieAndProductsList(checkService.checkMoviesByStarringName(starringName));
+            return mySQLCheckService.generateMovieAndProductsList(mySQLCheckService.checkMoviesByStarringName(starringName));
         else if(starringName.equals("") && actorName.equals(""))
             return new ArrayList<>();
         else
-            return checkService.generateMovieAndProductsList(
-                checkService.checkMoviesByStarringOrActor(actorName, starringName));
+            return mySQLCheckService.generateMovieAndProductsList(
+                mySQLCheckService.checkMoviesByStarringOrActor(actorName, starringName));
     }
 }
