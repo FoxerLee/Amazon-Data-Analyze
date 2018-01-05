@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>按演员查询 </title>
+
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="build/css/custom.min.css" rel="stylesheet">
+  </head>
+
+  <body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>喵喵电影</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                  <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard </a>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i> 查询 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="searchbymoviename.html">按电影名称查询</a></li>
+                      <li><a href="../../../../../../../../../Desktop/searchbyactor.html">按演员名称查询</a></li>
+                      <li><a href="searchbydirector.html">按导演名称查询</a></li>
+                      <li><a href="searchbystyle.html">按风格查询</a></li>
+                      <li><a href="showByStyle.html">电影风格统计</a></li>
+                      <li><a href="searchbytime.html">按上映时间查询</a></li>
+                      <li><a href="searchbycomponent.html">组合查询</a></li>
+                      <li><a href="searchreview.html">查询电影评论</a></li>
+                      <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main" ng-app="myApp" ng-controller="siteCtrl">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>电影种类统计</h3>
+
+              </div>
+
+
+              <div class="title_right">
+
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <form method="get" id="search_form" >
+
+                  <div class="input-group">
+
+                    <input type="text" class="form-control" id="aname" placeholder="如：family">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="submit" ng-click="form_query()">搜索</button>
+                    </span>
+                  </div>
+                  </form>
+                </div>
+
+                <div class="clearfix"></div>
+              </div>
+            </div>
+
+            <div class="x_panel">
+              <div class="x_title">
+                <h2>统计单位</h2>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+                <!-- start form for validation -->
+                <div class="btn-group  btn-group-sm select-right">
+                  <button class="btn btn-default" type="button" ng-click="star_1()" >年</button>
+                  <button class="btn btn-default" type="button" ng-click="star_2()" >月</button>
+                  <button class="btn btn-default" type="button" ng-click="star_0()" >日</button>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row" ng-repeat="l1 in movieInfo">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                      <div id="container" style="min-width:400px;height:400px"></div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            喵喵电影 - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+
+
+    <!-- jQuery -->
+    <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="vendors/nprogress/nprogress.js"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script src="build/js/custom.min.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/oldie.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+    <script src="vendors/angular/angular-route.js"></script>
+    <script src="vendors/angular/angular.js"></script>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('siteCtrl', function($scope, $http) {
+            var name ;
+            var type = 0;
+            $scope.form_query = function () {
+                name = document.getElementById("aname").value;
+                alert(name);
+                if(type === 0){
+                    $http.get("http://localhost:8080/..." + name + "&type=year" )
+                        .then(function (response) {
+                            var data=[];
+                            var categories=[];
+                            var temp = angular.fromJson(response.data);
+                            for(var i=0;i<temp.length;i++){
+                                data.push(parseInt(String(temp[i])));
+                            }
+                            for(i=0;i<209;i++){
+                                categories.push(String(i+1900));
+                            }
+                            var chart = Highcharts.chart('container', {
+                                chart: {
+                                    type: 'line'
+                                },
+                                title:{
+                                    text: name+'电影统计'
+                                },
+                                xAxis: {
+                                    categories: categories
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: '个数'
+                                    }
+                                },
+                                plotOptions: {
+                                    line: {
+                                        dataLabels: {
+                                            enabled: true          // 开启数据标签
+                                        },
+                                        enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+                                    }
+                                },
+                                series: [{
+                                    name: name,
+                                    data: data
+                                }]
+                            });
+                        });
+                }else if(type === 1){
+                    $http.get("http://localhost:8080/..." + name + "&type=month" )
+                        .then(function (response) {
+                            var data=[];
+                            var temp = angular.fromJson(response.data);
+                            for(var i=0;i<temp.length;i++){
+                                data.push(parseInt(String(temp[i])));
+                            }
+                            var chart = Highcharts.chart('container', {
+                                chart: {
+                                    type: 'line'
+                                },
+                                title:{
+                                    text: name+'电影统计'
+                                },
+                                xAxis: {
+                                    categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: '个数'
+                                    }
+                                },
+                                plotOptions: {
+                                    line: {
+                                        dataLabels: {
+                                            enabled: true          // 开启数据标签
+                                        },
+                                        enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+                                    }
+                                },
+                                series: [{
+                                    name: name,
+                                    data: data
+                                }]
+                            });
+                        });
+                }else if(type === 2){
+                    $http.get("http://localhost:8080/..." + name + "&type=day" )
+                        .then(function (response) {
+                            var data=[];
+                            var temp = angular.fromJson(response.data);
+                            for(var i=0;i<temp.length;i++){
+                                data.push(parseInt(String(temp[i])));
+                            }
+                            var chart = Highcharts.chart('container', {
+                                chart: {
+                                    type: 'line'
+                                },
+                                title:{
+                                    text: name+'电影统计'
+                                },
+                                xAxis: {
+                                    categories: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                                },
+                                yAxis: {
+                                    title: {
+                                        text: '个数'
+                                    }
+                                },
+                                plotOptions: {
+                                    line: {
+                                        dataLabels: {
+                                            enabled: true          // 开启数据标签
+                                        },
+                                        enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+                                    }
+                                },
+                                series: [{
+                                    name: name,
+                                    data: data
+                                }]
+                            });
+                        });
+                }
+            };
+            $scope.star_0 = function () {
+                type = 0;
+                alert(type);
+            };
+            $scope.star_1 = function () {
+                type = 1;
+                alert(type);
+            };
+            $scope.star_2 = function () {
+                type = 2;
+                alert(type);
+            };
+
+        });
+
+
+    </script>
+
+  </body>
+</html>

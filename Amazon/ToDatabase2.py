@@ -155,34 +155,34 @@ def reverse(t):
 
 
 if __name__ == '__main__':
-    # p1 = Process(target=reverse, args=('studio',))
+    p1 = Process(target=reverse, args=('director',))
     # p2 = Process(target=run, args=('binding',))
     # p3 = Process(target=run, args=('language',))
     # p4 = Process(target=run, args=('director',))
-    # p5 = Process(target=reverse, args=('actor',))
+    p5 = Process(target=reverse, args=('actor',))
     # p6 = Process(target=normalize, args=('genre',))
     # p7 = Process(target=normalize, args=('starring',))
-    # p1.start()
+    p1.start()
     # p2.start()
     # p3.start()
     # p4.start()
-    # p5.start()
+    p5.start()
     # p6.start()
     # p7.start()
 
 
-    csvFile = open("connect_local1.csv", "rb")
-    reader = csv.reader(csvFile)
-    runs = [row[0] for row in reader]
-
-    conn1 = mysql.connector.connect(**config1)
-    cursor1 = conn1.cursor(buffered=True)
-    sql = "INSERT INTO movie (id) VALUE (%s);"
-    for run in runs:
-        cursor1.execute(sql, (run, ))
-        print datetime.datetime.now()
-        print run
-        cursor1.execute("Commit;")
-
-    print "miaomiao"
+    # csvFile = open("connect_local1.csv", "rb")
+    # reader = csv.reader(csvFile)
+    # runs = [row[0] for row in reader]
+    #
+    # conn1 = mysql.connector.connect(**config1)
+    # cursor1 = conn1.cursor(buffered=True)
+    # sql = "INSERT INTO movie (id) VALUE (%s);"
+    # for run in runs:
+    #     cursor1.execute(sql, (run, ))
+    #     print datetime.datetime.now()
+    #     print run
+    #     cursor1.execute("Commit;")
+    #
+    # print "miaomiao"
 
