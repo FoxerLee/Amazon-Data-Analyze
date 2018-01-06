@@ -46,7 +46,7 @@ public class HiveProductImpl implements HiveProductService {
                 HiveProduct hiveProduct = new HiveProduct();
                 hiveProduct.setId(rs.getString("product.id"));
                 hiveProduct.setSales_rank(rs.getString("product.sales_rank"));
-                hiveProduct.setPrice(rs.getDouble("product.price"));
+                hiveProduct.setPrice(rs.getString("product.price"));
                 hiveProduct.setLanguages(rs.getString("product.languages"));
                 hiveProduct.setBinding(rs.getString("product.binding"));
                 hiveProduct.setStudios(rs.getString("product.studios"));

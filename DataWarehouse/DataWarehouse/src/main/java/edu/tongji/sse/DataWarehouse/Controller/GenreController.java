@@ -32,15 +32,15 @@ public class GenreController {
             result.put("data", mySQLCheckService.generateMovieAndProductsList(movies));
             long time_end = System.currentTimeMillis();
             result.put("time_mysql", ((double)(time_end - time_start))/1000);
-//            long start_hive = System.currentTimeMillis();
-//            try{
-//                List<HiveMovie> movies1 = hiveCheckService.checkMoviesByGenre(genre);
-//                hiveCheckService.generateMovieAndProductsList(movies1);
-//            }catch (Exception e){
-//                System.out.println(e);
-//            }
-//            long end_hive = System.currentTimeMillis();
-//            result.put("time_hive", ((double)(end_hive - start_hive))/1000);
+            long start_hive = System.currentTimeMillis();
+            try{
+                List<HiveMovie> movies1 = hiveCheckService.checkMoviesByGenre(genre);
+                hiveCheckService.generateMovieAndProductsList(movies1);
+            }catch (Exception e){
+                System.out.println(e);
+            }
+            long end_hive = System.currentTimeMillis();
+            result.put("time_hive", ((double)(end_hive - start_hive))/1000);
             result.put("number", movies.size());
             return result;
         }catch (Exception e){

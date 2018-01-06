@@ -6,7 +6,7 @@ public class HiveProduct {
 
     private String sales_rank;
 
-    private double price;
+    private String price;
 
     private String languages;
 
@@ -16,11 +16,11 @@ public class HiveProduct {
 
     private String running_time;
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -50,10 +50,6 @@ public class HiveProduct {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public String getLanguages() {

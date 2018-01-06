@@ -33,7 +33,7 @@ public class StyleController {
         try{
             hiveCheckService.checkDirectorStyleByDirectorName(style);
         }catch (Exception e){
-            System.out.println("HiveModel Exception");
+            System.out.println(e);
         }
         long end_hive = System.currentTimeMillis();
         result.put("time_hive", ((double)(end_hive - start_hive))/1000);

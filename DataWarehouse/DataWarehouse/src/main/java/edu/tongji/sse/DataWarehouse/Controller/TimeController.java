@@ -43,7 +43,11 @@ public class TimeController {
             result.put("data", mySQLCheckService.generateMovieAndProductsList(movies));
         long end_mysql = System.currentTimeMillis();
         result.put("time_mysql", ((double)(end_mysql - start_mysql))/1000);
-        result.put("number", movies.size());
+        if(movies == null)
+            result.put("number", 0);
+        else{
+            result.put("number", movies.size());
+        }
         long start_hive = System.currentTimeMillis();
         try{
             List<Movie> movies1 = mySQLTimeService.getMoviesByTime(time);
