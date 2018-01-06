@@ -211,7 +211,9 @@
 
                     </div>
                   </div>
-
+                  <div class="x_content">
+                    <div id="container" style="min-width:400px;height:400px"></div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -243,11 +245,15 @@
     
     <!-- Custom Theme Scripts -->
     <script src="build/js/custom.min.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://img.hcharts.cn/highcharts/modules/oldie.js"></script>
+    <script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
     <script src="vendors/angular/angular-route.js"></script>
     <script src="vendors/angular/angular.js"></script>
 
     <script>
-        var app = angular.module('myApp', []);
+      var app = angular.module('myApp', []);
         app.controller('siteCtrl', function($scope, $http) {
             var name ;
             var type = 0;
@@ -257,18 +263,205 @@
                     $http.get("http://localhost:8080/actor/index?starring=" + name + "&actor=" +name )
                         .then(function (response) {
                             $scope.movieInfo = response.data.data;
+                          var showData = [];
+                          showData.push(parseFloat(String(response.data.time_mysql)));
+                          showData.push(parseFloat(String(response.data.time_hive)));
+                          $(function () {
+                            $('#container').highcharts({
+                              chart: {
+                                type: 'bar'
+                              },
+                              title: {
+                                text: '性能展示'
+                              },
+                              subtitle: {
+                                text: ''
+                              },
+                              xAxis: {
+                                categories: ['MySQL', 'hive'],
+                                title: {
+                                  text: null
+                                }
+                              },
+                              yAxis: {
+                                min: 0,
+                                title: {
+                                  text: '时间（s）',
+                                  align: 'high'
+                                },
+                                labels: {
+                                  overflow: 'justify'
+                                }
+                              },
+                              tooltip: {
+                                valueSuffix: 's'
+                              },
+                              plotOptions: {
+                                bar: {
+                                  dataLabels: {
+                                    enabled: true,
+                                    allowOverlap: true
+                                  }
+                                }
+                              },
+                              legend: {
+                                layout: 'vertical',
+                                align: 'right',
+                                verticalAlign: 'top',
+                                x: -40,
+                                y: 100,
+                                floating: true,
+                                borderWidth: 1,
+                                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                                shadow: true
+                              },
+                              credits: {
+                                enabled: false
+                              },
+                              series: [{
+                                name: ' ',
+                                data: showData
+                              }]
+                            });
+                          });
                         });
                 }else if(type === 1){
                     $http.get("http://localhost:8080/actor/index?starring=" + name )
                         .then(function (response) {
                             $scope.movieInfo = response.data.data;
+                          var showData = [];
+                          showData.push(parseFloat(String(response.data.time_mysql)));
+                          showData.push(parseFloat(String(response.data.time_hive)));
+                          $(function () {
+                            $('#container').highcharts({
+                              chart: {
+                                type: 'bar'
+                              },
+                              title: {
+                                text: '性能展示'
+                              },
+                              subtitle: {
+                                text: ''
+                              },
+                              xAxis: {
+                                categories: ['MySQL', 'hive'],
+                                title: {
+                                  text: null
+                                }
+                              },
+                              yAxis: {
+                                min: 0,
+                                title: {
+                                  text: '时间（s）',
+                                  align: 'high'
+                                },
+                                labels: {
+                                  overflow: 'justify'
+                                }
+                              },
+                              tooltip: {
+                                valueSuffix: 's'
+                              },
+                              plotOptions: {
+                                bar: {
+                                  dataLabels: {
+                                    enabled: true,
+                                    allowOverlap: true
+                                  }
+                                }
+                              },
+                              legend: {
+                                layout: 'vertical',
+                                align: 'right',
+                                verticalAlign: 'top',
+                                x: -40,
+                                y: 100,
+                                floating: true,
+                                borderWidth: 1,
+                                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                                shadow: true
+                              },
+                              credits: {
+                                enabled: false
+                              },
+                              series: [{
+                                name: ' ',
+                                data: showData
+                              }]
+                            });
+                          });
                         });
                 }else if(type === 2){
                     $http.get("http://localhost:8080/actor/index?actor=" + name )
                         .then(function (response) {
                             $scope.movieInfo = response.data.data;
+                          var showData = [];
+                          showData.push(parseFloat(String(response.data.time_mysql)));
+                          showData.push(parseFloat(String(response.data.time_hive)));
+                          $(function () {
+                            $('#container').highcharts({
+                              chart: {
+                                type: 'bar'
+                              },
+                              title: {
+                                text: '性能展示'
+                              },
+                              subtitle: {
+                                text: ''
+                              },
+                              xAxis: {
+                                categories: ['MySQL', 'hive'],
+                                title: {
+                                  text: null
+                                }
+                              },
+                              yAxis: {
+                                min: 0,
+                                title: {
+                                  text: '时间（s）',
+                                  align: 'high'
+                                },
+                                labels: {
+                                  overflow: 'justify'
+                                }
+                              },
+                              tooltip: {
+                                valueSuffix: 's'
+                              },
+                              plotOptions: {
+                                bar: {
+                                  dataLabels: {
+                                    enabled: true,
+                                    allowOverlap: true
+                                  }
+                                }
+                              },
+                              legend: {
+                                layout: 'vertical',
+                                align: 'right',
+                                verticalAlign: 'top',
+                                x: -40,
+                                y: 100,
+                                floating: true,
+                                borderWidth: 1,
+                                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                                shadow: true
+                              },
+                              credits: {
+                                enabled: false
+                              },
+                              series: [{
+                                name: ' ',
+                                data: showData
+                              }]
+                            });
+                          });
                         });
                 }
+
+
+
+
             };
             $scope.star_0 = function () {
                 // alert(name);
@@ -305,6 +498,7 @@
             };
 
         });
+
     </script>
 
   </body>
