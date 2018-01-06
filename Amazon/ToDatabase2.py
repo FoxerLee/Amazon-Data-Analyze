@@ -116,7 +116,7 @@ def reverse(t):
         if new_datas[i][2] == 1:
             continue
         id = new_datas[i][0]
-        data = new_datas[i][1]
+        # data = new_datas[i][1]
         count = 1
         new_datas[i][2] = 1
         for j in range(len(new_datas)):
@@ -124,7 +124,7 @@ def reverse(t):
                 continue
             else:
                 if new_datas[j][0] == id:
-                    data += ',' + new_datas[j][1]
+                    # data += ',' + new_datas[j][1]
                     count += 1
                     new_datas[j][2] = 1
 
@@ -141,32 +141,32 @@ def reverse(t):
         #             datas.pop(j)
         #             ids.pop(j)
         #
-        if data[0] == ',':
-            data = data[1:]
+        # if data[0] == ',':
+        #     data = data[1:]
 
 
-        print data
+        # print data
         print id
         print datetime.datetime.now()
-        writer.writerow((id, count, data))
-
+        # writer.writerow((id, count, data))
+        writer.writerow((id, count))
     print "Finish!"
     c.close()
 
 
 if __name__ == '__main__':
-    p1 = Process(target=reverse, args=('director',))
+    p1 = Process(target=reverse, args=('studio',))
     # p2 = Process(target=run, args=('binding',))
     # p3 = Process(target=run, args=('language',))
     # p4 = Process(target=run, args=('director',))
-    p5 = Process(target=reverse, args=('actor',))
+    # p5 = Process(target=reverse, args=('actor',))
     # p6 = Process(target=normalize, args=('genre',))
     # p7 = Process(target=normalize, args=('starring',))
     p1.start()
     # p2.start()
     # p3.start()
     # p4.start()
-    p5.start()
+    # p5.start()
     # p6.start()
     # p7.start()
 
