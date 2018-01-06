@@ -2,7 +2,7 @@ package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
 
 import edu.tongji.sse.DataWarehouse.DAL.MySQL.MySQLDateMapper;
 import edu.tongji.sse.DataWarehouse.DAL.MySQL.MySQLMovieMapper;
-import edu.tongji.sse.DataWarehouse.Model.Movie;
+import edu.tongji.sse.DataWarehouse.Model.MySQLModel.Movie;
 import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

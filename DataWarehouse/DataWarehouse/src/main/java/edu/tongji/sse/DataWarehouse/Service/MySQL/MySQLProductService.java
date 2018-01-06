@@ -1,6 +1,6 @@
 package edu.tongji.sse.DataWarehouse.Service.MySQL;
 
-import edu.tongji.sse.DataWarehouse.Model.Product;
+import edu.tongji.sse.DataWarehouse.Model.MySQLModel.Product;
 
 import java.util.List;
 

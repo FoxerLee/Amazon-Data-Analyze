@@ -251,7 +251,7 @@
                         });
                 }else if(type === 2){
                     $http.get("http://localhost:8080/..." + name + "&type=day" )
-                        .then(function (response) {
+                        .then(function (response)             {
                             var data=[];
                             var temp = angular.fromJson(response.data);
                             for(var i=0;i<temp.length;i++){

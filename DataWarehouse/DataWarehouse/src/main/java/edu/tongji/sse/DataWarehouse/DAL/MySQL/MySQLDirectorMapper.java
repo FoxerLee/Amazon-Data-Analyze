@@ -1,11 +1,9 @@
 package edu.tongji.sse.DataWarehouse.DAL.MySQL;
 
-import edu.tongji.sse.DataWarehouse.Model.Director;
+import edu.tongji.sse.DataWarehouse.Model.MySQLModel.Director;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-
-import java.util.List;
 
 
 @Mapper

@@ -1,7 +1,6 @@
 package edu.tongji.sse.DataWarehouse.DAL.MySQL;
 
-import edu.tongji.sse.DataWarehouse.Model.Genre;
-import edu.tongji.sse.DataWarehouse.Model.Movie;
+import edu.tongji.sse.DataWarehouse.Model.MySQLModel.Movie;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

@@ -1,16 +1,16 @@
-package edu.tongji.sse.DataWarehouse.Model;
+package edu.tongji.sse.DataWarehouse.Model.HiveModel;
 
-public class Actor {
+public class HiveDirector {
 
     private String name;
 
     private String movies;
 
-    private Integer count;
+    private String count;
 
     private String style;
 
-    private String director;
+    private String actors;
 
     private String corporation;
 
@@ -30,11 +30,11 @@ public class Actor {
         this.movies = movies;
     }
 
-    public int getCount() {
+    public String getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(String count) {
         this.count = count;
     }
 
@@ -46,16 +46,12 @@ public class Actor {
         this.style = style;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public String getActors() {
+        return actors;
     }
 
-    public String getDirector() {
-        return director;
-    }
-
-    public void setDirector(String director) {
-        this.director = director;
+    public void setActors(String actors) {
+        this.actors = actors;
     }
 
     public String getCorporation() {

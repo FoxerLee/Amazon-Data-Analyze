@@ -1,7 +1,7 @@
 package edu.tongji.sse.DataWarehouse.ServiceImpl.Hive;
 
 import edu.tongji.sse.DataWarehouse.DAL.Hive.*;
-import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLDashBoardService;
+import edu.tongji.sse.DataWarehouse.Service.Hive.HiveDashBoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class HiveDashBoardServiceImpl implements MySQLDashBoardService {
+public class HiveDashBoardServiceImpl implements HiveDashBoardService {
 
     @Autowired
     private HiveActorMapper mySQLActorMapper;

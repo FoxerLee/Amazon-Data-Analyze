@@ -97,7 +97,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>电影名称：{{movie}}</h2>
+                    <h2>电影名称：{{hiveMovie}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -184,11 +184,11 @@
     app.controller('siteCtrl', function($scope, $http) {
         $scope.search=function(){
             movieName=String(document.getElementById("searchBar").value);
-            $scope.movie=movieName;
+            $scope.hiveMovie=movieName;
             alert(movieName)
             $http.get("......."+movieName)
                 .then(function (response) {
-                    $scope.list=response.data;
+                    $scope.list=response.data.data;
                 });
         };
 

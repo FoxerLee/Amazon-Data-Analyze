@@ -1,4 +1,4 @@
-package edu.tongji.sse.DataWarehouse.Model;
+package edu.tongji.sse.DataWarehouse.Model.MySQLModel;
 
 public class Date {
 

@@ -1,7 +1,6 @@
 package edu.tongji.sse.DataWarehouse.Service.MySQL;
 
-import edu.tongji.sse.DataWarehouse.Model.Movie;
-import edu.tongji.sse.DataWarehouse.Model.Product;
+import edu.tongji.sse.DataWarehouse.Model.MySQLModel.Movie;
 
 import java.util.List;
 
@@ -13,7 +12,7 @@ public interface MySQLCheckService {
 
      List<Movie> checkMoviesByGenre(String genre);
 
-     //List<Product> checkProductsByMovieId(String id);
+     //List<HiveProduct> checkProductsByMovieId(String id);
 
      Object generateMovieAndProductsList(List<Movie> movies);
 

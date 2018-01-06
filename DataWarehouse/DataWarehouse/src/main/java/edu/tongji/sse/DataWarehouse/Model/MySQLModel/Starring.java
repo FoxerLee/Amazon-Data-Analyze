@@ -1,18 +1,14 @@
-package edu.tongji.sse.DataWarehouse.Model;
+package edu.tongji.sse.DataWarehouse.Model.MySQLModel;
 
-public class Director {
+public class Starring {
 
     private String name;
 
     private String movies;
 
-    private int count;
+    private Integer count;
 
     private String style;
-
-    private String actors;
-
-    private String corporation;
 
     public String getName() {
         return name;
@@ -30,7 +26,7 @@ public class Director {
         this.movies = movies;
     }
 
-    public int getCount() {
+    public Integer getCount() {
         return count;
     }
 
@@ -44,25 +40,5 @@ public class Director {
 
     public void setStyle(String style) {
         this.style = style;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public String getActors() {
-        return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = actors;
-    }
-
-    public String getCorporation() {
-        return corporation;
-    }
-
-    public void setCorporation(String corporation) {
-        this.corporation = corporation;
     }
 }

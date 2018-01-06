@@ -198,7 +198,7 @@
                   <!--<div class="x_panel">-->
                     <!--<div ng-repeat="l1 in movieInfo">-->
                     <!--<div class="x_title">-->
-                      <!--<h2>电影信息 : {{l1.movie.title}}</h2>-->
+                      <!--<h2>电影信息 : {{l1.hiveMovie.title}}</h2>-->
                       <!--<ul class="nav navbar-right panel_toolbox">-->
                         <!--<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>-->
                         <!--</li>-->
@@ -216,7 +216,7 @@
 
                         <!--<tr>-->
                           <!--<th>电影名称</th>-->
-                          <!--<td>{{l1.movie.title}}</td>-->
+                          <!--<td>{{l1.hiveMovie.title}}</td>-->
                         <!--</tr>-->
                         <!--<tr>-->
                           <!--<th>导演</th>-->
@@ -259,7 +259,7 @@
                         <!--<h2>商品信息</h2>-->
                         <!--<div class="clearfix"></div>-->
                       <!--</div>-->
-                      <!--<div class="x_content" ng-repeat="l2 in l1.product">-->
+                      <!--<div class="x_content" ng-repeat="l2 in l1.hiveProduct">-->
                         <!--<table class="table table-bordered">-->
                           <!--<thead>-->
                           <!--<tr>-->
@@ -332,7 +332,7 @@
                 var name = document.getElementById("mname").value;
                 $http.get("http://localhost:8080/name/index?name=" + name)
                     .then(function (response) {
-                        var temp2 = response.data;
+                        var temp2 = response.data.data;
                         $scope.movieInfo = temp2;
                     });
             }

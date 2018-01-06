@@ -1,11 +1,8 @@
 package edu.tongji.sse.DataWarehouse.ServiceImpl.Hive;
 
 import edu.tongji.sse.DataWarehouse.DAL.Hive.HiveMovieMapper;
-import edu.tongji.sse.DataWarehouse.DAL.MySQL.MySQLDateMapper;
-import edu.tongji.sse.DataWarehouse.DAL.MySQL.MySQLMovieMapper;
-import edu.tongji.sse.DataWarehouse.Model.Movie;
-import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLTimeService;
-import org.apache.hadoop.hive.ql.metadata.Hive;
+import edu.tongji.sse.DataWarehouse.Model.HiveModel.HiveMovie;
+import edu.tongji.sse.DataWarehouse.Service.Hive.HiveTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,15 +12,12 @@ import java.util.List;
 
 
 @Component
-public class HiveTimeServiceImpl implements MySQLTimeService {
+public class HiveTimeServiceImpl implements HiveTimeService {
 
     @Autowired
     private HiveMovieMapper mySQLMovieMapper;
 
-    @Autowired
-    private MySQLDateMapper mySQLDateMapper;
-
-    public List<Movie> getMoviesByTime(String time) {
+    public List<HiveMovie> getMoviesByTime(String time) {
         final String DB_URL = "jdbc:hive2://10.60.41.125:10000/miao";
         final String USER = "hive";
         final String PASS = "hive";
@@ -73,17 +67,17 @@ public class HiveTimeServiceImpl implements MySQLTimeService {
             System.out.print(judge);
             String sql = "SELECT movies FROM date " + judge;
             ResultSet rs = stmt.executeQuery(sql);
-            List<Movie> movies = new ArrayList<>();
+            List<HiveMovie> hiveMovies = new ArrayList<>();
             while (rs.next()) {
-                String[] temp = rs.getString("movies").split(",");
+                String[] temp = rs.getString("hiveMovies").split(",");
                 for (int i = 0; i < temp.length; i++) {
-                    movies.add(mySQLMovieMapper.getMoviesById(temp[i]));
+                    hiveMovies.add(mySQLMovieMapper.getMoviesById(temp[i]));
                 }
             }
             rs.close();
             stmt.close();
             conn.close();
-            return movies;
+            return hiveMovies;
         } catch (SQLException se) {
             se.printStackTrace();
             return null;
@@ -93,7 +87,7 @@ public class HiveTimeServiceImpl implements MySQLTimeService {
         }
     }
 
-    public List<Movie> getMoviesByYear(String year){
+    public List<HiveMovie> getMoviesByYear(String year){
         final String DB_URL = "jdbc:hive2://10.60.41.125:10000/miao";
         final String USER = "hive";
         final String PASS = "hive";
@@ -106,24 +100,24 @@ public class HiveTimeServiceImpl implements MySQLTimeService {
 
             String sql = "SELECT * FROM movie WHERE year = " + year;
             ResultSet rs = stmt.executeQuery(sql);
-            List<Movie> movies = new ArrayList<>();
+            List<HiveMovie> hiveMovies = new ArrayList<>();
             while (rs.next()) {
-                Movie movie = new Movie();
-                movie.setId(rs.getString("id"));
-                movie.setTitle(rs.getString("title"));
-                movie.setDirectors(rs.getString("directors"));
-                movie.setStarrings(rs.getString("starrings"));
-                movie.setActors(rs.getString("actors"));
-                movie.setStudios(rs.getString("studios"));
-                movie.setDate(rs.getString("date"));
-                movie.setProducts(rs.getString("products"));
-                movie.setLanguages(rs.getString("languages"));
-                movies.add(movie);
+                HiveMovie hiveMovie = new HiveMovie();
+                hiveMovie.setId(rs.getString("movie.id"));
+                hiveMovie.setTitle(rs.getString("movie.title"));
+                hiveMovie.setDirectors(rs.getString("movie.directors"));
+                hiveMovie.setStarrings(rs.getString("movie.starrings"));
+                hiveMovie.setActors(rs.getString("movie.actors"));
+                hiveMovie.setStudios(rs.getString("movie.studios"));
+                hiveMovie.setDate(rs.getString("movie.r_date"));
+                hiveMovie.setProducts(rs.getString("movie.products"));
+                hiveMovie.setLanguages(rs.getString("movie.languages"));
+                hiveMovies.add(hiveMovie);
             }
             rs.close();
             stmt.close();
             conn.close();
-            return movies;
+            return hiveMovies;
         } catch (SQLException se) {
             se.printStackTrace();
             return new ArrayList<>();

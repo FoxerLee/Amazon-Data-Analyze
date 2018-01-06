@@ -355,26 +355,26 @@ input[name^="fill-"]:checked + label {
 	box-shadow: 0px 1px 1px rgba(255,255,255, 0.4);
 }
 
-/* Change bars fill when a Product is selected */
+/* Change bars fill when a HiveProduct is selected */
 /* None */
 input#f-none:checked ~ .graph-container > li:nth-child(1) .bar-inner { height: 0; bottom: -2.5em; }
 input#f-none:checked ~ .graph-container > li:nth-child(2) .bar-inner { height: 0; bottom: -2.5em; }
 input#f-none:checked ~ .graph-container > li:nth-child(3) .bar-inner { height: 0; bottom: -2.5em; }
 input#f-none:checked ~ .graph-container > li:nth-child(4) .bar-inner { height: 0; bottom: -2.5em; }
 input#f-none:checked ~ .graph-container > li:nth-child(5) .bar-inner { height: 0; bottom: -2.5em; }
-/* Product 1 */
+/* HiveProduct 1 */
 input#f-product1:checked ~ .graph-container > li:nth-child(1) .bar-inner { height: 97%; bottom: 0; }
 input#f-product1:checked ~ .graph-container > li:nth-child(2) .bar-inner { height: 54%; bottom: 0; }
 input#f-product1:checked ~ .graph-container > li:nth-child(3) .bar-inner { height: 16%; bottom: 0; }
 input#f-product1:checked ~ .graph-container > li:nth-child(4) .bar-inner { height: 5%; bottom: 0; }
 input#f-product1:checked ~ .graph-container > li:nth-child(5) .bar-inner { height: 39%; bottom: 0; }
-/* Product 2 */
+/* HiveProduct 2 */
 input#f-product2:checked ~ .graph-container > li:nth-child(1) .bar-inner { height: 50%; bottom: 0; }
 input#f-product2:checked ~ .graph-container > li:nth-child(2) .bar-inner { height: 100%; bottom: 0; }
 input#f-product2:checked ~ .graph-container > li:nth-child(3) .bar-inner { height: 25%; bottom: 0; }
 input#f-product2:checked ~ .graph-container > li:nth-child(4) .bar-inner { height: 75%; bottom: 0; }
 input#f-product2:checked ~ .graph-container > li:nth-child(5) .bar-inner { height: 100%; bottom: 0; }
-/* Product 3 */
+/* HiveProduct 3 */
 input#f-product3:checked ~ .graph-container > li:nth-child(1) .bar-inner { height: 25%; bottom: 0; }
 input#f-product3:checked ~ .graph-container > li:nth-child(2) .bar-inner { height: 75%; bottom: 0; }
 input#f-product3:checked ~ .graph-container > li:nth-child(3) .bar-inner { height: 100%; bottom: 0; }

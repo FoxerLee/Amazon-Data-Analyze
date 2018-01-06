@@ -97,7 +97,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>导演名称 : {{director}} </h2>
+                    <h2>导演名称 : {{hiveDirector}} </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -166,10 +166,10 @@
         $scope.search=function(){
             directorName=String(document.getElementById("searchBar").value);
             alert(directorName)
-            $scope.director=directorName;
+            $scope.hiveDirector=directorName;
             $http.get("......."+directorName)
                 .then(function (response) {
-                    $scope.list=response.data;
+                    $scope.list=response.data.data;
                 });
         };
 

@@ -1,10 +1,10 @@
-package edu.tongji.sse.DataWarehouse.Model;
+package edu.tongji.sse.DataWarehouse.Model.HiveModel;
 
-public class Language {
+public class HiveLanguage {
 
     private String language;
 
-    private int count;
+    private String count;
 
     public String getLanguage() {
         return language;
@@ -14,11 +14,11 @@ public class Language {
         this.language = language;
     }
 
-    public int getCount() {
+    public String getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(String count) {
         this.count = count;
     }
 }

@@ -1,8 +1,8 @@
 package edu.tongji.sse.DataWarehouse.ServiceImpl.MySQL;
 
 import edu.tongji.sse.DataWarehouse.DAL.MySQL.*;
-import edu.tongji.sse.DataWarehouse.Model.Director;
-import edu.tongji.sse.DataWarehouse.Model.Movie;
+import edu.tongji.sse.DataWarehouse.Model.MySQLModel.Director;
+import edu.tongji.sse.DataWarehouse.Model.MySQLModel.Movie;
 import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLCheckService;
 import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLProductService;
 import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLTimeService;

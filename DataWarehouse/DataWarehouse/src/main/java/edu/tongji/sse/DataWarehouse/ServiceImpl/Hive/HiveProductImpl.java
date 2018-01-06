@@ -1,8 +1,8 @@
 package edu.tongji.sse.DataWarehouse.ServiceImpl.Hive;
 
 import edu.tongji.sse.DataWarehouse.DAL.Hive.HiveMovieMapper;
-import edu.tongji.sse.DataWarehouse.Model.Product;
-import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLProductService;
+import edu.tongji.sse.DataWarehouse.Model.HiveModel.HiveProduct;
+import edu.tongji.sse.DataWarehouse.Service.Hive.HiveProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class HiveProductImpl implements MySQLProductService {
+public class HiveProductImpl implements HiveProductService {
 
     @Autowired
     private HiveMovieMapper mySQLMovieMapper;
 
     @Override
-    public List<Product> getProductByMovieId(String movie_id){
+    public List<HiveProduct> getProductByMovieId(String movie_id){
         String temp = mySQLMovieMapper.getMoviesStringById(movie_id);
         if(temp == null)
             return null;
@@ -41,18 +41,17 @@ public class HiveProductImpl implements MySQLProductService {
                     query += " OR ";
             }
             ResultSet rs = stmt.executeQuery(query);
-            List<Product> result = new ArrayList<>();
+            List<HiveProduct> result = new ArrayList<>();
             while (rs.next()){
-                System.out.println("hive");
-                Product product = new Product();
-                product.setId(rs.getString("id"));
-                product.setSales_rank(rs.getInt("sales_rank"));
-                product.setPrice(rs.getDouble("price"));
-                product.setLanguages(rs.getString("languages"));
-                product.setBinding(rs.getString("binding"));
-                product.setStudios(rs.getString("studios"));
-                product.setRunning_time(rs.getInt("running_time"));
-                result.add(product);
+                HiveProduct hiveProduct = new HiveProduct();
+                hiveProduct.setId(rs.getString("product.id"));
+                hiveProduct.setSales_rank(rs.getString("product.sales_rank"));
+                hiveProduct.setPrice(rs.getDouble("product.price"));
+                hiveProduct.setLanguages(rs.getString("product.languages"));
+                hiveProduct.setBinding(rs.getString("product.binding"));
+                hiveProduct.setStudios(rs.getString("product.studios"));
+                hiveProduct.setRunning_time(rs.getString("product.running_time"));
+                result.add(hiveProduct);
             }
             rs.close();
             stmt.close();

@@ -1,9 +1,7 @@
 package edu.tongji.sse.DataWarehouse.DAL.Hive;
 
-import edu.tongji.sse.DataWarehouse.Model.Director;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import edu.tongji.sse.DataWarehouse.Model.HiveModel.HiveDirector;
+import org.apache.ibatis.annotations.*;
 
 
 @Mapper
@@ -16,5 +14,13 @@ public interface HiveDirectorMapper {
     String getMoviesIdByName(@Param(value = "name") String name);
 
     @Select("select * from director where name = \'${name}\'")
-    Director getDirectorStyleByName(@Param(value = "name") String name);
+    @Results({
+            @Result(property = "name", column = "director.name"),
+            @Result(property = "movies", column = "director.movies"),
+            @Result(property = "count", column = "director.count"),
+            @Result(property = "style", column = "director.style"),
+            @Result(property = "actors", column = "director.actors"),
+            @Result(property = "corporation", column = "director.corporation")
+    })
+    HiveDirector getDirectorStyleByName(@Param(value = "name") String name);
 }

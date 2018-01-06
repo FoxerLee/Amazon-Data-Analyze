@@ -98,8 +98,8 @@
                   <label for="year">年份:</label>
                   <input type="text" id="year" class="form-control" name="year" placeholder="请输入年份，如：2018" width= 400px />
 
-                  <label for="director">导演:</label>
-                  <input type="text" id="director" class="form-control" name="director" placeholder="请输入导演名，如：李源" width= 400px />
+                  <label for="hiveDirector">导演:</label>
+                  <input type="text" id="hiveDirector" class="form-control" name="hiveDirector" placeholder="请输入导演名，如：李源" width= 400px />
 
                   <label for="actor">演员:</label>
                   <input type="text" id="actor" class="form-control" name="actor" placeholder="请输入演员名，如：李源" width= 400px />
@@ -121,7 +121,7 @@
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>电影信息 : {{l1.movie.title}}</h2>
+                    <h2>电影信息 : {{l1.hiveMovie.title}}</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -134,44 +134,44 @@
                     <table class="table table-striped">
                       <tr>
                         <th>电影ID</th>
-                        <td>{{l1.movie.id}}</td>
+                        <td>{{l1.hiveMovie.id}}</td>
                       </tr>
 
                       <tr>
                         <th>电影名称</th>
-                        <td>{{l1.movie.title}}</td>
+                        <td>{{l1.hiveMovie.title}}</td>
                       </tr>
                       <tr>
                         <th>导演</th>
-                        <td>{{l1.movie.directors}}</td>
+                        <td>{{l1.hiveMovie.directors}}</td>
                       </tr>
                       <tr>
                         <th>主演</th>
-                        <td>{{l1.movie.starrings}}</td>
+                        <td>{{l1.hiveMovie.starrings}}</td>
                       </tr>
                       <tr>
                         <th>演员</th>
-                        <td>{{l1.movie.actors}}</td>
+                        <td>{{l1.hiveMovie.actors}}</td>
                       </tr>
                       <tr>
                         <th>发行商</th>
-                        <td>{{l1.movie.studios}}</td>
+                        <td>{{l1.hiveMovie.studios}}</td>
                       </tr>
                       <tr>
                         <th>风格</th>
-                        <td>{{l1.movie.genres}}</td>
+                        <td>{{l1.hiveMovie.genres}}</td>
                       </tr>
                       <tr>
                         <th>上映时间</th>
-                        <td>{{l1.movie.date}}</td>
+                        <td>{{l1.hiveMovie.date}}</td>
                       </tr>
                       <tr>
                         <th>版本</th>
-                        <td>{{l1.movie.products}}</td>
+                        <td>{{l1.hiveMovie.products}}</td>
                       </tr>
                       <tr>
                         <th>语言</th>
-                        <td>{{l1.movie.languages}}</td>
+                        <td>{{l1.hiveMovie.languages}}</td>
                       </tr>
                     </table>
                     <div class="x_title">
@@ -192,7 +192,7 @@
                           <th>详情</th>
                         </tr>
                         </thead>
-                        <tbody ng-repeat="l2 in l1.product">
+                        <tbody ng-repeat="l2 in l1.hiveProduct">
                         <tr>
                           <td>{{l2.id}}</td>
                           <td>{{l2.binding}}</td>
@@ -251,16 +251,16 @@
         app.controller('siteCtrl', function($scope, $http) {
             $scope.form_query = function () {
                 var year = document.getElementById("year").value;
-                var director = document.getElementById("director").value;
+                var hiveDirector = document.getElementById("hiveDirector").value;
                 var actor = document.getElementById("actor").value;
                 var style = document.getElementById("style").value;
                 // alert("year:" + year);
-                // alert("director:" + director);
+                // alert("hiveDirector:" + hiveDirector);
                 // alert("actor:" + actor);
                 // alert("style:" + style);
-                $http.get("http://localhost:8080/multiple/index?year=" + year + "&director=" + director +"&actor=" + actor + "&genre=" + style)
+                $http.get("http://localhost:8080/multiple/index?year=" + year + "&hiveDirector=" + hiveDirector +"&actor=" + actor + "&genre=" + style)
                     .then(function (response) {
-                        $scope.movieInfo = response.data;
+                        $scope.movieInfo = response.data.data;
                     });
 
             }
