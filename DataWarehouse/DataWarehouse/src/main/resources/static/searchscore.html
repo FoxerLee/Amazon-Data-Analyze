@@ -172,31 +172,32 @@
         var app = angular.module('myApp', []);
         app.controller('siteCtrl', function($scope, $http) {
             var name ;
-            var type = 0;
             $scope.form_query = function () {
                 name = document.getElementById("aname").value;
-                if (type === 0) {
-                    $http.get("http://localhost:8080/actor/index?starring=" + name + "&actor=" + name)
-                        .then(function (response) {
-                            $scope.movieInfo = response.data.data;
-                        });
-                } else if (type === 1) {
-                    $http.get("http://localhost:8080/actor/index?starring=" + name)
-                        .then(function (response) {
-                            $scope.movieInfo = response.data.data;
-                        });
-                } else if (type === 2) {
-                    $http.get("http://localhost:8080/actor/index?actor=" + name)
-                        .then(function (response) {
-                            $scope.movieInfo = response.data.data;
-                        });
+                $http.get("http://localhost:8080/ranking/index?name=" + name)
+                    .then(function (response) {
+                        $scope.movieInfo = response.data.data;
+                        $scope.chart();
+                    });
+                // if (type === 0) {
+                //
+                // } else if (type === 1) {
+                //     $http.get("http://localhost:8080/actor/index?starring=" + name)
+                //         .then(function (response) {
+                //             $scope.movieInfo = response.data.data;
+                //         });
+                // } else if (type === 2) {
+                //     $http.get("http://localhost:8080/actor/index?actor=" + name)
+                //         .then(function (response) {
+                //             $scope.movieInfo = response.data.data;
+                //         });
+                //
+                // }
+            };
 
-                }
-            }
 
 
-
-            $(function () {
+            $scope.chart = function () {
                 $('#container').highcharts({
                     chart: {
                         plotBackgroundColor: null,
@@ -226,18 +227,18 @@
                         data: [
                             {
                                 name: '0~1',
-                                y: 12.8,
+                                y: $scope.movieInfo[0],
                                 sliced: true,
                                 selected: true
                             },
-                            ['1~2', 45.0],
-                            ['2~3', 12],
-                            ['3~4', 8.5],
-                            ['4~5', 6.2]
+                            ['1~2', $scope.movieInfo[1]],
+                            ['2~3', $scope.movieInfo[2]],
+                            ['3~4', $scope.movieInfo[3]],
+                            ['4~5', $scope.movieInfo[4]]
                         ]
                     }]
                 });
-            });
+            };
 
         });
     </script>
