@@ -87,3 +87,12 @@ WITH SERDEPROPERTIES (
 )  
 STORED AS TEXTFILE;
 load data local inpath '/home/hadoop/final_data/final_director.csv' overwrite into table director;
+
+CREATE TABLE ranking(id string, product string, ranking double)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+   "separatorChar" = "\,",   
+   "quoteChar"     = "\""   
+)  
+STORED AS TEXTFILE;
+load data local inpath '/home/hadoop/final_data/hive_rank.csv' overwrite into table ranking;
