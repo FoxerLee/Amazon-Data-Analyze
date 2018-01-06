@@ -23,15 +23,15 @@ public class StyleController {
     private HiveCheckService hiveCheckService;
 
     @GetMapping("/director")
-    public Object checkDirectorStyle(@RequestParam(value = "style", defaultValue = "")String style){
+    public Object checkDirectorStyle(@RequestParam(value = "name", defaultValue = "")String name){
         Map<String, Object> result = new HashMap<>();
         long start_mysql = System.currentTimeMillis();
-        result.put("data", mySQLCheckService.checkDirectorStyleByDirectorName(style));
+        result.put("data", mySQLCheckService.checkDirectorStyleByDirectorName(name));
         long end_mysql = System.currentTimeMillis();
         result.put("time_mysql", ((double)(end_mysql - start_mysql))/1000);
         long start_hive = System.currentTimeMillis();
         try{
-            hiveCheckService.checkDirectorStyleByDirectorName(style);
+            hiveCheckService.checkDirectorStyleByDirectorName(name);
         }catch (Exception e){
             System.out.println(e);
         }

@@ -172,11 +172,11 @@
                 name = document.getElementById("aname").value;
                 alert(name);
                 if(type === 0){
-                    $http.get("http://localhost:8080/..." + name + "&type=year" )
+                    $http.get("http://localhost:8080/diagram/genre?type=1&genre="+ name)
                         .then(function (response) {
                             var data=[];
                             var categories=[];
-                            var temp = angular.fromJson(response.data);
+                            var temp = response.data.data;
                             for(var i=0;i<temp.length;i++){
                                 data.push(parseInt(String(temp[i])));
                             }
@@ -213,10 +213,10 @@
                             });
                         });
                 }else if(type === 1){
-                    $http.get("http://localhost:8080/..." + name + "&type=month" )
+                    $http.get("http://localhost:8080/diagram/genre?type=2&genre="+ name )
                         .then(function (response) {
                             var data=[];
-                            var temp = angular.fromJson(response.data);
+                            var temp = response.data.data;
                             for(var i=0;i<temp.length;i++){
                                 data.push(parseInt(String(temp[i])));
                             }
@@ -250,10 +250,10 @@
                             });
                         });
                 }else if(type === 2){
-                    $http.get("http://localhost:8080/..." + name + "&type=day" )
+                    $http.get("http://localhost:8080/diagram/genre?type=3&genre="+ name )
                         .then(function (response)             {
                             var data=[];
-                            var temp = angular.fromJson(response.data);
+                            var temp = response.data.data;
                             for(var i=0;i<temp.length;i++){
                                 data.push(parseInt(String(temp[i])));
                             }
@@ -300,9 +300,7 @@
                 type = 2;
                 alert(type);
             };
-
         });
-
 
     </script>
 
