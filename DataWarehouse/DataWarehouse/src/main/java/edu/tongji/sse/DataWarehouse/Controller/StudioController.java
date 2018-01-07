@@ -39,10 +39,11 @@ public class StudioController {
 
     @GetMapping("/hive")
     public Object HiveTest(){
-        Map<String, Object> result = new HashMap<>();
-        long start_hive = System.currentTimeMillis();
-        long end_hive = System.currentTimeMillis();
-        result.put("time_hive", ((double)(end_hive - start_hive))/1000);
-        return result;
+//        Map<String, Object> result = new HashMap<>();
+//        long start_hive = System.currentTimeMillis();
+//        long end_hive = System.currentTimeMillis();
+//        result.put("time_hive", ((double)(end_hive - start_hive))/1000);
+//        return result;
+        return null;
     }
 }

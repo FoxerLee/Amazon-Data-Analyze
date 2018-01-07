@@ -47,7 +47,6 @@
                       <li><a href="searchbystyle.html">按风格查询</a></li>
                       <li><a href="searchbytime.html">按上映时间查询</a></li>
                       <li><a href="searchbycomponent.html">组合查询</a></li>
-                      <li><a href="searchreview.html">查询电影评论</a></li>
                       <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
                       <li><a href="searchscore.html">查询电影评分</a></li>
                       <li><a href="showByStyle.html">查询风格趋势</a></li>
@@ -225,20 +224,27 @@
     app.controller('siteCtrl', function($scope, $http) {
         $scope.search=function(){
             directorName=String(document.getElementById("searchBar").value);
-            alert(directorName)
             $scope.director=directorName;
-          $http.get("http://localhost:8080/style/director?name="+directorName)
+            $http.get("http://localhost:8080/style/hive?name="+directorName)
+                .then(function (response) {
+                    var showData = [];
+                    $scope.time_hive = response.data.time_hive;
+                    showData.push(parseFloat(String($scope.time_mysql)));
+                    showData.push(parseFloat(String($scope.time_hive)));
+                    $scope.chart(showData);
+                });
+            $http.get("http://localhost:8080/style/director?name="+directorName)
                   .then(function (response) {
                     $scope.list=response.data.data[2].actors;
                     $scope.director=directorName;
                     $scope.style=response.data.data[1];
                     $scope.count = response.data.number;
                     $scope.time_mysql = response.data.time_mysql;
-                    $scope.time_hive = response.data.time_hive;
-                    var showData = [];
-                    showData.push(parseFloat(String(response.data.time_mysql)));
-                    showData.push(parseFloat(String(response.data.time_hive)));
-                    $scope.chart(showData);
+                    // $scope.time_hive = response.data.time_hive;
+                    // var showData = [];
+                    // showData.push(parseFloat(String(response.data.time_mysql)));
+                    // showData.push(parseFloat(String(response.data.time_hive)));
+                    // $scope.chart(showData);
                   });
         };
       $scope.chart = function (showData) {
