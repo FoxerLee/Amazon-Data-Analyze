@@ -57,6 +57,8 @@
                       <li><a href="searchbycomponent.html">组合查询</a></li>
                       <li><a href="searchreview.html">查询电影评论</a></li>
                       <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
+                      <li><a href="searchscore.html">查询风格趋势</a></li>
+                      <li><a href="showByStyle.html">查询风格趋势</a></li>
                     </ul>
                   </li>
 
@@ -227,14 +229,14 @@
                       <table class="table table-striped">
                         <thead>
                         <tr>
-                          <th>序号</th>
+
                           <th>电影类别</th>
                           <th>电影数目</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="x in list">
-                          <th scope="row">{{x.id}}</th>
+
                           <td>{{x.genre}}</td>
                           <td>{{x.count}}</td>
                         </tr>
