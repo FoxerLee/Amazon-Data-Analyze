@@ -51,6 +51,8 @@
                       <li><a href="searchbycomponent.html">组合查询</a></li>
                       <li><a href="searchreview.html">查询电影评论</a></li>
                       <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
+                      <li><a href="searchscore.html">查询电影评分</a></li>
+                      <li><a href="showByStyle.html">查询风格趋势</a></li>
                     </ul>
                   </li>
 
@@ -102,6 +104,34 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class="x_panel">
+
+                <div class="x_title">
+                  <h2>查询结果</h2>
+                  <div class="clearfix"></div>
+                  <div class="x_content">
+                    <table class="table table-striped">
+                      <tbody>
+                      <tr >
+                        <th>查询结果个数</th>
+                        <td>{{count}}个</td>
+                      </tr>
+                      <tr >
+                        <th>MySQL查询时间</th>
+                        <td>{{time_mysql}}秒</td>
+                      </tr>
+                      <tr >
+                        <th>HIVE查询时间</th>
+                        <td>{{time_hive}}秒</td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
 
 
               <div class="x_panel">
@@ -128,6 +158,9 @@
 
                   <div id="container" style="min-width:400px;height:400px"></div>
 
+                </div>
+                <div class="x_content">
+                  <div id="container2" style="min-width:400px;height:400px"></div>
                 </div>
               </div>
 
@@ -177,7 +210,14 @@
                 $http.get("http://localhost:8080/ranking/index?name=" + name)
                     .then(function (response) {
                         $scope.movieInfo = response.data.data;
+                      $scope.count = response.data.number;
+                      $scope.time_mysql = response.data.time_mysql;
+                      $scope.time_hive = response.data.time_hive;
+                        var showData = [];
+                        showData.push(parseFloat(String(response.data.time_mysql)));
+                        showData.push(parseFloat(String(response.data.time_hive)));
                         $scope.chart();
+                        $scope.chart2(showData);
                     });
                 // if (type === 0) {
                 //
@@ -239,6 +279,64 @@
                     }]
                 });
             };
+          $scope.chart2 = function (showData) {
+            $('#container2').highcharts({
+              chart: {
+                type: 'bar'
+              },
+              title: {
+                text: '性能展示'
+              },
+              subtitle: {
+                text: ''
+              },
+              xAxis: {
+                categories: ['MySQL', 'hive'],
+                title: {
+                  text: null
+                }
+              },
+              yAxis: {
+                min: 0,
+                title: {
+                  text: '时间（s）',
+                  align: 'high'
+                },
+                labels: {
+                  overflow: 'justify'
+                }
+              },
+              tooltip: {
+                valueSuffix: 's'
+              },
+              plotOptions: {
+                bar: {
+                  dataLabels: {
+                    enabled: true,
+                    allowOverlap: true
+                  }
+                }
+              },
+              legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                shadow: true
+              },
+              credits: {
+                enabled: false
+              },
+              series: [{
+                name: ' ',
+                data: showData
+              }]
+            });
+          };
 
         });
     </script>

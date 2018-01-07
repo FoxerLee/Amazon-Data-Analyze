@@ -49,6 +49,8 @@
                       <li><a href="searchbycomponent.html">组合查询</a></li>
                       <li><a href="searchreview.html">查询电影评论</a></li>
                       <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
+                      <li><a href="searchscore.html">查询电影评分</a></li>
+                      <li><a href="showByStyle.html">查询风格趋势</a></li>
                     </ul>
                   </li>
 
@@ -153,6 +155,32 @@
               </div>
             </div>
 
+            <div class="x_panel">
+              <div class="x_title">
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Settings 1</a>
+                      </li>
+                      <li><a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+
+                <div id="container" style="min-width:400px;height:400px"></div>
+
+              </div>
+            </div>
+
             <div class="clearfix"></div>
 
             <div class="row" ng-repeat="l1 in movieInfo">
@@ -248,9 +276,6 @@
 
                     </div>
                   </div>
-                  <div class="x_content">
-                    <div id="container" style="min-width:400px;height:400px"></div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -306,64 +331,7 @@
                           var showData = [];
                           showData.push(parseFloat(String(response.data.time_mysql)));
                           showData.push(parseFloat(String(response.data.time_hive)));
-                          $(function () {
-                            $('#container').highcharts({
-                              chart: {
-                                type: 'bar'
-                              },
-                              title: {
-                                text: '性能展示'
-                              },
-                              subtitle: {
-                                text: ''
-                              },
-                              xAxis: {
-                                categories: ['MySQL', 'hive'],
-                                title: {
-                                  text: null
-                                }
-                              },
-                              yAxis: {
-                                min: 0,
-                                title: {
-                                  text: '时间（s）',
-                                  align: 'high'
-                                },
-                                labels: {
-                                  overflow: 'justify'
-                                }
-                              },
-                              tooltip: {
-                                valueSuffix: 's'
-                              },
-                              plotOptions: {
-                                bar: {
-                                  dataLabels: {
-                                    enabled: true,
-                                    allowOverlap: true
-                                  }
-                                }
-                              },
-                              legend: {
-                                layout: 'vertical',
-                                align: 'right',
-                                verticalAlign: 'top',
-                                x: -40,
-                                y: 100,
-                                floating: true,
-                                borderWidth: 1,
-                                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                                shadow: true
-                              },
-                              credits: {
-                                enabled: false
-                              },
-                              series: [{
-                                name: ' ',
-                                data: showData
-                              }]
-                            });
-                          });
+                          $scope.chart(showData);
                         });
                 }else if(type === 1){
                     $http.get("http://localhost:8080/actor/index?starring=" + name )
@@ -375,64 +343,7 @@
                           var showData = [];
                           showData.push(parseFloat(String(response.data.time_mysql)));
                           showData.push(parseFloat(String(response.data.time_hive)));
-                          $(function () {
-                            $('#container').highcharts({
-                              chart: {
-                                type: 'bar'
-                              },
-                              title: {
-                                text: '性能展示'
-                              },
-                              subtitle: {
-                                text: ''
-                              },
-                              xAxis: {
-                                categories: ['MySQL', 'hive'],
-                                title: {
-                                  text: null
-                                }
-                              },
-                              yAxis: {
-                                min: 0,
-                                title: {
-                                  text: '时间（s）',
-                                  align: 'high'
-                                },
-                                labels: {
-                                  overflow: 'justify'
-                                }
-                              },
-                              tooltip: {
-                                valueSuffix: 's'
-                              },
-                              plotOptions: {
-                                bar: {
-                                  dataLabels: {
-                                    enabled: true,
-                                    allowOverlap: true
-                                  }
-                                }
-                              },
-                              legend: {
-                                layout: 'vertical',
-                                align: 'right',
-                                verticalAlign: 'top',
-                                x: -40,
-                                y: 100,
-                                floating: true,
-                                borderWidth: 1,
-                                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                                shadow: true
-                              },
-                              credits: {
-                                enabled: false
-                              },
-                              series: [{
-                                name: ' ',
-                                data: showData
-                              }]
-                            });
-                          });
+                          $scope.chart(showData);
                         });
                 }else if(type === 2){
                     $http.get("http://localhost:8080/actor/index?actor=" + name )
@@ -444,64 +355,7 @@
                           var showData = [];
                           showData.push(parseFloat(String(response.data.time_mysql)));
                           showData.push(parseFloat(String(response.data.time_hive)));
-                          $(function () {
-                            $('#container').highcharts({
-                              chart: {
-                                type: 'bar'
-                              },
-                              title: {
-                                text: '性能展示'
-                              },
-                              subtitle: {
-                                text: ''
-                              },
-                              xAxis: {
-                                categories: ['MySQL', 'hive'],
-                                title: {
-                                  text: null
-                                }
-                              },
-                              yAxis: {
-                                min: 0,
-                                title: {
-                                  text: '时间（s）',
-                                  align: 'high'
-                                },
-                                labels: {
-                                  overflow: 'justify'
-                                }
-                              },
-                              tooltip: {
-                                valueSuffix: 's'
-                              },
-                              plotOptions: {
-                                bar: {
-                                  dataLabels: {
-                                    enabled: true,
-                                    allowOverlap: true
-                                  }
-                                }
-                              },
-                              legend: {
-                                layout: 'vertical',
-                                align: 'right',
-                                verticalAlign: 'top',
-                                x: -40,
-                                y: 100,
-                                floating: true,
-                                borderWidth: 1,
-                                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                                shadow: true
-                              },
-                              credits: {
-                                enabled: false
-                              },
-                              series: [{
-                                name: ' ',
-                                data: showData
-                              }]
-                            });
-                          });
+                          $scope.chart(showData);
                         });
                 }
 
@@ -542,6 +396,64 @@
                 //     });
                 type = 2;
             };
+          $scope.chart = function (showData) {
+            $('#container').highcharts({
+              chart: {
+                type: 'bar'
+              },
+              title: {
+                text: '性能展示'
+              },
+              subtitle: {
+                text: ''
+              },
+              xAxis: {
+                categories: ['MySQL', 'hive'],
+                title: {
+                  text: null
+                }
+              },
+              yAxis: {
+                min: 0,
+                title: {
+                  text: '时间（s）',
+                  align: 'high'
+                },
+                labels: {
+                  overflow: 'justify'
+                }
+              },
+              tooltip: {
+                valueSuffix: 's'
+              },
+              plotOptions: {
+                bar: {
+                  dataLabels: {
+                    enabled: true,
+                    allowOverlap: true
+                  }
+                }
+              },
+              legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                shadow: true
+              },
+              credits: {
+                enabled: false
+              },
+              series: [{
+                name: ' ',
+                data: showData
+              }]
+            });
+          };
 
         });
 

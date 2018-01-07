@@ -31,7 +31,7 @@ public class MySQLDiagramServiceImpl implements MySQLDiagramService{
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             stmt = conn.createStatement();
             String sql = "";
-            int[] number = new int[1020];
+            int[] number = new int[120];
             if(choice == 1){
                 for(int i = 0; i < ID.length; i++){
                     sql = "SELECT year from movie WHERE id = \'" + ID[i] + "\'";

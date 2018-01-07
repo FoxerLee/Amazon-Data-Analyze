@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>按演员查询 </title>
+    <title>查询风格趋势</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -45,11 +45,12 @@
                       <li><a href="searchbyactor.html">按演员名称查询</a></li>
                       <li><a href="searchbydirector.html">按导演名称查询</a></li>
                       <li><a href="searchbystyle.html">按风格查询</a></li>
-                      <li><a href="showByStyle.html">电影风格统计</a></li>
                       <li><a href="searchbytime.html">按上映时间查询</a></li>
                       <li><a href="searchbycomponent.html">组合查询</a></li>
                       <li><a href="searchreview.html">查询电影评论</a></li>
                       <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
+                      <li><a href="searchscore.html">查询电影评分</a></li>
+                      <li><a href="showByStyle.html">查询风格趋势</a></li>
                     </ul>
                   </li>
 
@@ -119,12 +120,70 @@
 
             <div class="clearfix"></div>
 
+            <div class="row">
+              <div class="x_panel">
+
+                <div class="x_title">
+                  <h2>查询结果</h2>
+                  <div class="clearfix"></div>
+                  <div class="x_content">
+                    <table class="table table-striped">
+                      <tbody>
+                      <tr >
+                        <th>查询结果个数</th>
+                        <td>{{count}}个</td>
+                      </tr>
+                      <tr >
+                        <th>MySQL查询时间</th>
+                        <td>{{time_mysql}}秒</td>
+                      </tr>
+                      <tr >
+                        <th>HIVE查询时间</th>
+                        <td>{{time_hive}}秒</td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="x_panel">
+              <div class="x_title">
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="#">Settings 1</a>
+                      </li>
+                      <li><a href="#">Settings 2</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
+              </div>
+              <div class="x_content">
+
+                <div id="container2" style="min-width:400px;height:400px"></div>
+
+              </div>
+              <div class="x_content">
+
+                <div id="container" style="min-width:400px;height:400px"></div>
+
+              </div>
+
+            </div>
+
             <div class="row" ng-repeat="l1 in movieInfo">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_content">
-                      <div id="container" style="min-width:400px;height:400px"></div>
-                    </div>
                   </div>
 
                 </div>
@@ -170,120 +229,64 @@
             var type = 0;
             $scope.form_query = function () {
                 name = document.getElementById("aname").value;
-                if(type === 0){
+                if(type === 1){
                     $http.get("http://localhost:8080/diagram/genre?type=1&genre="+ name)
                         .then(function (response) {
+                          $scope.count = response.data.number;
+                          $scope.time_mysql = response.data.time_mysql;
+                          $scope.time_hive = response.data.time_hive;
+                          var showData = [];
+                          showData.push(parseFloat(String(response.data.time_mysql)));
+                          showData.push(parseFloat(String(response.data.time_hive)));
                             var data=[];
                             var categories=[];
                             var temp = response.data.data;
                             for(var i=0;i<temp.length;i++){
                                 data.push(parseInt(String(temp[i])));
                             }
-                            for(i=0;i<209;i++){
-                                categories.push(String(i+1900));
+                            for(var j=1901;j<2021;j++){
+                                categories.push(String(j));
                             }
-                            var chart = Highcharts.chart('container', {
-                                chart: {
-                                    type: 'line'
-                                },
-                                title:{
-                                    text: name+'电影统计'
-                                },
-                                xAxis: {
-                                    categories: categories
-                                },
-                                yAxis: {
-                                    title: {
-                                        text: '个数'
-                                    }
-                                },
-                                plotOptions: {
-                                    line: {
-                                        dataLabels: {
-                                            enabled: true          // 开启数据标签
-                                        },
-                                        enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
-                                    }
-                                },
-                                series: [{
-                                    name: name,
-                                    data: data
-                                }]
-                            });
-                        });
-                }else if(type === 1){
-                    $http.get("http://localhost:8080/diagram/genre?type=2&genre="+ name )
-                        .then(function (response) {
-                            var data=[];
-                            var temp = response.data.data;
-                            for(var i=0;i<temp.length;i++){
-                                data.push(parseInt(String(temp[i])));
-                            }
-                            var chart = Highcharts.chart('container', {
-                                chart: {
-                                    type: 'line'
-                                },
-                                title:{
-                                    text: name+'电影统计'
-                                },
-                                xAxis: {
-                                    categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
-                                },
-                                yAxis: {
-                                    title: {
-                                        text: '个数'
-                                    }
-                                },
-                                plotOptions: {
-                                    line: {
-                                        dataLabels: {
-                                            enabled: true          // 开启数据标签
-                                        },
-                                        enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
-                                    }
-                                },
-                                series: [{
-                                    name: name,
-                                    data: data
-                                }]
-                            });
+                          $scope.chart(showData);
+                          $scope.chart_year(name,data,categories);
+
                         });
                 }else if(type === 2){
-                    $http.get("http://localhost:8080/diagram/genre?type=3&genre="+ name )
-                        .then(function (response)             {
+                    $http.get("http://localhost:8080/diagram/genre?type=2&genre="+ name )
+                        .then(function (response) {
+                          $scope.count = response.data.number;
+                          $scope.time_mysql = response.data.time_mysql;
+                          $scope.time_hive = response.data.time_hive;
+                          var showData = [];
+                          showData.push(parseFloat(String(response.data.time_mysql)));
+                          showData.push(parseFloat(String(response.data.time_hive)));
                             var data=[];
                             var temp = response.data.data;
                             for(var i=0;i<temp.length;i++){
                                 data.push(parseInt(String(temp[i])));
                             }
-                            var chart = Highcharts.chart('container', {
-                                chart: {
-                                    type: 'line'
-                                },
-                                title:{
-                                    text: name+'电影统计'
-                                },
-                                xAxis: {
-                                    categories: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-                                },
-                                yAxis: {
-                                    title: {
-                                        text: '个数'
-                                    }
-                                },
-                                plotOptions: {
-                                    line: {
-                                        dataLabels: {
-                                            enabled: true          // 开启数据标签
-                                        },
-                                        enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
-                                    }
-                                },
-                                series: [{
-                                    name: name,
-                                    data: data
-                                }]
-                            });
+                          $scope.chart(showData);
+                          $scope.chart_month(name,data);
+
+
+                        });
+                }else if(type === 0){
+                    $http.get("http://localhost:8080/diagram/genre?type=3&genre="+ name )
+                        .then(function (response){
+                          $scope.count = response.data.number;
+                          $scope.time_mysql = response.data.time_mysql;
+                          $scope.time_hive = response.data.time_hive;
+                          var showData = [];
+                          showData.push(parseFloat(String(response.data.time_mysql)));
+                          showData.push(parseFloat(String(response.data.time_hive)));
+                            var data=[];
+                            var temp = response.data.data;
+                            for(var i=0;i<temp.length;i++){
+                                data.push(parseInt(String(temp[i])));
+                            }
+                            $scope.chart(showData);
+                            $scope.chart_week(name,data);
+
                         });
                 }
             };
@@ -299,6 +302,158 @@
                 type = 2;
 
             };
+          $scope.chart = function (showData) {
+            $('#container2').highcharts({
+              chart: {
+                type: 'bar'
+              },
+              title: {
+                text: '性能展示'
+              },
+              subtitle: {
+                text: ''
+              },
+              xAxis: {
+                categories: ['MySQL', 'hive'],
+                title: {
+                  text: null
+                }
+              },
+              yAxis: {
+                min: 0,
+                title: {
+                  text: '时间（s）',
+                  align: 'high'
+                },
+                labels: {
+                  overflow: 'justify'
+                }
+              },
+              tooltip: {
+                valueSuffix: 's'
+              },
+              plotOptions: {
+                bar: {
+                  dataLabels: {
+                    enabled: true,
+                    allowOverlap: true
+                  }
+                }
+              },
+              legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 100,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                shadow: true
+              },
+              credits: {
+                enabled: false
+              },
+              series: [{
+                name: ' ',
+                data: showData
+              }]
+            });
+          };
+
+          $scope.chart_week= function (name,data) {
+            var chart = Highcharts.chart('container', {
+              chart: {
+                type: 'line'
+              },
+              title:{
+                text: name+'电影统计'
+              },
+              xAxis: {
+                categories: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+              },
+              yAxis: {
+                title: {
+                  text: '个数'
+                }
+              },
+              plotOptions: {
+                line: {
+                  dataLabels: {
+                    enabled: true          // 开启数据标签
+                  },
+                  enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+                }
+              },
+              series: [{
+                name: name,
+                data: data
+              }]
+            });
+          };
+
+          $scope.chart_year= function (name,data,categories) {
+            var chart = Highcharts.chart('container', {
+              chart: {
+                type: 'line'
+              },
+              title:{
+                text: name+'电影统计'
+              },
+              xAxis: {
+                categories: categories
+              },
+              yAxis: {
+                title: {
+                  text: '个数'
+                }
+              },
+              plotOptions: {
+                line: {
+                  dataLabels: {
+                    enabled: true          // 开启数据标签
+                  },
+                  enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+                }
+              },
+              series: [{
+                name: name,
+                data: data
+              }]
+            });
+          };
+
+          $scope.chart_month= function (name,data) {
+            var chart = Highcharts.chart('container', {
+              chart: {
+                type: 'line'
+              },
+              title:{
+                text: name+'电影统计'
+              },
+              xAxis: {
+                categories: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+              },
+              yAxis: {
+                title: {
+                  text: '个数'
+                }
+              },
+              plotOptions: {
+                line: {
+                  dataLabels: {
+                    enabled: true          // 开启数据标签
+                  },
+                  enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+                }
+              },
+              series: [{
+                name: name,
+                data: data
+              }]
+            });
+          };
+
         });
 
     </script>
