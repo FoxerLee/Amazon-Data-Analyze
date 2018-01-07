@@ -1,5 +1,6 @@
 package edu.tongji.sse.DataWarehouse.Controller;
 
+import edu.tongji.sse.DataWarehouse.Model.MySQLModel.Movie;
 import edu.tongji.sse.DataWarehouse.Service.Hive.HiveCheckService;
 import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLCheckService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/actor")
@@ -26,15 +28,32 @@ public class ActorController {
                                                @RequestParam(value = "starring", defaultValue = "")String starringName){
         HashMap<String, Object> result = new HashMap<>();
         long start_mysql = System.currentTimeMillis();
-        if (!actorName.equals("") && starringName.equals(""))
-            result.put("data", mySQLCheckService.generateMovieAndProductsList(mySQLCheckService.checkMoviesByActorName(actorName)));
-        else if (!starringName.equals("") && actorName.equals(""))
-            result.put("data", mySQLCheckService.generateMovieAndProductsList(mySQLCheckService.checkMoviesByStarringName(starringName)));
-        else if(starringName.equals("") && actorName.equals(""))
+        int number = 0;
+        if (!actorName.equals("") && starringName.equals("")){
+            List<Movie> movies = mySQLCheckService.checkMoviesByActorName(actorName);
+            if(movies != null){
+                number = movies.size();
+                result.put("data", mySQLCheckService.generateMovieAndProductsList(movies));
+            }else
+                result.put("data", null);
+        } else if (!starringName.equals("") && actorName.equals("")){
+            List<Movie> movies = mySQLCheckService.checkMoviesByStarringName(starringName);
+            if(movies != null){
+                number = movies.size();
+                result.put("data", mySQLCheckService.generateMovieAndProductsList(movies));
+            }else
+                result.put("data", null);
+        }else if(starringName.equals("") && actorName.equals(""))
             result.put("data", new ArrayList<>());
-        else
-            result.put("data", mySQLCheckService.generateMovieAndProductsList(
-                    mySQLCheckService.checkMoviesByStarringOrActor(actorName, starringName)));
+        else{
+            List<Movie> movies = mySQLCheckService.checkMoviesByStarringOrActor(actorName, starringName);
+            if(movies != null){
+                number = movies.size();
+                result.put("data", mySQLCheckService.generateMovieAndProductsList(movies));
+            }else
+                result.put("data", new ArrayList<>());
+        }
+
         long end_mysql = System.currentTimeMillis();
         result.put("time_mysql", ((double)(end_mysql - start_mysql))/ 1000);
 
@@ -56,7 +75,7 @@ public class ActorController {
         long end_hive = System.currentTimeMillis();
         result.put("time_hive", ((double)(end_hive - start_hive))/ 1000);
 
-        result.put("number", result.size());
+        result.put("number", number);
         return result;
     }
 }
