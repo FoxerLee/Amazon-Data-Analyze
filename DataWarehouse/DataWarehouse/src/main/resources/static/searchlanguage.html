@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Gentelella Alela! | </title>
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/graph.css" />
+
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="css/custom.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/static/js/modernizr.custom.04022.js"></script>
+    <style>.ie-note-1{display:block;} .main{display:none;}</style>
+    <![endif]-->
+    <!--[if IE 9]><style>.ie-note-2{display:block;}</style><![endif]-->
+  </head>
+
+  <body class="nav-md" ng-app="myApp" ng-controller="siteCtrl">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col menu_fixed">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>喵喵电影</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <ul class="nav side-menu">
+                  <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard </a>
+                  </li>
+                  <li><a><i class="fa fa-edit"></i> 查询 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="searchbymoviename.html">按电影名称查询</a></li>
+                      <li><a href="searchbyactor.html">按演员名称查询</a></li>
+                      <li><a href="searchbydirector.html">按导演名称查询</a></li>
+                      <li><a href="searchbystyle.html">按风格查询</a></li>
+                      <li><a href="searchbytime.html">按上映时间查询</a></li>
+                      <li><a href="searchbycomponent.html">组合查询</a></li>
+                      <li><a href="searchreview.html">查询电影评论</a></li>
+                      <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
+                      <li><a href="searchscore.html">查询电影评分</a></li>
+                      <li><a href="showByStyle.html">查询风格趋势</a></li>
+                    </ul>
+                  </li>
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav>
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+             
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Amazon电影数据仓库数据总览</h3>
+              </div>
+
+              <div class="title_right">
+                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                </div>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+              </div>
+              <div class="x_panel">
+              <div class="x_content">
+                <div class="x_title">
+                  <h2>各语言类别电影数</h2>
+                  <div>
+                      <table class="table table-striped">
+                        <thead>
+                        <tr>
+
+                          <th>语言类别</th>
+                          <th>电影数目</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="x in list">
+
+                          <td>{{x.genre}}</td>
+                          <td>{{x.count}}</td>
+                        </tr>
+                        </tbody>
+                      </table>
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="vendors/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="vendors/nprogress/nprogress.js"></script>
+    
+    <!-- Custom Theme Scripts -->
+    <script src="js/custom.min.js"></script>
+    <script src="vendors/angular/angular.js"></script>
+    <script src="vendors/angular/angular-route.js"></script>
+  </body>
+</html>
+<script type="text/javascript">
+    function showTag(id){
+        var thisId=id;
+        var check=document.getElementById("f-product1").checked;
+        if(check===true) {
+            var boxId="ccbox"+id;
+            document.getElementById(boxId).style.display = "block";
+        }
+    }
+    function hideTag(id){
+        var boxId="ccbox"+id;
+        document.getElementById(boxId).style.display="none";
+    }
+
+    function changeStyle2() {
+        var obj = document.getElementById("test");
+        obj.style.cssText = "height: 23%; bottom: 0";
+
+    }
+    var app = angular.module('myApp', []);
+    app.controller('siteCtrl', function($scope, $http) {
+        $http.get("http://localhost:8080/dashboard/summary")
+            .then(function (response) {
+                var summary = response.data.summary;
+                $scope.list = response.data.genres;
+
+            });
+        // $http.get("......")
+        //     .then(function (response) {
+        //         var temp = angular.fromJson(response.data);
+        //         $scope.movie=temp[0].number;
+        //         $scope.actor=temp[1].number;
+        //         $scope.director=temp[2].number;
+        //         $scope.publish=temp[3].number;
+        //         $scope.version=temp[4].number;
+        //         for(var i=0;i<5;i++){
+        //             var barId=i+1;
+        //             barId="bar"+barId;
+        //             var obj = document.getElementById(barId);
+        //             var percent=parseFloat(String(temp[i].number))/260000;
+        //             var str=String(percent)+'%';
+        //             obj.style.cssText = "height: "+str+"; bottom: 0";
+        //         }
+        //     });
+    });
+</script>
