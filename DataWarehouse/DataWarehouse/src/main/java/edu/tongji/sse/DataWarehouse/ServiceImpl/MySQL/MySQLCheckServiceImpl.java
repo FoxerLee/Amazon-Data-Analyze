@@ -9,6 +9,7 @@ import edu.tongji.sse.DataWarehouse.Service.MySQL.MySQLTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -199,11 +200,17 @@ public class MySQLCheckServiceImpl implements MySQLCheckService {
         else{
             String DirectorName = director.getName();
             String DirectorStyle = director.getStyle();
-            Map<String, String> list = new HashMap<>();
+            Map<String, Object> list = new HashMap<>();
             String[] actors = director.getActors().split(",");
             String[] co = director.getCorporation().split(",");
-            for(int i = 0; i < actors.length; i++)
-                list.put(actors[i], co[i]);
+            List<Object> temp1 = new ArrayList<>();
+            for(int i = 0; i < actors.length; i++){
+                Map<String, Object> temp = new HashMap<>();
+                temp.put("name", actors[i]);
+                temp.put("count", co[i]);
+                temp1.add(temp);
+            }
+            list.put("actors", temp1);
             List<Object>list1 = new ArrayList<>();
             list1.add(DirectorName);
             list1.add(DirectorStyle);
