@@ -42,7 +42,7 @@
                   <li><a><i class="fa fa-edit"></i> 查询 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="searchbymoviename.html">按电影名称查询</a></li>
-                      <li><a href="../../../../../../../../../Desktop/searchbyactor.html">按演员名称查询</a></li>
+                      <li><a href="searchbyactor.html">按演员名称查询</a></li>
                       <li><a href="searchbydirector.html">按导演名称查询</a></li>
                       <li><a href="searchbystyle.html">按风格查询</a></li>
                       <li><a href="showByStyle.html">电影风格统计</a></li>
@@ -170,7 +170,6 @@
             var type = 0;
             $scope.form_query = function () {
                 name = document.getElementById("aname").value;
-                alert(name);
                 if(type === 0){
                     $http.get("http://localhost:8080/diagram/genre?type=1&genre="+ name)
                         .then(function (response) {
@@ -290,15 +289,15 @@
             };
             $scope.star_0 = function () {
                 type = 0;
-                alert(type);
+
             };
             $scope.star_1 = function () {
                 type = 1;
-                alert(type);
+
             };
             $scope.star_2 = function () {
                 type = 2;
-                alert(type);
+
             };
         });
 
