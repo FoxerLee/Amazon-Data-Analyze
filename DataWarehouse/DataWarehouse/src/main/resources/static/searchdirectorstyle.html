@@ -37,7 +37,7 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <ul class="nav side-menu">
-                  <li><a href="dashboard.html"><i class="fa fa-home"></i> Dashboard </a>
+                  <li><a href="../../../../../../../../../Downloads/页面/Dashboard.html"><i class="fa fa-home"></i> Dashboard </a>
                   </li>
                   <li><a><i class="fa fa-edit"></i> 查询 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -47,10 +47,8 @@
                       <li><a href="searchbystyle.html">按风格查询</a></li>
                       <li><a href="searchbytime.html">按上映时间查询</a></li>
                       <li><a href="searchbycomponent.html">组合查询</a></li>
-                      <li><a href="searchreview.html">查询电影评论</a></li>
+                      <li><a href="../../../../../../../../../Downloads/页面/searchreview.html">查询电影评论</a></li>
                       <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
-                      <li><a href="searchscore.html">查询电影评分</a></li>
-                      <li><a href="showByStyle.html">查询风格趋势</a></li>
                     </ul>
                   </li>
 
@@ -105,10 +103,6 @@
                     <table class="table table-striped">
                       <tbody>
                       <tr >
-                        <th>查询结果个数</th>
-                        <td>{{count}}个</td>
-                      </tr>
-                      <tr >
                         <th>MySQL查询时间</th>
                         <td>{{time_mysql}}秒</td>
                       </tr>
@@ -150,11 +144,11 @@
               </div>
             </div>
 
-            <div class="row" ng-repeat="l1 in movieInfo">
+            <div class="row">
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>电影信息 : {{l1.movie.title}}</h2>
+                    <h2>导演名称 : {{director}} </h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -163,91 +157,27 @@
                     </ul>
                     <div class="clearfix"></div>
                   </div>
+                  <div class="x_title">
+                    <h2>导演风格：{{style}}</h2>
+                    <div class="clearfix"></div>
+                  </div>
                   <div class="x_content">
                     <table class="table table-striped">
                       <tr>
-                        <th>电影ID</th>
-                        <td>{{l1.movie.id}}</td>
+                        <th>合作演员</th>
+                        <th>合作次数</th>
                       </tr>
 
-                      <tr>
-                        <th>电影名称</th>
-                        <td>{{l1.movie.title}}</td>
-                      </tr>
-                      <tr>
-                        <th>导演</th>
-                        <td>{{l1.movie.directors}}</td>
-                      </tr>
-                      <tr>
-                        <th>主演</th>
-                        <td>{{l1.movie.starrings}}</td>
-                      </tr>
-                      <tr>
-                        <th>演员</th>
-                        <td>{{l1.movie.actors}}</td>
-                      </tr>
-                      <tr>
-                        <th>发行商</th>
-                        <td>{{l1.movie.studios}}</td>
-                      </tr>
-                      <tr>
-                        <th>风格</th>
-                        <td>{{l1.movie.genres}}</td>
-                      </tr>
-                      <tr>
-                        <th>上映时间</th>
-                        <td>{{l1.movie.date}}</td>
-                      </tr>
-                      <tr>
-                        <th>版本</th>
-                        <td>{{l1.movie.products}}</td>
-                      </tr>
-                      <tr>
-                        <th>语言</th>
-                        <td>{{l1.movie.languages}}</td>
+                      <tr ng-repeat="x in list">
+                        <td>{{x.name}}</td>
+                        <td>{{x.count}}</td>
                       </tr>
                     </table>
-                    <div class="x_title">
-                      <h2>商品信息</h2>
-                      <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                      <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                          <th>Asin</th>
-                          <th>版本</th>
-                          <th>价格</th>
-                          <th>播放时长</th>
-                          <th>语言</th>
-                          <th>发行商</th>
-                          <th>销售排名</th>
-                          <th>详情</th>
-                        </tr>
-                        </thead>
-                        <tbody ng-repeat="l2 in l1.product">
-                        <tr>
-                          <td>{{l2.id}}</td>
-                          <td>{{l2.binding}}</td>
-                          <td>{{l2.price}}</td>
-                          <td>{{l2.running_time}}</td>
-                          <td>{{l2.languages}}</td>
-                          <td>{{l2.studios}}</td>
-                          <td>{{l2.sales_rank}}</td>
-                          <td>
-                            <a href="http://www.amazon.com/dp/{{l2.id}}"><i class="fa fa-share"></i></a>
-                          </td>
-                        </tr>
-                        </tbody>
-                      </table>
-
-                    </div>
                   </div>
+
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
         <!-- /page content -->
@@ -290,18 +220,21 @@
     app.controller('siteCtrl', function($scope, $http) {
         $scope.search=function(){
             directorName=String(document.getElementById("searchBar").value);
-            $scope.hiveDirector=directorName;
-            $http.get("http://localhost:8080/style/director?name="+directorName)
-                .then(function (response) {
-                    $scope.list=response.data.data;
-                  $scope.count = response.data.number;
-                  $scope.time_mysql = response.data.time_mysql;
-                  $scope.time_hive = response.data.time_hive;
-                  var showData = [];
-                  showData.push(parseFloat(String(response.data.time_mysql)));
-                  showData.push(parseFloat(String(response.data.time_hive)));
-                  $scope.chart(showData);
-                });
+            alert(directorName)
+            $scope.director=directorName;
+          $http.get("http://localhost:8080/style/director?name="+directorName)
+                  .then(function (response) {
+                    $scope.list=response.data.data[2].actors;
+                    $scope.director=directorName;
+                    $scope.style=response.data.data[1];
+                    $scope.count = response.data.number;
+                    $scope.time_mysql = response.data.time_mysql;
+                    $scope.time_hive = response.data.time_hive;
+                    var showData = [];
+                    showData.push(parseFloat(String(response.data.time_mysql)));
+                    showData.push(parseFloat(String(response.data.time_hive)));
+                    $scope.chart(showData);
+                  });
         };
       $scope.chart = function (showData) {
         $('#container').highcharts({
