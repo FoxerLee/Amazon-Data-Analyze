@@ -27,4 +27,13 @@ public class DiagramController {
         result.put("time_mysql", ((double)(end_mysql - start_mysql))/1000);
         return result;
     }
+
+    @GetMapping("/hive")
+    public Object getDiagramHive(){
+        Map<String, Object> result = new HashMap<>();
+        long start_hive = System.currentTimeMillis();
+        long end_hive = System.currentTimeMillis();
+        result.put("time_hive", ((double)(end_hive - start_hive))/1000);
+        return result;
+    }
 }

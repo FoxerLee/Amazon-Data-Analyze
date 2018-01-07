@@ -121,7 +121,7 @@
                         <tbody>
                         <tr ng-repeat="x in list">
 
-                          <td>{{x.genre}}</td>
+                          <td>{{x.studio}}</td>
                           <td>{{x.count}}</td>
                         </tr>
                         </tbody>
@@ -189,10 +189,10 @@
     }
     var app = angular.module('myApp', []);
     app.controller('siteCtrl', function($scope, $http) {
-        $http.get("http://localhost:8080/dashboard/summary")
+        $http.get("http://localhost:8080/studio/index")
             .then(function (response) {
-                var summary = response.data.summary;
-                $scope.list = response.data.genres;
+                // var summary = response.data.summary;
+                $scope.list = response.data.data;
 
             });
         // $http.get("......")

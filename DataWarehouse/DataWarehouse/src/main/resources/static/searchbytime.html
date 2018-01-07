@@ -379,13 +379,22 @@
                 $http.get("http://localhost:8080/time/index?time=" + year + code)
                     .then(function (response) {
                         $scope.movieInfo = response.data.data;
-                      $scope.count = response.data.number;
-                      $scope.time_mysql = response.data.time_mysql;
-                      $scope.time_hive = response.data.time_hive;
-                      var showData = [];
-                      showData.push(parseFloat(String(response.data.time_mysql)));
-                      showData.push(parseFloat(String(response.data.time_hive)));
-                      $scope.chart(showData);
+                        $scope.count = response.data.number;
+                        $scope.time_mysql = response.data.time_mysql;
+                        $scope.time_hive = 0;
+                        // $scope.time_hive = response.data.time_hive;
+                        // var showData = [];
+                        // showData.push(parseFloat(String(response.data.time_mysql)));
+                        // showData.push(parseFloat(String(response.data.time_hive)));
+                        // $scope.chart(showData);
+                        $http.get("http://localhost:8080/time/hive?time=" + year + code)
+                            .then(function (response) {
+                                var showData = [];
+                                $scope.time_hive = response.data.time_hive;
+                                showData.push(parseFloat(String($scope.time_mysql)));
+                                showData.push(parseFloat(String($scope.time_hive)));
+                                $scope.chart(showData);
+                            });
 
                     });
             };

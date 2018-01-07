@@ -33,33 +33,39 @@ public class TimeController {
     private HiveCheckService hiveCheckService;
 
     @GetMapping("/index")
-    public Object getMoviesByTime(@RequestParam(value = "time", defaultValue = "")String time){
+    public Object getMoviesByTime(@RequestParam(value = "time", defaultValue = "") String time) {
         Map<String, Object> result = new HashMap<>();
         long start_mysql = System.currentTimeMillis();
         List<Movie> movies = mySQLTimeService.getMoviesByTime(time);
-        if(movies == null || movies.size() == 0)
+        if (movies == null || movies.size() == 0)
             result.put("data", new ArrayList<>());
         else
             result.put("data", mySQLCheckService.generateMovieAndProductsList(movies));
         long end_mysql = System.currentTimeMillis();
-        result.put("time_mysql", ((double)(end_mysql - start_mysql))/1000);
-        if(movies == null)
+        result.put("time_mysql", ((double) (end_mysql - start_mysql)) / 1000);
+        if (movies == null)
             result.put("number", 0);
-        else{
+        else {
             result.put("number", movies.size());
         }
+        return result;
+    }
+
+    @GetMapping("/hive")
+    public Object HiveTest(@RequestParam(value = "time", defaultValue = "") String time) {
+        Map<String, Object> result = new HashMap<>();
         long start_hive = System.currentTimeMillis();
-        try{
+        try {
             List<Movie> movies1 = mySQLTimeService.getMoviesByTime(time);
-            if(movies1 == null || movies1.size() == 0)
+            if (movies1 == null || movies1.size() == 0)
                 new ArrayList<>();
             else
                 mySQLCheckService.generateMovieAndProductsList(movies1);
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("HiveModel Exception!");
         }
         long end_hive = System.currentTimeMillis();
-        result.put("time_hive", ((double)(end_hive - start_hive))/1000);
+        result.put("time_hive", ((double) (end_hive - start_hive)) / 1000);
         return result;
     }
 }

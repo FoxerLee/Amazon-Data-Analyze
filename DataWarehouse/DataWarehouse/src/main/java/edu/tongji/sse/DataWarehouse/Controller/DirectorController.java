@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,19 +34,26 @@ public class DirectorController {
             result.put("data", mySQLCheckService.generateMovieAndProductsList(movies));
             long end_mysql = System.currentTimeMillis();
             result.put("time_mysql", ((double)(end_mysql - start_mysql))/1000);
-            long start_hive = System.currentTimeMillis();
-            try {
-                List<HiveMovie> movies1 = hiveCheckService.checkMoviesByDirector(name);
-                hiveCheckService.generateMovieAndProductsList(movies1);
-            }catch (Exception e){
-                System.out.println(e);
-            }
-            long end_hive = System.currentTimeMillis();
-            result.put("time_hive", ((double)(end_hive - start_hive))/1000);
-            result.put("number", movies.size());
             return result;
         }catch (Exception e){
             return "400";
         }
+    }
+
+    @GetMapping("/hive")
+    public Object HiveTest(@RequestParam(value = "name")String name){
+        Map<String, Object> result = new HashMap<>();
+        List<HiveMovie> movies = hiveCheckService.checkMoviesByDirector(name);
+        long start_hive = System.currentTimeMillis();
+        try {
+            List<HiveMovie> movies1 = hiveCheckService.checkMoviesByDirector(name);
+            hiveCheckService.generateMovieAndProductsList(movies1);
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        long end_hive = System.currentTimeMillis();
+        result.put("time_hive", ((double)(end_hive - start_hive))/1000);
+        result.put("number", movies.size());
+        return result;
     }
 }

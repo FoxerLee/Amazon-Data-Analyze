@@ -29,6 +29,13 @@ public class StyleController {
         result.put("data", mySQLCheckService.checkDirectorStyleByDirectorName(name));
         long end_mysql = System.currentTimeMillis();
         result.put("time_mysql", ((double)(end_mysql - start_mysql))/1000);
+
+        return result;
+    }
+
+    @GetMapping("/hive")
+    public Object HiveTest(@RequestParam(value = "name", defaultValue = "")String name){
+        Map<String, Object> result = new HashMap<>();
         long start_hive = System.currentTimeMillis();
         try{
             hiveCheckService.checkDirectorStyleByDirectorName(name);

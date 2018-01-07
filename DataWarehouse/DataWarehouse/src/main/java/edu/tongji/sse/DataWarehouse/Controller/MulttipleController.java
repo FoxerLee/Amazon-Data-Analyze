@@ -36,6 +36,15 @@ public class MulttipleController {
         long end_mysql = System.currentTimeMillis();
         result.put("time_mysql", ((double)(end_mysql - start_mysql))/1000);
         result.put("number", movies.size());
+        return result;
+    }
+
+    @GetMapping("/hive")
+    public Object HiveTest(@RequestParam(value = "year", defaultValue = "")String year,
+                           @RequestParam(value = "director", defaultValue = "")String director,
+                           @RequestParam(value = "actor", defaultValue = "")String actor,
+                           @RequestParam(value = "genre", defaultValue = "")String genre){
+        Map<String, Object> result = new HashMap<>();
         long start_hive = System.currentTimeMillis();
         try{
             List<HiveMovie> movies1 = hiveCheckService.checkMoviesByMultipleOptions(year, director, actor, genre);

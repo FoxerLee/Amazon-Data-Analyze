@@ -293,6 +293,14 @@
         app.controller('siteCtrl', function($scope, $http) {
             $scope.form_query = function () {
                 var name = document.getElementById("sname").value;
+                $http.get("http://localhost:8080/genre/hive?genre=" + name)
+                    .then(function (response) {
+                        var showData = [];
+                        $scope.time_hive = response.data.time_hive;
+                        showData.push(parseFloat(String($scope.time_mysql)));
+                        showData.push(parseFloat(String(response.data.time_hive)));
+                        $scope.chart(showData);
+                    });
                 $http.get("http://localhost:8080/genre/index?genre=" + name)
                     .then(function (response) {
                         //var temp2 = angular.fromJson(response.data);
@@ -300,11 +308,11 @@
                         $scope.movieInfo = response.data.data;
                       $scope.count = response.data.number;
                       $scope.time_mysql = response.data.time_mysql;
-                      $scope.time_hive = response.data.time_hive;
-                      var showData = [];
-                      showData.push(parseFloat(String(response.data.time_mysql)));
-                      showData.push(parseFloat(String(response.data.time_hive)));
-                      $scope.chart(showData);
+                      // $scope.time_hive = response.data.time_hive;
+                      // var showData = [];
+                      // showData.push(parseFloat(String(response.data.time_mysql)));
+                      // showData.push(parseFloat(String(response.data.time_hive)));
+                      // $scope.chart(showData);
                     });
             };
           $scope.chart = function (showData) {

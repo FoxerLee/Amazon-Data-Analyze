@@ -65,11 +65,11 @@ public class HiveTimeServiceImpl implements HiveTimeService {
                 }
             }
             System.out.print(judge);
-            String sql = "SELECT movies FROM date " + judge;
+            String sql = "SELECT movies FROM r_date " + judge;
             ResultSet rs = stmt.executeQuery(sql);
             List<HiveMovie> hiveMovies = new ArrayList<>();
             while (rs.next()) {
-                String[] temp = rs.getString("hiveMovies").split(",");
+                String[] temp = rs.getString("movies").split(",");
                 for (int i = 0; i < temp.length; i++) {
                     hiveMovies.add(mySQLMovieMapper.getMoviesById(temp[i]));
                 }

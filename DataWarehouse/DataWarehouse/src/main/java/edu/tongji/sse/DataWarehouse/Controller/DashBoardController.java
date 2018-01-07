@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/dashboard")
@@ -37,35 +38,36 @@ public class DashBoardController {
             result.put("genres", mySQLGenreService.getAllGenres());
             long end_mysql = System.currentTimeMillis();
             result.put("time_mysql", ((double)(end_mysql - start_mysql))/1000);
-
-            long start_hive = System.currentTimeMillis();
-            try{
-                hiveDashBoardService.getSummaryNum();
-                hiveGenreService.getAllGenres();
-            }catch (Exception e){
-                System.out.println();
-            }
-            long end_hive = System.currentTimeMillis();
-            result.put("time_hive", ((double)(end_hive - start_hive))/1000);
             return result;
         }catch (Exception e){
             return "400";
         }
     }
 
-    @GetMapping("/index")
-    public Object index(){
-//        try{
-//
-//        }catch (Exception e){
-//            return "400";
-//        }
-        HashMap<String, Object> result = new HashMap<>();
-        //电影，演员，导演数量,发行版本数
-        result.put("summary", hiveDashBoardService.getSummaryNum());
-        result.put("genres", hiveGenreService.getAllGenres());
+    @GetMapping("/summaryhive")
+    public Object getSummaryHive(){
+        Map<String, Object> result = new HashMap<>();
+        long start_hive = System.currentTimeMillis();
+        try{
+            hiveDashBoardService.getSummaryNum();
+            hiveGenreService.getAllGenres();
+        }catch (Exception e){
+            System.out.println();
+        }
+        long end_hive = System.currentTimeMillis();
+        result.put("time_hive", ((double)(end_hive - start_hive))/1000);
         return result;
     }
+//
+//    @GetMapping("/index")
+//    public Object index(){
+//        HashMap<String, Object> result = new HashMap<>();
+//        //电影，演员，导演数量,发行版本数
+//        result.put("summary", hiveDashBoardService.getSummaryNum());
+//        result.put("genres", hiveGenreService.getAllGenres());
+//        return result;
+//    }
+//
 
     
 }
