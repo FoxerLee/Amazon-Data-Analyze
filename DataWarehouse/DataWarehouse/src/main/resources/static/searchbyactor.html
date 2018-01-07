@@ -100,9 +100,46 @@
               </div>
             </div>
 
+            <div class="row">
+              <div class="x_panel">
+
+                <div class="x_title">
+                  <h2>查询结果</h2>
+                  <div class="clearfix"></div>
+                  <div class="x_content">
+                    <table class="table table-striped">
+                      <tbody>
+                      <tr >
+                        <th>查询结果个数</th>
+                        <td>{{count}}个</td>
+                      </tr>
+                      <tr >
+                        <th>MySQL查询时间</th>
+                        <td>{{time_mysql}}秒</td>
+                      </tr>
+                      <tr >
+                        <th>HIVE查询时间</th>
+                        <td>{{time_hive}}秒</td>
+                      </tr>
+                      </tbody>
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
             <div class="x_panel">
               <div class="x_title">
                 <h2>参演类型</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
                 <div class="clearfix"></div>
               </div>
               <div class="x_content">
@@ -263,6 +300,9 @@
                     $http.get("http://localhost:8080/actor/index?starring=" + name + "&actor=" +name )
                         .then(function (response) {
                             $scope.movieInfo = response.data.data;
+                            $scope.count = response.data.number;
+                            $scope.time_mysql = response.data.time_mysql;
+                            $scope.time_hive = response.data.time_hive;
                           var showData = [];
                           showData.push(parseFloat(String(response.data.time_mysql)));
                           showData.push(parseFloat(String(response.data.time_hive)));
@@ -329,6 +369,9 @@
                     $http.get("http://localhost:8080/actor/index?starring=" + name )
                         .then(function (response) {
                             $scope.movieInfo = response.data.data;
+                            $scope.count = response.data.number;
+                            $scope.time_mysql = response.data.time_mysql;
+                            $scope.time_hive = response.data.time_hive;
                           var showData = [];
                           showData.push(parseFloat(String(response.data.time_mysql)));
                           showData.push(parseFloat(String(response.data.time_hive)));
@@ -395,6 +438,9 @@
                     $http.get("http://localhost:8080/actor/index?actor=" + name )
                         .then(function (response) {
                             $scope.movieInfo = response.data.data;
+                            $scope.count = response.data.number;
+                            $scope.time_mysql = response.data.time_mysql;
+                            $scope.time_hive = response.data.time_hive;
                           var showData = [];
                           showData.push(parseFloat(String(response.data.time_mysql)));
                           showData.push(parseFloat(String(response.data.time_hive)));

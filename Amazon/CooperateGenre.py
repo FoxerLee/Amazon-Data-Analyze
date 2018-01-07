@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
-import re
-import os
 import csv
 import datetime
-import mysql.connector
-from multiprocessing import Process
-from collections import Counter
 
 import sys
 reload(sys)
@@ -13,11 +8,11 @@ sys.setdefaultencoding('utf-8')
 
 
 def run():
-    csvFile = open("miaomiao/re_actor.csv", "rb")
+    csvFile = open("re_director.csv", "rb")
     reader = csv.reader(csvFile)
     ids = [row for row in reader]
 
-    csvFile = open("miaomiao/warehouse_director.csv", "rb")
+    csvFile = open("miaomiao.csv", "rb")
     reader = csv.reader(csvFile)
     datas = [row for row in reader]
 
@@ -32,7 +27,7 @@ def run():
     # print new_ids[0]
 
     result = []
-    c = open("miaomiao/a2d.csv", "ab")
+    c = open("d2g.csv", "ab")
     w = csv.writer(c)
     for new_id in new_ids:
         n = new_id[0]
@@ -41,29 +36,33 @@ def run():
 
         for movie in movies:
             for data in datas:
-                if data[1] == movie:
-                    temp.append(data[0])
+                if data[0] == movie:
+                    temp.append(data[4])
 
         # result.append([n, temp])
         tempSet = set(temp)
-
+        
         name1 = ''
         count1 = 0
         name2 = ''
         count2 = 0
         for item in tempSet:
+            
             # temp_result.append((item, temp.count(item)))
             # w.writerow((n, item, temp.count(item)))
             # print n
             # print item
             # print datetime.datetime.now()
+            if item == '' or item == 'None' or item == '~':
+                continue
             count = temp.count(item)
-            if count > count2:
+            
+            if count >= count2:
                 count2 = count
                 name2 = item
-            elif count > count1:
+            if count2 >= count1:
                 count1 = count
-                name1 = name
+                name1 = item
         w.writerow((n, name1, count1))
         w.writerow((n, name2, count2))
 
