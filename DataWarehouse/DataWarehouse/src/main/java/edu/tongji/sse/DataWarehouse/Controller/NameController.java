@@ -38,18 +38,18 @@ public class NameController {
             long end_mysql = System.currentTimeMillis();
             result.put("time_mysql", ((double)(end_mysql - start_mysql))/1000);
             result.put("number", movies.size());
-//            long start_hive = System.currentTimeMillis();
-//            try{
-//                List<HiveMovie> movies1 = hiveCheckService.checkMoviesByName(name);
-//                if(movies == null)
-//                    new ArrayList<>();
-//                else
-//                    hiveCheckService.generateMovieAndProductsList(movies1);
-//            }catch (Exception e){
-//                System.out.println(e);
-//            }
-//            long end_hive = System.currentTimeMillis();
-//            result.put("time_hive", ((double)(end_hive - start_hive))/1000);
+            long start_hive = System.currentTimeMillis();
+            try{
+                List<HiveMovie> movies1 = hiveCheckService.checkMoviesByName(name);
+                if(movies == null)
+                    new ArrayList<>();
+                else
+                    hiveCheckService.generateMovieAndProductsList(movies1);
+            }catch (Exception e){
+                System.out.println(e);
+            }
+            long end_hive = System.currentTimeMillis();
+            result.put("time_hive", ((double)(end_hive - start_hive))/1000);
             return result;
         }catch (Exception e){
             return e;

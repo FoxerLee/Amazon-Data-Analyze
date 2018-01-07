@@ -38,7 +38,7 @@ public class DirectorController {
                 List<HiveMovie> movies1 = hiveCheckService.checkMoviesByDirector(name);
                 hiveCheckService.generateMovieAndProductsList(movies1);
             }catch (Exception e){
-                System.out.println("HiveModel Exception!");
+                System.out.println(e);
             }
             long end_hive = System.currentTimeMillis();
             result.put("time_hive", ((double)(end_hive - start_hive))/1000);
