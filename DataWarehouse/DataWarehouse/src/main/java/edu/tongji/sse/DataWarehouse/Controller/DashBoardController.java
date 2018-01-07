@@ -43,7 +43,7 @@ public class DashBoardController {
                 hiveDashBoardService.getSummaryNum();
                 hiveGenreService.getAllGenres();
             }catch (Exception e){
-                System.out.println("HiveModel error exception!");
+                System.out.println();
             }
             long end_hive = System.currentTimeMillis();
             result.put("time_hive", ((double)(end_hive - start_hive))/1000);
