@@ -56,7 +56,7 @@ public class MySQLCheckServiceImpl implements MySQLCheckService {
 
     @Override
     public List<Movie> checkMoviesByGenre(String genre){
-        String movies = mySQLMovieMapper.getMoviesByGenre(genre);
+        String movies = mySQLMovieMapper.getMoviesByGenre(genre)[0];
         if(movies == null)
             return new ArrayList<>();
         else{

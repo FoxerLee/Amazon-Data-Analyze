@@ -47,13 +47,12 @@
                       <li><a href="searchbystyle.html">按风格查询</a></li>
                       <li><a href="searchbytime.html">按上映时间查询</a></li>
                       <li><a href="searchbycomponent.html">组合查询</a></li>
-                      <li><a href="searchreview.html">查询电影评论</a></li>
                       <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
                       <li><a href="searchscore.html">查询电影评分</a></li>
                       <li><a href="showByStyle.html">查询风格趋势</a></li>
-                        <li><a href="searchbinding.html">查询电影介质</a></li>
-                        <li><a href="searchstudio.html">查询发行商</a></li>
-                        <li><a href="searchlanguage.html">查询语言</a></li>
+                      <li><a href="searchbinding.html">查询电影介质</a></li>
+                      <li><a href="searchstudio.html">查询发行商</a></li>
+                      <li><a href="searchlanguage.html">查询语言</a></li>
                     </ul>
                   </li>
 
@@ -115,7 +114,7 @@
                 <div class="btn-group  btn-group-sm select-right">
                   <button class="btn btn-default" type="button" ng-click="star_1()" >年</button>
                   <button class="btn btn-default" type="button" ng-click="star_2()" >月</button>
-                  <button class="btn btn-default" type="button" ng-click="star_0()" >日</button>
+                  <button class="btn btn-default" type="button" ng-click="star_0()" >周</button>
                 </div>
 
               </div>
@@ -132,10 +131,6 @@
                   <div class="x_content">
                     <table class="table table-striped">
                       <tbody>
-                      <tr >
-                        <th>查询结果个数</th>
-                        <td>{{count}}个</td>
-                      </tr>
                       <tr >
                         <th>MySQL查询时间</th>
                         <td>{{time_mysql}}秒</td>
@@ -233,14 +228,22 @@
             $scope.form_query = function () {
                 name = document.getElementById("aname").value;
                 if(type === 1){
+                    $http.get("http://localhost:8080/diagram/hive?type=1&genre="+ name)
+                        .then(function (response) {
+                            var showData = [];
+                            $scope.time_hive = response.data.time_hive;
+                            showData.push(parseFloat(String($scope.time_mysql)));
+                            showData.push(parseFloat(String($scope.time_hive)));
+                            $scope.chart(showData);
+                        });
                     $http.get("http://localhost:8080/diagram/genre?type=1&genre="+ name)
                         .then(function (response) {
                           $scope.count = response.data.number;
                           $scope.time_mysql = response.data.time_mysql;
-                          $scope.time_hive = response.data.time_hive;
-                          var showData = [];
-                          showData.push(parseFloat(String(response.data.time_mysql)));
-                          showData.push(parseFloat(String(response.data.time_hive)));
+                          // $scope.time_hive = response.data.time_hive;
+                          // var showData = [];
+                          // showData.push(parseFloat(String(response.data.time_mysql)));
+                          // showData.push(parseFloat(String(response.data.time_hive)));
                             var data=[];
                             var categories=[];
                             var temp = response.data.data;
@@ -250,44 +253,60 @@
                             for(var j=1901;j<2021;j++){
                                 categories.push(String(j));
                             }
-                          $scope.chart(showData);
+                          //$scope.chart(showData);
                           $scope.chart_year(name,data,categories);
 
                         });
                 }else if(type === 2){
+                    $http.get("http://localhost:8080/diagram/hive?type=2&genre="+ name)
+                        .then(function (response) {
+                            var showData = [];
+                            $scope.time_hive = response.data.time_hive;
+                            showData.push(parseFloat(String($scope.time_mysql)));
+                            showData.push(parseFloat(String($scope.time_hive)));
+                            $scope.chart(showData);
+                        });
                     $http.get("http://localhost:8080/diagram/genre?type=2&genre="+ name )
                         .then(function (response) {
                           $scope.count = response.data.number;
                           $scope.time_mysql = response.data.time_mysql;
-                          $scope.time_hive = response.data.time_hive;
-                          var showData = [];
-                          showData.push(parseFloat(String(response.data.time_mysql)));
-                          showData.push(parseFloat(String(response.data.time_hive)));
+                          // $scope.time_hive = response.data.time_hive;
+                          // var showData = [];
+                          // showData.push(parseFloat(String(response.data.time_mysql)));
+                          // showData.push(parseFloat(String(response.data.time_hive)));
                             var data=[];
                             var temp = response.data.data;
                             for(var i=0;i<temp.length;i++){
                                 data.push(parseInt(String(temp[i])));
                             }
-                          $scope.chart(showData);
+                          //$scope.chart(showData);
                           $scope.chart_month(name,data);
 
 
                         });
                 }else if(type === 0){
+                    $http.get("http://localhost:8080/diagram/hive?type=3&genre="+ name)
+                        .then(function (response) {
+                            var showData = [];
+                            $scope.time_hive = response.data.time_hive;
+                            showData.push(parseFloat(String($scope.time_mysql)));
+                            showData.push(parseFloat(String($scope.time_hive)));
+                            $scope.chart(showData);
+                        });
                     $http.get("http://localhost:8080/diagram/genre?type=3&genre="+ name )
                         .then(function (response){
                           $scope.count = response.data.number;
                           $scope.time_mysql = response.data.time_mysql;
-                          $scope.time_hive = response.data.time_hive;
-                          var showData = [];
-                          showData.push(parseFloat(String(response.data.time_mysql)));
-                          showData.push(parseFloat(String(response.data.time_hive)));
+                          // $scope.time_hive = response.data.time_hive;
+                          // var showData = [];
+                          // showData.push(parseFloat(String(response.data.time_mysql)));
+                          // showData.push(parseFloat(String(response.data.time_hive)));
                             var data=[];
                             var temp = response.data.data;
                             for(var i=0;i<temp.length;i++){
                                 data.push(parseInt(String(temp[i])));
                             }
-                            $scope.chart(showData);
+                            //$scope.chart(showData);
                             $scope.chart_week(name,data);
 
                         });

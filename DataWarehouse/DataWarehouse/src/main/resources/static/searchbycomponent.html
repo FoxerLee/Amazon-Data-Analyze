@@ -47,13 +47,12 @@
                       <li><a href="searchbystyle.html">按风格查询</a></li>
                       <li><a href="searchbytime.html">按上映时间查询</a></li>
                       <li><a href="searchbycomponent.html">组合查询</a></li>
-                      <li><a href="searchreview.html">查询电影评论</a></li>
                       <li><a href="searchdirectorstyle.html">查询导演风格</a></li>
                       <li><a href="searchscore.html">查询电影评分</a></li>
                       <li><a href="showByStyle.html">查询风格趋势</a></li>
-                        <li><a href="searchbinding.html">查询电影介质</a></li>
-                        <li><a href="searchstudio.html">查询发行商</a></li>
-                        <li><a href="searchlanguage.html">查询语言</a></li>
+                      <li><a href="searchbinding.html">查询电影介质</a></li>
+                      <li><a href="searchstudio.html">查询发行商</a></li>
+                      <li><a href="searchlanguage.html">查询语言</a></li>
                     </ul>
                   </li>
 
@@ -322,16 +321,24 @@
                 // alert("hiveDirector:" + hiveDirector);
                 // alert("actor:" + actor);
                 // alert("style:" + style);
+                $http.get("http://localhost:8080/multiple/hive?year=" + year + "&hiveDirector=" + hiveDirector +"&actor=" + actor + "&genre=" + style)
+                    .then(function (response) {
+                        var showData = [];
+                        $scope.time_hive = response.data.time_hive;
+                        showData.push(parseFloat(String($scope.time_mysql)));
+                        showData.push(parseFloat(String($scope.time_hive)));
+                        $scope.chart(showData);
+                    });
                 $http.get("http://localhost:8080/multiple/index?year=" + year + "&hiveDirector=" + hiveDirector +"&actor=" + actor + "&genre=" + style)
                     .then(function (response) {
                         $scope.movieInfo = response.data.data;
                       $scope.count = response.data.number;
                       $scope.time_mysql = response.data.time_mysql;
-                      $scope.time_hive = response.data.time_hive;
-                      var showData = [];
-                      showData.push(parseFloat(String(response.data.time_mysql)));
-                      showData.push(parseFloat(String(response.data.time_hive)));
-                      $scope.chart(showData);
+                      // $scope.time_hive = response.data.time_hive;
+                      // var showData = [];
+                      // showData.push(parseFloat(String(response.data.time_mysql)));
+                      // showData.push(parseFloat(String(response.data.time_hive)));
+                      // $scope.chart(showData);
                     });
 
             };

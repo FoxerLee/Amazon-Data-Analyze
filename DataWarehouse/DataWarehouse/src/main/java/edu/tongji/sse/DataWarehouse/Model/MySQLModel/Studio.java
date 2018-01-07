@@ -4,7 +4,7 @@ public class Studio {
 
     private String studio;
 
-    private String movie_id;
+    private Integer count;
 
     public String getStudio() {
         return studio;
@@ -14,11 +14,11 @@ public class Studio {
         this.studio = studio;
     }
 
-    public String getMovie_id() {
-        return movie_id;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setMovie_id(String movie_id) {
-        this.movie_id = movie_id;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

@@ -17,7 +17,7 @@ public class MySQLDiagramServiceImpl implements MySQLDiagramService{
     public Object getDagramByGenreAndTimeChoice(Integer choice, String genre){
         if(genre.equals(""))
             return null;
-        String movies = mySQLMovieMapper.getMoviesByGenre(genre);
+        String movies = mySQLMovieMapper.getMoviesByGenre(genre)[0];
         if(movies == null)
             return null;
         String[] ID = movies.split(",");

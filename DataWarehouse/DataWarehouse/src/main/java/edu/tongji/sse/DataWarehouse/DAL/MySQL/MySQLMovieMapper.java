@@ -20,7 +20,7 @@ public interface MySQLMovieMapper {
     Movie getMoviesById(@Param(value = "movie_id")String movie_id);
 
     @Select("select movies from genre where genre = \'${genre}\'")
-    String getMoviesByGenre(@Param(value = "genre")String genre);
+    String[] getMoviesByGenre(@Param(value = "genre")String genre);
 
     @Select("select products from movie where id = \'${id}\'")
     String getMoviesStringById(@Param(value = "id")String movie_id);
