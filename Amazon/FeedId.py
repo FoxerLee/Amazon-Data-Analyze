@@ -7,9 +7,9 @@ import mysql.connector
 reload(sys)  # reload 才能调用 setdefaultencoding 方法
 sys.setdefaultencoding('utf-8')  # 设置 'utf-8'
 ID_LIST = '2'
-# 之前忘记改下面，待跑的部分搞乱完了，还得去求个差集 辣鸡
 ORIGIN = 'error'
 
+# 将待爬的数据
 def run(amount):
     config = {'host': '10.60.42.201', 'user': 'root', 'password': '123456', 'port': 13142, 'database': 'warehouse',
               'charset': 'utf8'}
