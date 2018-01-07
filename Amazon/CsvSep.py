@@ -6,6 +6,7 @@ import mysql.connector
 reload(sys)  # reload 才能调用 setdefaultencoding 方法
 sys.setdefaultencoding('utf-8')  # 设置 'utf-8'
 
+# 将获取到的所有product_id 放入数据库中 待爬
 def run():
     config = {'host':'10.60.42.201','user':'root', 'password':'123456', 'port':13142 , 'database':'warehouse', 'charset':'utf8'}
     conn = mysql.connector.connect(**config)
@@ -63,14 +64,6 @@ def run():
             conn.close()
             break
     cursor.execute("Commit;")
-    # 一次性插入会出现奇怪的bug，找不到，气死了
-    # 找到了，要把list里面的数据转成tuple，辣鸡
-    # 但是为了分批次，还是一个一个插吧，md
-    # sql = "INSERT INTO product_id VALUE (%s)"
-    # cursor.executemany(sql, ids)
-    # cursor.execute("Commit;")
-    # conn.close()
-    # cursor.close()
 
 
 
